@@ -1,0 +1,33 @@
+
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Position</th>
+            <th scope="col">joiningAge</th> 
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of employeeList">
+            <td scope="col">{{item.Id}}</td>
+            <td scope="col">{{item.FName}}</td>
+            <td scope="col">{{item.LName}}</td>
+            <td scope="col">{{item.Address}}</td>
+            <td scope="col">{{item.Age}}</td>
+            <td scope="col">{{item.Salary}}</td>
+            <th scope="col">{{item.Position}}</th> 
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator #paginator [length]="30" 
+                      [pageSize]="5"
+                    [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+      </mat-paginator>
+</div>

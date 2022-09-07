@@ -1,29 +1,67 @@
 
-<div class="container">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Age</th>
-            <th scope="col">Salary</th>
-            <th scope="col">Position</th>
-            <th scope="col">joiningAge</th> 
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of employeeList">
-            <td scope="col">{{item.Id}}</td>
-            <td scope="col">{{item.FName}}</td>
-            <td scope="col">{{item.LName}}</td>
-            <td scope="col">{{item.Address}}</td>
-            <td scope="col">{{item.Age}}</td>
-            <td scope="col">{{item.Salary}}</td>
-            <th scope="col">{{item.Position}}</th> 
-          </tr>
-        </tbody>
-      </table>
+
+<div >
+  <h2>Using Service</h2>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef> Id. </th>
+      <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="FName">
+      <th mat-header-cell *matHeaderCellDef> FName </th>
+      <td mat-cell *matCellDef="let element"> {{element.FName}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="LName">
+      <th mat-header-cell *matHeaderCellDef> LName </th>
+      <td mat-cell *matCellDef="let element"> {{element.LName}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Address">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Age">
+      <th mat-header-cell *matHeaderCellDef> LName </th>
+      <td mat-cell *matCellDef="let element"> {{element.LName}} </td>
+    </ng-container>
+  
+    <!-- Salary Column -->
+    <ng-container matColumnDef="Salary">
+      <th mat-header-cell *matHeaderCellDef> Salary </th>
+      <td mat-cell *matCellDef="let element"> {{element.Salary}} </td>
+    </ng-container>
+
+    
+    <!-- Salary Column -->
+    <ng-container matColumnDef="Position">
+      <th mat-header-cell *matHeaderCellDef> Position </th>
+      <td mat-cell *matCellDef="let element"> {{element.Position}} </td>
+    </ng-container>
+
+    <!-- joiningAge Column -->
+    <ng-container matColumnDef="joiningAge">
+      <th mat-header-cell *matHeaderCellDef> joiningAge </th>
+      <td mat-cell *matCellDef="let element"> {{element.joiningAge}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+  </table>
       <mat-paginator #paginator [length]="30" 
                       [pageSize]="5"
                     [pageSizeOptions]="[5, 10, 20]"

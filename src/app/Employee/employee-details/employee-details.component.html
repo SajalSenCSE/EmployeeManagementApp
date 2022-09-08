@@ -33,7 +33,7 @@
       <!-- Age Column -->
       <ng-container matColumnDef="Age">
         <th mat-header-cell *matHeaderCellDef> Age </th>
-        <td mat-cell *matCellDef="let element"> {{element.Age}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.DoB| age}} </td>
       </ng-container>
 
       <!-- Salary Column -->
@@ -48,7 +48,12 @@
       </ng-container>
       
       <!-- Salary Column -->
-      <ng-container matColumnDef="joiningAge">
+      <ng-container matColumnDef="DoB">
+        <th mat-header-cell *matHeaderCellDef> DoB </th>
+        <td mat-cell *matCellDef="let element"> {{element.DoB }} </td>
+      </ng-container>
+       <!-- Salary Column -->
+       <ng-container matColumnDef="joiningAge">
         <th mat-header-cell *matHeaderCellDef> joiningAge </th>
         <td mat-cell *matCellDef="let element"> {{element.joiningAge}} </td>
       </ng-container>

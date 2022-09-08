@@ -12,6 +12,7 @@ import { EmployeeDetailsComponent } from './Employee/employee-details/employee-d
 import { EmployeeServiceService } from './services/employee-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AgePipe } from './pipes/age.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     NavbarComponent,
     EmployeeListComponent,
     EmployeeDetailsComponent,
+    AgePipe,
   ],
   imports: [
     BrowserModule,

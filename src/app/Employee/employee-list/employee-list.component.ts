@@ -31,6 +31,7 @@ export class EmployeeListComponent implements OnInit {
     'FName',
     'LName',
     'Address',
+    'DoB',
     'Age',
     'Salary',
     'Position',

@@ -3,6 +3,7 @@ export interface IEmployee {
   FName: string;
   LName: string;
   Address: string;
+  DoB:string;
   Age: number;
   Salary: number;
   Position: string;

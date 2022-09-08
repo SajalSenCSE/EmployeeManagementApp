@@ -2,69 +2,54 @@
   <h2>Using Component Data</h2>
 </div>
 
-
-  <!-- Sajal -->
-<div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
-  
-      <!-- Position Column -->
-      <ng-container matColumnDef="Id">
-        <th mat-header-cell *matHeaderCellDef> Id </th>
-        <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
-      </ng-container>
-  
-      <!-- Name Column -->
-      <ng-container matColumnDef="FName">
-        <th mat-header-cell *matHeaderCellDef> FName </th>
-        <td mat-cell *matCellDef="let element"> {{element.FName}} </td>
-      </ng-container>
-  
-      <!-- Weight Column -->
-      <ng-container matColumnDef="LName">
-        <th mat-header-cell *matHeaderCellDef> LName </th>
-        <td mat-cell *matCellDef="let element"> {{element.LName}} </td>
-      </ng-container>
-  
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="Address">
-        <th mat-header-cell *matHeaderCellDef> Address </th>
-        <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
-      </ng-container>
-      <!-- Age Column -->
-      <ng-container matColumnDef="Age">
-        <th mat-header-cell *matHeaderCellDef> Age </th>
-        <td mat-cell *matCellDef="let element"> {{element.DoB| age}} </td>
-      </ng-container>
-
-      <!-- Salary Column -->
-      <ng-container matColumnDef="Salary">
-        <th mat-header-cell *matHeaderCellDef> Salary </th>
-        <td mat-cell *matCellDef="let element"> {{element.Salary}} </td>
-      </ng-container>
-      <!-- Salary Column -->
-      <ng-container matColumnDef="Position">
-        <th mat-header-cell *matHeaderCellDef> Position </th>
-        <td mat-cell *matCellDef="let element"> {{element.Position}} </td>
-      </ng-container>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">DoB</th>
+      <th scope="col">Age</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Position</th>
+      <th scope="col">joiningAge</th>
       
-      <!-- Salary Column -->
-      <ng-container matColumnDef="DoB">
-        <th mat-header-cell *matHeaderCellDef> DoB </th>
-        <td mat-cell *matCellDef="let element"> {{element.DoB }} </td>
-      </ng-container>
-       <!-- Salary Column -->
-       <ng-container matColumnDef="joiningAge">
-        <th mat-header-cell *matHeaderCellDef> joiningAge </th>
-        <td mat-cell *matCellDef="let element"> {{element.joiningAge}} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  
-    <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" [length]="30" 
-                   showFirstLastButtons 
-                   aria-label="Select page of periodic elements">
-    </mat-paginator>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of empList2">
+      <th >{{emp.Id}}</th>
+      <td>{{emp.FName}}</td>
+      <td>{{emp.LName}}</td>
+      <th >{{emp.Address}}</th>
+      <td>{{emp.DoB}}</td>
+      <td>{{emp.DoB|age}}</td>
+      <th >{{emp.Salary}}</th>
+      <td>{{emp.Position}}</td>
+      <td>{{emp.joiningAge}}</td>
+    </tr>
+    
+  </tbody>
+</table>
+<div class="row">
+  <div class="col-md-2 ">
+    <select [value]="empPerpage" class="from-control" (change)="changePazeSixe($event)">
+      <option value="5">Select 5</option>
+      <option value="10">Select 10</option>
+      <option value="15">Select 15</option>
+    </select>
   </div>
+  <div class="btn-group">
+    
+    <button class="btn btn-outline-primary  " *ngFor="let page of pageNumbers"
+    [class.active]="page==selextedPage" (click)="changePage(page)">{{page}}</button>
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+
+
   

@@ -12,7 +12,7 @@ export class AgePipe implements PipeTransform {
     // console.log(value);
 
     if(value==''){
-      return ' zz';
+      return ' -- ';
     }
     let currentYear:any=new Date().getFullYear();
     let dob:any=new Date(value).getUTCFullYear();

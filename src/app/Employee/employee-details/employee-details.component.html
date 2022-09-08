@@ -40,10 +40,15 @@
       <option value="15">Select 15</option>
     </select>
   </div>
+  
   <div class="btn-group">
-    
-    <button class="btn btn-outline-primary  " *ngFor="let page of pageNumbers"
+    <button  class="btn btn-secondary" (click)="Pre()">Pre</button>
+    <button class="btn btn-outline-primary" *ngFor="let page of pageNumbers"
+
     [class.active]="page==selextedPage" (click)="changePage(page)">{{page}}</button>
+
+
+    <button class="btn btn-secondary" (click)="Next()">Pre</button>
   </div>
 </div>
 

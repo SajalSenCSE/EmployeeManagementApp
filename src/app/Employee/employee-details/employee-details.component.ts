@@ -9,14 +9,14 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class EmployeeDetailsComponent implements OnInit {
   constructor() {}
-  empPerpage:number=5;
-  selextedPage:number=1;
+ 
 
   ngOnInit(): void {
     let pageIndex=(this.selextedPage-1)*this.empPerpage;
     this.empList2=this.empList.slice(pageIndex,this.empPerpage);
 
   }
+
 
  
   empList: IEmployee [] = [
@@ -356,26 +356,44 @@ export class EmployeeDetailsComponent implements OnInit {
       joiningAge: 4,
     },
   ];
-  
+
+
+  btnDisable:boolean=false;
   empList2: IEmployee [];
-changePazeSixe(event:Event){
+  empPerpage:number=5;
+  selextedPage:number=1;
+
+  changePazeSixe(event:Event){
   const newSize=(event.target as HTMLInputElement).value;
   this.empPerpage=Number(newSize);
   this.changePage(1);
 }
 get pageNumbers():number[]{
-  return Array(Math.ceil(this.empList.length / this.empPerpage)).fill(0).map((x,i)=>i+1);
+  return Array(Math.ceil(this.empList.length / this.empPerpage))
+  .fill(0).map((x,i)=>i+1);
 }
 changePage(page:any){
   this.selextedPage=page
   this.sliceEmp()
-
 
 }
 sliceEmp(){
   let pageIndex=(this.selextedPage-1)*this.empPerpage;
   let endIndex=(this.selextedPage-1)*this.empPerpage+this.empPerpage;
   this.empList2=this.empList.slice(pageIndex,endIndex)
+}
+
+
+
+Pre(){
+  this.selextedPage=this.selextedPage-1;
+  this.sliceEmp();
+  
+}
+Next(){
+  this.selextedPage=this.selextedPage+1;
+  this.sliceEmp();
+
 }
  
 

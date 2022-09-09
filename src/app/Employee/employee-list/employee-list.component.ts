@@ -10,46 +10,59 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./employee-list.component.css'],
 })
 export class EmployeeListComponent implements OnInit {
-  constructor(private empService: EmployeeServiceService) {}
+  
 
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
-  // dataSource: MatTableDataSource<IEmployee>;
+constructor(private empService: EmployeeServiceService) {}
 
-  // employeeList: IEmployee[];
 
-  // ngOnInit(): void {
-  //   this.empService.getAllEmployee().subscribe((res) => {
-  //     this.employeeList = res;
-  //     this.dataSource = new MatTableDataSource<IEmployee>(res);
-  //     console.log(this.employeeList);
-  //   });
-  // }
-  // ngAfterViewInit() {}
 
-  displayedColumns: string[] = [
-    'Id',
-    'FName',
-    'LName',
-    'Address',
-    'DoB',
-    'Age',
-    'Salary',
-    'Position',
-    'joiningAge',
-  ];
-  employeeList: IEmployee[] = [];
-  dataSource: MatTableDataSource<IEmployee> =
-    new MatTableDataSource<IEmployee>();
+employeeList: IEmployee[] = [];
+ employeeList2:IEmployee[];
 
-  @ViewChild(MatPaginator) matpaginator?: MatPaginator;
+ employeePerPage:number=5;
+ SelectPage:number=1;
+ pageIndex:number=(this.SelectPage-1)*this.employeePerPage;
 
-  ngOnInit(): void {
-    this.empService.getAllEmployee().subscribe((data) => {
-      this.employeeList = data;
-      this.dataSource = new MatTableDataSource<IEmployee>(this.employeeList);
-      if (this.matpaginator) {
-        this.dataSource.paginator = this.matpaginator;
-      }
-    });
-  }
+
+
+
+
+
+ ngOnInit(): void {
+   this.empService.getAllEmployee()
+   .subscribe((data)=>{
+     this.employeeList=data;
+     this.employeeList2=this.employeeList.slice(this.pageIndex,this.employeePerPage);
+   })
+ }
+ get pageNumbers():number[]{
+   return Array((this.employeeList.length)/this.employeePerPage).fill(0).map((x,i)=>i+1);
+ }
+
+ employeePerPageChange(e:Event){
+   const newPageSize=(e.target as HTMLInputElement).value;
+   this.employeePerPage=Number(newPageSize);
+   this.changePage(1) //defaultPage will be 1
+ }
+ changePage(page:number){
+   this.SelectPage=page
+   this.SliceEmployee();
+ }
+
+
+
+ SliceEmployee(){
+   this.pageIndex=(this.SelectPage-1)*this.employeePerPage;
+   let endIndex=this.pageIndex+this.employeePerPage;
+   this.employeeList2=this.employeeList.slice(this.pageIndex,endIndex);
+ }
+
+ PrePage(){
+   this.SelectPage=this.SelectPage-1;
+   this.changePage(this.SelectPage)
+ }
+ NextPage(){
+   this.SelectPage=this.SelectPage+1;
+   this.changePage(this.SelectPage)
+ }
 }

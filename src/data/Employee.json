@@ -12,7 +12,7 @@
     },
     {
         "Id":2,
-        "FName":"Sajal 2",
+        "FName":"Jamal 2",
         "LName":"Sen",
         "Address":"Dhaka -a,road a",
         "DoB":"6/15/2001",
@@ -23,7 +23,7 @@
     },
       {
         "Id":3,
-        "FName":"Sajal--3",
+        "FName":"Jubayer--3",
         "LName":"Sen-3",
         "Address":"Dhaka -b,road c",
         "DoB":"6/15/2001",

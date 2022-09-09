@@ -1,41 +1,29 @@
 
 
-<div >
-  <h2>Using Service</h2>
-</div>
-
-<div >
-  <h2>Using Component Data</h2>
+<div class="row ms-4 col-md-6">
+  <label>Search by First Name</label>
+  <input [(ngModel)]='fName' class="form-control" placeholder="Filter By First Name">
+  <!-- <button (click)="onFilterByFName()" class="btn btn-primary">Search</button> -->
 </div>
 
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Address</th>
-      <th scope="col">DoB</th>
-      <th scope="col">Age</th>
-      <th scope="col">Salary</th>
-      <th scope="col">Position</th>
-      <th scope="col">joiningAge</th>
-
+      <th (click)="getByName('FName')" scope="col"><a class="btn">First Name</a></th>
+      <th (click)="getByName('LName')" scope="col"><a class="btn">Last Name</a></th>
+      <th (click)="getByName('Position')" scope="col"><a class="btn">Designation</a></th>
+      <th (click)="getByName('DoB')" scope="col"><a class="btn">Age</a></th>
+      <th (click)="getByName('Salary')" scope="col"><a class="btn">Salary</a></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let emp of employeeList2">
-      <th >{{emp.Id}}</th>
+    <tr *ngFor="let emp of employeeList2 |filter:fName:'FName'| sort:[sortingParams,sortDirection]">
       <td>{{emp.FName}}</td>
       <td>{{emp.LName}}</td>
-      <th >{{emp.Address}}</th>
-      <td>{{emp.DoB}}</td>
-      <td>{{emp.DoB | age}}</td>
-      <th >{{emp.Salary}}</th>
       <td>{{emp.Position}}</td>
-      <td>{{emp.joiningAge}}</td>
+      <td>{{emp.DoB | age}}</td>
+      <th >{{emp.Salary }}</th>
     </tr>
-
   </tbody>
 </table>
 
@@ -49,15 +37,14 @@
     </select>
   </div>
   <div class="col-md-2">
-    <strong> {{pageIndex}}--{{employeePerPage*SelectPage}} of {{employeeList.length}}</strong>
+    <strong> {{pageIndex}}--{{employeePerPage*selectPage}} of {{employeeList.length}}</strong>
   </div>
   <div class="col-md-6">
-    <button class="btn btn-outline-primary" (click)="PrePage()">Pre</button>
+    <button [disabled]="!preBtnDisable" class="btn btn-outline-primary" (click)="prePage()">Pre</button>
     <button *ngFor="let page of pageNumbers" class="btn btn-outline-primary"
-    [class.active]="page==SelectPage"
+    [class.active]="page==selectPage"
      (click)="changePage(page)">{{page}}</button>
-    <button class="btn btn-outline-primary" (click)="NextPage()">Next</button>
-
+    <button [disabled]="!nextBtnDisable" class="btn btn-outline-primary" (click)="nextPage()">Next</button>
   </div>
 </div>
   

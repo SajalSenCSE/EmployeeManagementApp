@@ -16,11 +16,7 @@ export class AgePipe implements PipeTransform {
     }
     let currentYear:any=new Date().getFullYear();
     let dob:any=new Date(value).getUTCFullYear();
-    
-
-    console.log(dob2);
     let age=currentYear-dob;
-    console.log(age);
     return age;
   }
 

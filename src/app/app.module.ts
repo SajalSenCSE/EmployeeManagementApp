@@ -13,6 +13,9 @@ import { EmployeeServiceService } from './services/employee-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AgePipe } from './pipes/age.pipe';
+import { SortPipe } from './pipes/sort.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { AgePipe } from './pipes/age.pipe';
     EmployeeListComponent,
     EmployeeDetailsComponent,
     AgePipe,
+    SortPipe,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +35,7 @@ import { AgePipe } from './pipes/age.pipe';
     MatPaginatorModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
+    FormsModule
   ],
   providers: [EmployeeServiceService],
   bootstrap: [AppComponent],

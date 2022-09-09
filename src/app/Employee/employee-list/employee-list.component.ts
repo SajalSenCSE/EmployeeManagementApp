@@ -63,11 +63,18 @@ export class EmployeeListComponent implements OnInit {
   preAndNex(selectPage:number){
     let tempForPre=selectPage;
     let tempForNex=this.pageNumbers.length
-    if(tempForPre!=1){
+    if(tempForPre>1){
       this.preBtnDisable=true;
     }
-    if(this.selectPage>=tempForNex){
+    else{
+      this.preBtnDisable=false;
+    }
+    if(selectPage>=tempForNex){
       this.nextBtnDisable=false;
+    }else{
+      console.log(this.selectPage)
+      this.nextBtnDisable=true;
+      
     }
   }
   getByName(value:string){

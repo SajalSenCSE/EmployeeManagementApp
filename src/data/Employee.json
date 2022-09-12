@@ -1,354 +1,343 @@
 [
     {
-      "Id":1,
-      "FName":"Sajal1",
-      "LName":"Sen",
-      "Address":"Dhaka -x,road y",
-      "DoB":"sajal",
-      "Age":27,
-      "Salary":25000,
-      "Position":"Developer",
-      "joiningAge":2
+      "Id": 1,
+      "FName": "Sajal",
+      "LName": "Sen",
+      "Address": "Dhaka -x,road y",
+      "DoB": "sajal",
+      "Age": 27,
+      "Salary": 25000,
+      "Position": "Developer",
+      "joiningAge": 2
     },
     {
-        "Id":2,
-        "FName":"Jamal",
-        "LName":"Sen",
-        "Address":"Dhaka -a,road a",
-        "DoB":"6/15/2001",
-        "Age":27,
-        "Salary":26000,
-        "Position":"Developer",
-        "joiningAge":2
+      "Id": 2,
+      "FName": "Jamal",
+      "LName": "Molla",
+      "Address": "Dhaka -a,road a",
+      "DoB": "6/15/2001",
+      "Age": 27,
+      "Salary": 26000,
+      "Position": "Developer",
+      "joiningAge": 2
     },
-      {
-        "Id":3,
-        "FName":"Jubayer",
-        "LName":"Sen-3",
-        "Address":"Dhaka -b,road c",
-        "DoB":"6/15/2001",
-        "Age":28,
-        "Salary":55000,
-        "Position":"Developer -junior",
-        "joiningAge":1
-      },
-      {
-        "Id":4,
-        "FName":"Rahim",
-        "LName":"Sen-5",
-        "Address":"Dhaka -c,road v",
-        "DoB":"6/15/2001",
-        "Age":28,
-        "Salary":28000,
-        "Position":"Developer",
-        "joiningAge":4
-      },
-
-      {
-        "Id":5,
-        "FName":"Rubel",
-        "LName":"Sen--5",
-        "Address":"Dhaka -d,road d",
-        "DoB":"6/15/2001",
-        "Age":27,
-        "Salary":55000,
-        "Position":"Developer",
-        "joiningAge":6
-      },
-      {
-          "Id":6,
-          "FName":"Nayan",
-          "LName":"Sen--6",
-          "Address":"Dhaka -d,road f",
-          "DoB":"6/15/2001",
-          "Age":28,
-          "Salary":36000,
-          "Position":"Developer",
-          "joiningAge":4
-        },
-        {
-          "Id":7,
-          "FName":"Sumon",
-          "LName":"Khan",
-          "Address":"Dhaka -f,road f",
-          "DoB":"6/15/2001",
-          "Age":28,
-          "Salary":35000,
-          "Position":"Developer -junior",
-          "joiningAge":3
-        },
-        {
-          "Id":8,
-          "FName":"Rakib",
-          "LName":"Khan",
-          "Address":"Dhaka -d,road f",
-          "DoB":"6/15/2001",
-          "Age":20,
-          "Salary":20000,
-          "Position":" junior Developer",
-          "joiningAge":1
-        },
-        {
-            "Id":9,
-            "FName":"Lemon",
-            "LName":"Sen-9",
-            "Address":"Dhaka -g,road g",
-            "DoB":"6/15/2001",
-            "Age":29,
-            "Salary":35000,
-            "Position":"Developer -junior",
-            "joiningAge":4
-          },
-          {
-            "Id":10,
-            "FName":"Khayer",
-            "LName":"Rahman",
-            "Address":"Dhaka -j,road j",
-            "DoB":"6/15/2001",
-            "Age":20,
-            "Salary":45000,
-            "Position":"Web Developer",
-            "joiningAge":4
-          },
-
-
-
-          {
-            "Id":11,
-            "FName":"Rahim",
-            "LName":"Khan",
-            "Address":"Dhaka -11,road 11",
-            "DoB":"6/15/2001",
-            "Age":26,
-            "Salary":30000,
-            "Position":"Web Developer",
-            "joiningAge":4
-          },
-          {
-              "Id":12,
-              "FName":"Jakir",
-              "LName":"Sen  12",
-              "Address":"Dhaka -12,road 12",
-              "DoB":"6/15/2001",
-              "Age":24,
-              "Salary":24000,
-              "Position":" junior Developer",
-              "joiningAge":2
-            },
-            {
-              "Id":13,
-              "FName":"Alsam",
-              "LName":"Islam",
-              "Address":"Dhaka -13b,road 13c",
-              "DoB":"6/15/2001",
-              "Age":29,
-              "Salary":55000,
-              "Position":"Developer",
-              "joiningAge":3
-            },
-            {
-              "Id":14,
-              "FName":"Sajal",
-              "LName":"Ahamad",
-              "Address":"Dhaka -14c,road 14v",
-              "DoB":"6/15/2001",
-              "Age":27,
-              "Salary":28000,
-              "Position":"Developer",
-              "joiningAge":3
-            },
-      
-            {
-              "Id":15,
-              "FName":"Sajal",
-              "LName":"Khan",
-              "Address":"Dhaka -d,road d",
-              "DoB":"6/15/2001",
-              "Age":27,
-              "Salary":55000,
-              "Position":"Developer",
-              "joiningAge":6
-            },
-            {
-                "Id":16,
-                "FName":"Rubel",
-                "LName":"Sen",
-                "Address":"Dhaka -16d,road 16f",
-                "DoB":"6/15/2001",
-                "Age":28,
-                "Salary":36000,
-                "Position":"Developer",
-                "joiningAge":4
-              },
-              {
-                "Id":17,
-                "FName":"Sajal Rahman",
-                "LName":"Sen-17",
-                "Address":"Dhaka -17f,road 17f",
-                "DoB":"6/15/2001",
-                "Age":28,
-                "Salary":35000,
-                "Position":"Developer",
-                "joiningAge":3
-              },
-              {
-                "Id":18,
-                "FName":"Nayan",
-                "LName":"Sen",
-                "Address":"Dhaka -18d,road 18f",
-                "DoB":"6/15/2001",
-                "Age":20,
-                "Salary":20000,
-                "Position":" junior Developer",
-                "joiningAge":1
-              },
-              {
-                  "Id":19,
-                  "FName":"Sajal--19",
-                  "LName":"Sen-9",
-                  "Address":"Dhaka -19g,road 19g",
-                  "DoB":"6/15/2001",
-                  "Age":29,
-                  "Salary":35000,
-                  "Position":"Developer -junior",
-                  "joiningAge":3
-                },
-                {
-                  "Id":20,
-                  "FName":"Sajal2",
-                  "LName":"Molla",
-                  "Address":"Dhaka -20j,road 20j",
-                  "DoB":"6/15/2001",
-                  "Age":20,
-                  "Salary":45000,
-                  "Position":"Web Developer",
-                  "joiningAge":4
-                },
-
-
-                {
-                    "Id":21,
-                    "FName":"Jhon",
-                    "LName":"Desuja",
-                    "Address":"Dhaka -21x,road 21y",
-                    "DoB":"6/15/2001",
-                    "Age":27,
-                    "Salary":25000,
-                    "Position":"Developer",
-                    "joiningAge":2
-                  },
-                  {
-                      "Id":22,
-                      "FName":"Maria",
-                      "LName":"Rahamn",
-                      "Address":"Dhaka -22a,road 22a",
-                      "DoB":"6/15/2001",
-                      "Age":27,
-                      "Salary":26000,
-                      "Position":"Developer",
-                      "joiningAge":2
-                    },
-                    {
-                      "Id":23,
-                      "FName":"Sakib",
-                      "LName":"Hasan",
-                      "Address":"Dhaka -23b,road 23c",
-                      "DoB":"6/15/2001",
-                      "Age":28,
-                      "Salary":55000,
-                      "Position":"Developer -junior",
-                      "joiningAge":1
-                    },
-                    {
-                      "Id":24,
-                      "FName":"Sohel",
-                      "LName":"Khan",
-                      "Address":"Dhaka -24c,road 24v",
-                      "DoB":"6/15/2001",
-                      "Age":28,
-                      "Salary":28000,
-                      "Position":"Developer",
-                      "joiningAge":4
-                    },
-              
-                    {
-                      "Id":25,
-                      "FName":"Jamil",
-                      "LName":"Ahdmad",
-                      "Address":"Dhaka -25d,road 25d",
-                      "DoB":"6/15/2001",
-                      "Age":27,
-                      "Salary":55000,
-                      "Position":"Developer",
-                      "joiningAge":6
-                    },
-                    {
-                        "Id":26,
-                        "FName":"Santhon",
-                        "LName":"S",
-                        "Address":"Dhaka -26d,road 26f",
-                        "DoB":"6/15/2001",
-                        "Age":28,
-                        "Salary":36000,
-                        "Position":"Developer",
-                        "joiningAge":4
-                      },
-                      {
-                        "Id":27,
-                        "FName":"Akash",
-                        "LName":"khan",
-                        "Address":"Dhaka -27f,road 27f",
-                        "DoB":"6/15/2001",
-                        "Age":28,
-                        "Salary":35000,
-                        "Position":"Developer -junior",
-                        "joiningAge":3
-                      },
-                      {
-                        "Id":28,
-                        "FName":"Asif",
-                        "LName":"Hasan",
-                        "Address":"Dhaka -28d,road 28f",
-                        "DoB":"6/15/2001",
-                        "Age":20,
-                        "Salary":20000,
-                        "Position":" junior Developer",
-                        "joiningAge":1
-                      },
-                      {
-                          "Id":29,
-                          "FName":"Anui",
-                          "LName":"DDD",
-                          "Address":"Dhaka -29g,road 29g",
-                          "DoB":"6/15/2001",
-                          "Age":29,
-                          "Salary":35000,
-                          "Position":"Developer -junior",
-                          "joiningAge":4
-                        },
-                        {
-                          "Id":30,
-                          "FName":"Hemu",
-                          "LName":"Sarkar",
-                          "Address":"Dhaka -j,road j",
-                          "DoB":"6/15/2001",
-                          "Age":20,
-                          "Salary":45000,
-                          "Position":"Web Developer",
-                          "joiningAge":4
-                        },
-                        {
-                          "Id":31,
-                          "FName":"Hemu2",
-                          "LName":"Sarkar",
-                          "Address":"Dhaka -j,road j",
-                          "DoB":"6/15/2001",
-                          "Age":20,
-                          "Salary":45000,
-                          "Position":"Web Developer",
-                          "joiningAge":4
-                        }
-                        
-  
-  
+    {
+      "Id": 3,
+      "FName": "Jubayer",
+      "LName": "Rahamn",
+      "Address": "Dhaka -b,road c",
+      "DoB": "6/15/2001",
+      "Age": 28,
+      "Salary": 55000,
+      "Position": "Developer -junior",
+      "joiningAge": 1
+    },
+    {
+      "Id": 4,
+      "FName": "Rahim",
+      "LName": "Islam",
+      "Address": "Dhaka -c,road v",
+      "DoB": "6/15/2001",
+      "Age": 28,
+      "Salary": 28000,
+      "Position": "Developer",
+      "joiningAge": 4
+    },
+    {
+      "Id": 5,
+      "FName": "Rubel",
+      "LName": "Sen--5",
+      "Address": "Dhaka -d,road d",
+      "DoB": "6/15/2001",
+      "Age": 27,
+      "Salary": 55000,
+      "Position": "Developer",
+      "joiningAge": 6
+    },
+    {
+      "Id": 6,
+      "FName": "Nayan",
+      "LName": "Sen--6",
+      "Address": "Dhaka -d,road f",
+      "DoB": "6/15/2001",
+      "Age": 28,
+      "Salary": 36000,
+      "Position": "Developer",
+      "joiningAge": 4
+    },
+    {
+      "Id": 7,
+      "FName": "Sumon",
+      "LName": "Khan",
+      "Address": "Dhaka -f,road f",
+      "DoB": "6/15/2001",
+      "Age": 28,
+      "Salary": 35000,
+      "Position": "Developer -junior",
+      "joiningAge": 3
+    },
+    {
+      "Id": 8,
+      "FName": "Rakib",
+      "LName": "Hasan",
+      "Address": "Dhaka -d,road f",
+      "DoB": "6/15/2001",
+      "Age": 20,
+      "Salary": 20000,
+      "Position": " junior Developer",
+      "joiningAge": 1
+    },
+    {
+      "Id": 9,
+      "FName": "Lemon",
+      "LName": "Biswas",
+      "Address": "Dhaka -g,road g",
+      "DoB": "6/15/2001",
+      "Age": 29,
+      "Salary": 35000,
+      "Position": "Developer -junior",
+      "joiningAge": 4
+    },
+    {
+      "Id": 10,
+      "FName": "Abu",
+      "LName": "Khayer",
+      "Address": "Dhaka -j,road j",
+      "DoB": "6/15/2001",
+      "Age": 20,
+      "Salary": 45000,
+      "Position": "Web Developer",
+      "joiningAge": 4
+    },
+    {
+      "Id": 11,
+      "FName": "Rahim",
+      "LName": "Daria",
+      "Address": "Dhaka -11,road 11",
+      "DoB": "6/15/2001",
+      "Age": 26,
+      "Salary": 30000,
+      "Position": "Web Developer",
+      "joiningAge": 4
+    },
+    {
+      "Id": 12,
+      "FName": "Jakir",
+      "LName": "Sen",
+      "Address": "Dhaka -12,road 12",
+      "DoB": "6/15/2001",
+      "Age": 24,
+      "Salary": 24000,
+      "Position": " junior Developer",
+      "joiningAge": 2
+    },
+    {
+      "Id": 13,
+      "FName": "Alsam",
+      "LName": "Islam",
+      "Address": "Dhaka -13b,road 13c",
+      "DoB": "6/15/2001",
+      "Age": 29,
+      "Salary": 55000,
+      "Position": "Developer",
+      "joiningAge": 3
+    },
+    {
+      "Id": 14,
+      "FName": "Sajal2",
+      "LName": "Ahamad",
+      "Address": "Dhaka -14c,road 14v",
+      "DoB": "6/15/2001",
+      "Age": 27,
+      "Salary": 28000,
+      "Position": "Developer",
+      "joiningAge": 3
+    },
+    {
+      "Id": 15,
+      "FName": "Alif",
+      "LName": "Khan",
+      "Address": "Dhaka -d,road d",
+      "DoB": "6/15/2001",
+      "Age": 27,
+      "Salary": 55000,
+      "Position": "Developer",
+      "joiningAge": 6
+    },
+    {
+      "Id": 16,
+      "FName": "Ovjit",
+      "LName": "Biswas",
+      "Address": "Dhaka -16d,road 16f",
+      "DoB": "6/15/2001",
+      "Age": 28,
+      "Salary": 36000,
+      "Position": "Developer",
+      "joiningAge": 4
+    },
+    {
+      "Id": 17,
+      "FName": "Sasho ",
+      "LName": "Rahman",
+      "Address": "Dhaka -17f,road 17f",
+      "DoB": "6/15/2001",
+      "Age": 28,
+      "Salary": 35000,
+      "Position": "Developer",
+      "joiningAge": 3
+    },
+    {
+      "Id": 18,
+      "FName": "Mafuzur",
+      "LName": "Raham",
+      "Address": "Dhaka -18d,road 18f",
+      "DoB": "6/15/2001",
+      "Age": 20,
+      "Salary": 20000,
+      "Position": " junior Developer",
+      "joiningAge": 1
+    },
+    {
+      "Id": 19,
+      "FName": "Bristy",
+      "LName": "Sarkar",
+      "Address": "Dhaka -19g,road 19g",
+      "DoB": "6/15/2001",
+      "Age": 29,
+      "Salary": 35000,
+      "Position": "Developer -junior",
+      "joiningAge": 3
+    },
+    {
+      "Id": 20,
+      "FName": "Imran",
+      "LName": "Vai",
+      "Address": "Dhaka -20j,road 20j",
+      "DoB": "6/15/2001",
+      "Age": 20,
+      "Salary": 45000,
+      "Position": "Web Developer",
+      "joiningAge": 4
+    },
+    {
+      "Id": 21,
+      "FName": "Jhon",
+      "LName": "Desuja",
+      "Address": "Dhaka -21x,road 21y",
+      "DoB": "6/15/2001",
+      "Age": 27,
+      "Salary": 25000,
+      "Position": "Developer",
+      "joiningAge": 2
+    },
+    {
+      "Id": 22,
+      "FName": "Maria",
+      "LName": "Rahamn",
+      "Address": "Dhaka -22a,road 22a",
+      "DoB": "6/15/2001",
+      "Age": 27,
+      "Salary": 26000,
+      "Position": "Developer",
+      "joiningAge": 2
+    },
+    {
+      "Id": 23,
+      "FName": "Sakib",
+      "LName": "Hasan",
+      "Address": "Dhaka -23b,road 23c",
+      "DoB": "6/15/2001",
+      "Age": 28,
+      "Salary": 55000,
+      "Position": "Developer -junior",
+      "joiningAge": 1
+    },
+    {
+      "Id": 24,
+      "FName": "Sohel",
+      "LName": "Khan",
+      "Address": "Dhaka -24c,road 24v",
+      "DoB": "6/15/2001",
+      "Age": 28,
+      "Salary": 28000,
+      "Position": "Developer",
+      "joiningAge": 4
+    },
+    {
+      "Id": 25,
+      "FName": "Jamil",
+      "LName": "Ahdmad",
+      "Address": "Dhaka -25d,road 25d",
+      "DoB": "6/15/2001",
+      "Age": 27,
+      "Salary": 55000,
+      "Position": "Developer",
+      "joiningAge": 6
+    },
+    {
+      "Id": 26,
+      "FName": "Santhon",
+      "LName": "S",
+      "Address": "Dhaka -26d,road 26f",
+      "DoB": "6/15/2001",
+      "Age": 28,
+      "Salary": 36000,
+      "Position": "Developer",
+      "joiningAge": 4
+    },
+    {
+      "Id": 27,
+      "FName": "Akash",
+      "LName": "khan",
+      "Address": "Dhaka -27f,road 27f",
+      "DoB": "6/15/2001",
+      "Age": 28,
+      "Salary": 35000,
+      "Position": "Developer -junior",
+      "joiningAge": 3
+    },
+    {
+      "Id": 28,
+      "FName": "Asif",
+      "LName": "Hasan",
+      "Address": "Dhaka -28d,road 28f",
+      "DoB": "6/15/2001",
+      "Age": 20,
+      "Salary": 20000,
+      "Position": " junior Developer",
+      "joiningAge": 1
+    },
+    {
+      "Id": 29,
+      "FName": "Anuj",
+      "LName": "DDD",
+      "Address": "Dhaka -29g,road 29g",
+      "DoB": "6/15/2001",
+      "Age": 29,
+      "Salary": 35000,
+      "Position": "Developer -junior",
+      "joiningAge": 4
+    },
+    {
+      "Id": 30,
+      "FName": "Hemu",
+      "LName": "Sarkar",
+      "Address": "Dhaka -j,road j",
+      "DoB": "6/15/2001",
+      "Age": 20,
+      "Salary": 45000,
+      "Position": "Web Developer",
+      "joiningAge": 4
+    },
+    {
+      "Id": 31,
+      "FName": "Hemu2",
+      "LName": "Sarkar",
+      "Address": "Dhaka -j,road j",
+      "DoB": "6/15/2001",
+      "Age": 20,
+      "Salary": 45000,
+      "Position": "Web Developer",
+      "joiningAge": 4
+    }
   ]

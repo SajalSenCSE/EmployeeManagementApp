@@ -10,113 +10,115 @@ import { LeadService } from 'src/app/services/lead.service';
   styleUrls: ['./employee-list.component.css'],
 })
 export class EmployeeListComponent implements OnInit {
-  
 
-  fName:string='';
-  sortDirection:string='asce';
-  preBtnDisable:boolean=false;
-  nextBtnDisable:boolean=true;
-  sortingParams:string='Id';
-  employeeListBase:IEmployee[]=[];
+  fName: string = '';
+  sortDirection: string = 'asce';
+  preBtnDisable: boolean = false;
+  nextBtnDisable: boolean = true;
+  sortingParams: string = 'Id';
   employeeList: IEmployee[] = [];
-  employeeList2:IEmployee[]=[];
-  employeePerPage:number=5;
-  selectPage:number=1;
-  searchingString:string='';
-  pageIndex:number=(this.selectPage-1)*this.employeePerPage;
+  employeeList2: IEmployee[] = [];
+  employeePerPage: number = 5;
+  selectPage: number = 1;
+  searchingString: string = '';
+  pageIndex: number = (this.selectPage - 1) * this.employeePerPage;
 
-  constructor(private empService: EmployeeServiceService) {}
+  constructor(private empService: EmployeeServiceService) { }
 
   ngOnInit(): void {
     this.empService.getAllEmployee()
-    .subscribe((data)=>{
-      this.employeeListBase=data;
-      this.employeeList=this.employeeListBase;
-      this.employeeList2=this.employeeList.slice(this.pageIndex,this.employeePerPage);
-    })
-  }
-
-  search(){
-    if(this.fName!=""){
-      this.employeeList=this.employeeListBase.filter(res=>{
-        return (res.FName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase())||(res.LName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase())));  
+      .subscribe((data) => {
+        this.employeeList = data;
+        this.employeeList2 = this.employeeList.slice(this.pageIndex, this.employeePerPage);
       })
-      console.log(this.employeeList);
-      this.employeeList2=this.employeeList.slice(this.pageIndex,this.employeePerPage);
-    }else{
-      this.ngOnInit();
-      
+  }
+
+  search() {
+    if (this.fName != "") {
+      this.employeeList = this.employeeList.filter(res => {
+        return (res.FName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase()) || (res.LName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase())));
+      })
+      this.searchPagination()
+    } else {
+      this.ngOnInit()
     }
   }
 
-  get pageNumbers():number[]{
-    if(this.fName==""){
-      return Array(Math.ceil((this.employeeList.length)/this.employeePerPage)).fill(0).map((x,i)=>i+1);
-    }
-    else{
-      return Array(Math.ceil((this.employeeList.length)/this.employeePerPage)).fill(0).map((x,i)=>i+1);
-    }
-   
-   }
+  searchPagination() {
+    this.pageIndex = 0
+    this.selectPage = 1
+    console.log(this.employeeList)
+    this.preAndNex(this.selectPage)
+    this.employeeList2 = this.employeeList.slice(this.pageIndex, this.employeePerPage)
+  }
 
-  employeePerPageChange(e:Event){
-    const newPageSize=(e.target as HTMLInputElement).value;
-    this.employeePerPage=Number(newPageSize);
+  get pageNumbers(): number[] {
+    if (this.fName == "") {
+      return Array(Math.ceil((this.employeeList.length) / this.employeePerPage)).fill(0).map((x, i) => i + 1);
+    } else {
+      return Array(Math.ceil((this.employeeList.length) / this.employeePerPage)).fill(0).map((x, i) => i + 1);
+    }
+
+  }
+
+  employeePerPageChange(e: Event) {
+    const newPageSize = (e.target as HTMLInputElement).value;
+    this.employeePerPage = Number(newPageSize);
     this.changePage(1) //defaultPage will be 1
   }
 
-  changePage(page:number){
-    this.selectPage=page
+  changePage(page: number) {
+    this.selectPage = page
     this.sliceEmployee();
     this.preAndNex(page);
   }
 
-  sliceEmployee(){
-   this.pageIndex=(this.selectPage-1)*this.employeePerPage;
-   let endIndex=this.pageIndex+this.employeePerPage;
-   this.employeeList2=this.employeeList.slice(this.pageIndex,endIndex);
+  sliceEmployee() {
+    this.pageIndex = (this.selectPage - 1) * this.employeePerPage;
+    let endIndex = this.pageIndex + this.employeePerPage;
+    this.employeeList2 = this.employeeList.slice(this.pageIndex, endIndex);
   }
 
-  prePage(){
-    this.selectPage=this.selectPage-1;
+  prePage() {
+    this.selectPage = this.selectPage - 1;
     this.changePage(this.selectPage)
     this.preAndNex(this.selectPage);
   }
 
-  nextPage(){
-   this.selectPage=this.selectPage+1;
-   this.changePage(this.selectPage)
-   this.preAndNex(this.selectPage);
+  nextPage() {
+    this.selectPage = this.selectPage + 1;
+    this.changePage(this.selectPage)
+    this.preAndNex(this.selectPage);
   }
 
-  preAndNex(selectPage:number){
-    let tempForPre=selectPage;
-    let tempForNex=this.pageNumbers.length
-    if(tempForPre>1){
-      this.preBtnDisable=true;
+  preAndNex(selectPage: number) {
+    let tempForPre = selectPage;
+    let tempForNex = this.pageNumbers.length
+    if (tempForPre > 1) {
+      this.preBtnDisable = true;
     }
-    else{
-      this.preBtnDisable=false;
+    else {
+      this.preBtnDisable = false;
     }
-    if(selectPage>=tempForNex){
-      this.nextBtnDisable=false;
-    }else{
+    if (selectPage >= tempForNex) {
+      this.nextBtnDisable = false;
+    } else {
       console.log(this.selectPage)
-      this.nextBtnDisable=true;
+      this.nextBtnDisable = true;
     }
   }
 
-  getByName(value:string){
-    this.sortingParams=value;
-    this.onSortDirection();   
+  getByName(value: string) {
+    this.sortingParams = value;
+    this.onSortDirection();
   }
 
-  onSortDirection(){
-    if(this.sortDirection=='asce'){
-      this.sortDirection='desc'
+  onSortDirection() {
+    if (this.sortDirection == 'asce') {
+      this.sortDirection = 'desc'
     }
-    else{
-      this.sortDirection='asce'
+    else {
+      this.sortDirection = 'asce'
     }
   }
 }

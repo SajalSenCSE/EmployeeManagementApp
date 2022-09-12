@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { filter, map } from 'rxjs';
 import { IEmployee } from 'src/app/models/IEmployee';
 import { EmployeeServiceService } from 'src/app/services/employee-service.service';
+import { LeadService } from 'src/app/services/lead.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -23,13 +24,17 @@ export class EmployeeListComponent implements OnInit {
   searchingString:string='';
   pageIndex:number=(this.selectPage-1)*this.employeePerPage;
 
-  constructor(private empService: EmployeeServiceService) {}
+  constructor(private empService: EmployeeServiceService,private s:LeadService) {}
 
   ngOnInit(): void {
     this.empService.getAllEmployee()
     .subscribe((data)=>{
       this.employeeList=data;
       this.employeeList2=this.employeeList.slice(this.pageIndex,this.employeePerPage);
+    })
+
+    this.s.getAll().subscribe((res)=>{
+      console.log(res);
     })
   }
   get pageNumbers():number[]{

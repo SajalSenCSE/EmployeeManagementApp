@@ -16,6 +16,7 @@ import { AgePipe } from './pipes/age.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { LeadListComponent } from './lead-list/lead-list.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     AgePipe,
     SortPipe,
     FilterPipe,
+    LeadListComponent,
   ],
   imports: [
     BrowserModule,

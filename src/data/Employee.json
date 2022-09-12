@@ -34,7 +34,7 @@
       },
       {
         "Id":4,
-        "FName":"Sajal--5",
+        "FName":"Sajal5",
         "LName":"Sen-5",
         "Address":"Dhaka -c,road v",
         "DoB":"6/15/2001",
@@ -46,7 +46,7 @@
 
       {
         "Id":5,
-        "FName":"Sajal-5",
+        "FName":"Rubel",
         "LName":"Sen--5",
         "Address":"Dhaka -d,road d",
         "DoB":"6/15/2001",
@@ -57,7 +57,7 @@
       },
       {
           "Id":6,
-          "FName":"Sajal 6",
+          "FName":"Nayan",
           "LName":"Sen--6",
           "Address":"Dhaka -d,road f",
           "DoB":"6/15/2001",
@@ -68,7 +68,7 @@
         },
         {
           "Id":7,
-          "FName":"Sajal--7",
+          "FName":"Korim",
           "LName":"Sen-7",
           "Address":"Dhaka -f,road f",
           "DoB":"6/15/2001",

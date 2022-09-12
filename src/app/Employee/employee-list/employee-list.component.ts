@@ -17,6 +17,7 @@ export class EmployeeListComponent implements OnInit {
   preBtnDisable:boolean=false;
   nextBtnDisable:boolean=true;
   sortingParams:string='Id';
+  employeeListBase:IEmployee[]=[];
   employeeList: IEmployee[] = [];
   employeeList2:IEmployee[]=[];
   employeePerPage:number=5;
@@ -24,47 +25,70 @@ export class EmployeeListComponent implements OnInit {
   searchingString:string='';
   pageIndex:number=(this.selectPage-1)*this.employeePerPage;
 
-  constructor(private empService: EmployeeServiceService,private s:LeadService) {}
+  constructor(private empService: EmployeeServiceService) {}
 
   ngOnInit(): void {
     this.empService.getAllEmployee()
     .subscribe((data)=>{
-      this.employeeList=data;
+      this.employeeListBase=data;
+      this.employeeList=this.employeeListBase;
       this.employeeList2=this.employeeList.slice(this.pageIndex,this.employeePerPage);
     })
-
-    this.s.getAll().subscribe((res)=>{
-      console.log(res);
-    })
   }
+
+  search(){
+    if(this.fName!=""){
+      this.employeeList=this.employeeListBase.filter(res=>{
+        return (res.FName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase())||(res.LName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase())));  
+      })
+      console.log(this.employeeList);
+      this.employeeList2=this.employeeList.slice(this.pageIndex,this.employeePerPage);
+    }else{
+      this.ngOnInit();
+      
+    }
+  }
+
   get pageNumbers():number[]{
-    return Array((this.employeeList.length)/this.employeePerPage).fill(0).map((x,i)=>i+1);
+    if(this.fName==""){
+      return Array(Math.ceil((this.employeeList.length)/this.employeePerPage)).fill(0).map((x,i)=>i+1);
+    }
+    else{
+      return Array(Math.ceil((this.employeeList.length)/this.employeePerPage)).fill(0).map((x,i)=>i+1);
+    }
+   
    }
+
   employeePerPageChange(e:Event){
     const newPageSize=(e.target as HTMLInputElement).value;
     this.employeePerPage=Number(newPageSize);
     this.changePage(1) //defaultPage will be 1
   }
+
   changePage(page:number){
     this.selectPage=page
     this.sliceEmployee();
     this.preAndNex(page);
   }
+
   sliceEmployee(){
    this.pageIndex=(this.selectPage-1)*this.employeePerPage;
    let endIndex=this.pageIndex+this.employeePerPage;
    this.employeeList2=this.employeeList.slice(this.pageIndex,endIndex);
   }
+
   prePage(){
     this.selectPage=this.selectPage-1;
     this.changePage(this.selectPage)
     this.preAndNex(this.selectPage);
   }
+
   nextPage(){
    this.selectPage=this.selectPage+1;
    this.changePage(this.selectPage)
    this.preAndNex(this.selectPage);
   }
+
   preAndNex(selectPage:number){
     let tempForPre=selectPage;
     let tempForNex=this.pageNumbers.length
@@ -79,13 +103,14 @@ export class EmployeeListComponent implements OnInit {
     }else{
       console.log(this.selectPage)
       this.nextBtnDisable=true;
-      
     }
   }
+
   getByName(value:string){
     this.sortingParams=value;
     this.onSortDirection();   
   }
+
   onSortDirection(){
     if(this.sortDirection=='asce'){
       this.sortDirection='desc'

@@ -4,7 +4,7 @@
       "FName":"Sajal1",
       "LName":"Sen",
       "Address":"Dhaka -x,road y",
-      "DoB":"sajja",
+      "DoB":"sajal",
       "Age":27,
       "Salary":25000,
       "Position":"Developer",
@@ -12,7 +12,7 @@
     },
     {
         "Id":2,
-        "FName":"Jamal 2",
+        "FName":"Jamal",
         "LName":"Sen",
         "Address":"Dhaka -a,road a",
         "DoB":"6/15/2001",
@@ -23,7 +23,7 @@
     },
       {
         "Id":3,
-        "FName":"Jubayer--3",
+        "FName":"Jubayer",
         "LName":"Sen-3",
         "Address":"Dhaka -b,road c",
         "DoB":"6/15/2001",
@@ -34,7 +34,7 @@
       },
       {
         "Id":4,
-        "FName":"Sajal5",
+        "FName":"Rahim",
         "LName":"Sen-5",
         "Address":"Dhaka -c,road v",
         "DoB":"6/15/2001",
@@ -68,8 +68,8 @@
         },
         {
           "Id":7,
-          "FName":"Korim",
-          "LName":"Sen-7",
+          "FName":"Sumon",
+          "LName":"Khan",
           "Address":"Dhaka -f,road f",
           "DoB":"6/15/2001",
           "Age":28,
@@ -79,8 +79,8 @@
         },
         {
           "Id":8,
-          "FName":"Sajal--8",
-          "LName":"Sen-8",
+          "FName":"Rakib",
+          "LName":"Khan",
           "Address":"Dhaka -d,road f",
           "DoB":"6/15/2001",
           "Age":20,
@@ -90,7 +90,7 @@
         },
         {
             "Id":9,
-            "FName":"Sajal--9",
+            "FName":"Lemon",
             "LName":"Sen-9",
             "Address":"Dhaka -g,road g",
             "DoB":"6/15/2001",
@@ -101,8 +101,8 @@
           },
           {
             "Id":10,
-            "FName":"Sajal--10",
-            "LName":"Sen-10",
+            "FName":"Khayer",
+            "LName":"Rahman",
             "Address":"Dhaka -j,road j",
             "DoB":"6/15/2001",
             "Age":20,
@@ -115,8 +115,8 @@
 
           {
             "Id":11,
-            "FName":"Sajal--11",
-            "LName":"Sen--11",
+            "FName":"Rahim",
+            "LName":"Khan",
             "Address":"Dhaka -11,road 11",
             "DoB":"6/15/2001",
             "Age":26,
@@ -126,7 +126,7 @@
           },
           {
               "Id":12,
-              "FName":"Sajal 12",
+              "FName":"Jakir",
               "LName":"Sen  12",
               "Address":"Dhaka -12,road 12",
               "DoB":"6/15/2001",
@@ -137,8 +137,8 @@
             },
             {
               "Id":13,
-              "FName":"Sajal--13",
-              "LName":"Sen-13",
+              "FName":"Alsam",
+              "LName":"Islam",
               "Address":"Dhaka -13b,road 13c",
               "DoB":"6/15/2001",
               "Age":29,
@@ -148,8 +148,8 @@
             },
             {
               "Id":14,
-              "FName":"Sajal--14",
-              "LName":"Sen-14",
+              "FName":"Sajal",
+              "LName":"Ahamad",
               "Address":"Dhaka -14c,road 14v",
               "DoB":"6/15/2001",
               "Age":27,
@@ -160,8 +160,8 @@
       
             {
               "Id":15,
-              "FName":"Sajal-15",
-              "LName":"Sen--15",
+              "FName":"Sajal",
+              "LName":"Khan",
               "Address":"Dhaka -d,road d",
               "DoB":"6/15/2001",
               "Age":27,
@@ -171,8 +171,8 @@
             },
             {
                 "Id":16,
-                "FName":"Sajal 16",
-                "LName":"Sen--16",
+                "FName":"Rubel",
+                "LName":"Sen",
                 "Address":"Dhaka -16d,road 16f",
                 "DoB":"6/15/2001",
                 "Age":28,
@@ -182,7 +182,7 @@
               },
               {
                 "Id":17,
-                "FName":"Sajal--17",
+                "FName":"Sajal Rahman",
                 "LName":"Sen-17",
                 "Address":"Dhaka -17f,road 17f",
                 "DoB":"6/15/2001",
@@ -193,8 +193,8 @@
               },
               {
                 "Id":18,
-                "FName":"Sajal--18",
-                "LName":"Sen-18",
+                "FName":"Nayan",
+                "LName":"Sen",
                 "Address":"Dhaka -18d,road 18f",
                 "DoB":"6/15/2001",
                 "Age":20,
@@ -215,8 +215,8 @@
                 },
                 {
                   "Id":20,
-                  "FName":"Sajal--20",
-                  "LName":"Sen-20",
+                  "FName":"Sajal2",
+                  "LName":"Molla",
                   "Address":"Dhaka -20j,road 20j",
                   "DoB":"6/15/2001",
                   "Age":20,
@@ -228,8 +228,8 @@
 
                 {
                     "Id":21,
-                    "FName":"Sajal 21",
-                    "LName":"Sen",
+                    "FName":"Jhon",
+                    "LName":"Desuja",
                     "Address":"Dhaka -21x,road 21y",
                     "DoB":"6/15/2001",
                     "Age":27,
@@ -239,8 +239,8 @@
                   },
                   {
                       "Id":22,
-                      "FName":"Sajal 22",
-                      "LName":"Sen 22",
+                      "FName":"Maria",
+                      "LName":"Rahamn",
                       "Address":"Dhaka -22a,road 22a",
                       "DoB":"6/15/2001",
                       "Age":27,
@@ -250,8 +250,8 @@
                     },
                     {
                       "Id":23,
-                      "FName":"Sajal--23",
-                      "LName":"Sen-23",
+                      "FName":"Sakib",
+                      "LName":"Hasan",
                       "Address":"Dhaka -23b,road 23c",
                       "DoB":"6/15/2001",
                       "Age":28,
@@ -261,8 +261,8 @@
                     },
                     {
                       "Id":24,
-                      "FName":"Sajal--24",
-                      "LName":"Sen-24",
+                      "FName":"Sohel",
+                      "LName":"Khan",
                       "Address":"Dhaka -24c,road 24v",
                       "DoB":"6/15/2001",
                       "Age":28,
@@ -273,8 +273,8 @@
               
                     {
                       "Id":25,
-                      "FName":"Sajal-25",
-                      "LName":"Sen--25",
+                      "FName":"Jamil",
+                      "LName":"Ahdmad",
                       "Address":"Dhaka -25d,road 25d",
                       "DoB":"6/15/2001",
                       "Age":27,
@@ -284,8 +284,8 @@
                     },
                     {
                         "Id":26,
-                        "FName":"Sajal 26",
-                        "LName":"Sen--6",
+                        "FName":"Santhon",
+                        "LName":"S",
                         "Address":"Dhaka -26d,road 26f",
                         "DoB":"6/15/2001",
                         "Age":28,
@@ -295,8 +295,8 @@
                       },
                       {
                         "Id":27,
-                        "FName":"Sajal--27",
-                        "LName":"Sen-27",
+                        "FName":"Akash",
+                        "LName":"khan",
                         "Address":"Dhaka -27f,road 27f",
                         "DoB":"6/15/2001",
                         "Age":28,
@@ -306,8 +306,8 @@
                       },
                       {
                         "Id":28,
-                        "FName":"Sajal--28",
-                        "LName":"Sen-8",
+                        "FName":"Asif",
+                        "LName":"Hasan",
                         "Address":"Dhaka -28d,road 28f",
                         "DoB":"6/15/2001",
                         "Age":20,
@@ -317,8 +317,8 @@
                       },
                       {
                           "Id":29,
-                          "FName":"Sajal--29",
-                          "LName":"Sen-29",
+                          "FName":"Anui",
+                          "LName":"DDD",
                           "Address":"Dhaka -29g,road 29g",
                           "DoB":"6/15/2001",
                           "Age":29,
@@ -328,8 +328,19 @@
                         },
                         {
                           "Id":30,
-                          "FName":"Sajal--30",
-                          "LName":"Sen-30",
+                          "FName":"Hemu",
+                          "LName":"Sarkar",
+                          "Address":"Dhaka -j,road j",
+                          "DoB":"6/15/2001",
+                          "Age":20,
+                          "Salary":45000,
+                          "Position":"Web Developer",
+                          "joiningAge":4
+                        },
+                        {
+                          "Id":31,
+                          "FName":"Hemu2",
+                          "LName":"Sarkar",
                           "Address":"Dhaka -j,road j",
                           "DoB":"6/15/2001",
                           "Age":20,
@@ -337,6 +348,7 @@
                           "Position":"Web Developer",
                           "joiningAge":4
                         }
+                        
   
   
   ]

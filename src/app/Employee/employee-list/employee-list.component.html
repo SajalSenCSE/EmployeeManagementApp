@@ -2,7 +2,7 @@
 
 <div class="row ms-4 col-md-6">
   <label>Search by First Name</label>
-  <input [(ngModel)]='fName' class="form-control" placeholder="Filter By First Name">
+  <input name="fName" [(ngModel)]='fName' class="form-control" placeholder="Filter By First Name" (ngModelChange)="search()">
   <!-- <button (click)="onFilterByFName()" class="btn btn-primary">Search</button> -->
 </div>
 
@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let emp of employeeList2 |filter:fName:'FName'| sort:[sortingParams,sortDirection]">
+    <tr *ngFor="let emp of employeeList2 | sort:[sortingParams,sortDirection]">
       <td>{{emp.FName}}</td>
       <td>{{emp.LName}}</td>
       <td>{{emp.Position}}</td>

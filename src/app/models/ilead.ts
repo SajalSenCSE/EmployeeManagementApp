@@ -5,5 +5,6 @@ export interface ILead {
     projectEirCode:string,
     siteContactFullName:string,
     siteContactEmail:string,
-    siteContactMobile:string 
+    siteContactMobile:string ,
+    message?:string
 }

@@ -1,1 +1,45 @@
-<p>lead-list works!</p>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th >LeadRefNo</th>
+        <th >ProjectValue</th>
+        <th >Image</th>
+        <th >projectEirCode</th>
+        <th >siteContactFullName</th>
+        <th >siteContactEmail</th>
+        <th >siteContactMobile</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of lead2">
+        <td >{{emp.leadRefNo}}</td>
+        <td>{{emp.projectValue}}</td>
+        <td><img width="20px" height="30px" [src]="emp.dwellingImagePath"></td>
+        <td >{{emp.projectEirCode}}</td>
+        <td>{{emp.siteContactFullName}}</td>
+        <td>{{emp.siteContactEmail}}</td>
+        <td >{{emp.siteContactMobile}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-md-4">
+      <select class="col-md-6" [value]="leadPerPage" (change)="leadPerPageChange($event)">
+        <option value="5">5 page</option>
+        <option value="10">10 page</option>
+        <option value="15">15 page</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <!-- <strong> {{pageIndex}}--{{employeePerPage*selectPage}} of {{employeeList.length}}</strong> -->
+    </div>
+    <div class="col-md-6">
+      <button [disabled]="!preBtnDisable" class="btn btn-outline-primary" (click)="prePage()">Pre</button>
+      <button *ngFor="let page of pageNumbers" class="btn btn-outline-primary"
+      [class.active]="page==selectPage"
+       (click)="changePage(page)">{{page}}</button>
+      <button [disabled]="!nextBtnDisable" class="btn btn-outline-primary" (click)="nextPage()">Next</button>
+  
+    </div>
+  </div>

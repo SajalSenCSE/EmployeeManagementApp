@@ -47,7 +47,6 @@ export class EmployeeListComponent implements OnInit {
   searchPagination() {
     this.pageIndex = 0
     this.selectPage = 1
-    console.log(this.employeeList)
     this.preAndNex(this.selectPage)
     this.employeeList2 = this.employeeList.slice(this.pageIndex, this.employeePerPage)
   }

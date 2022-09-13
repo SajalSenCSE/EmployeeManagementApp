@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +19,8 @@ import { SortPipe } from './pipes/sort.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { LeadListComponent } from './lead-list/lead-list.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,10 @@ import { LeadListComponent } from './lead-list/lead-list.component';
     MatPaginatorModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    PaginationModule,
+    NgxPaginationModule
+    
   ],
   providers: [EmployeeServiceService],
   bootstrap: [AppComponent],

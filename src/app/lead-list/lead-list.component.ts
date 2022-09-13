@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit } from '@angular/core';
 import { ILead } from '../models/ilead';
 import { LeadService } from '../services/lead.service';
@@ -19,19 +21,13 @@ export class LeadListComponent implements OnInit {
   constructor(private leadService:LeadService) { }
 
   ngOnInit(): void {
-    this.getLeadData(this.leadPerPage,this.selectPage);
+     this.getLeadData(this.leadPerPage,this.selectPage);
   }
 
   getLeadData(leadPerPage:number,selectedPage:number){
-    this.pageIndex=(this.selectPage-1)*this.leadPerPage;
-    let endIndex=this.pageIndex+this.leadPerPage;
-    console.log(this.pageIndex);
-    console.log(endIndex)
     this.leadService.getAllLead(leadPerPage,selectedPage)
-    .subscribe((res2)=>{
+    .subscribe((res2: { data: ILead[]; })=>{
       this.leadList= res2.data;
-      console.log(this.leadList)
-      this.lead2=this.leadList.slice(this.pageIndex,endIndex);
     });
   }
 
@@ -49,7 +45,7 @@ export class LeadListComponent implements OnInit {
     // this.sliceLead()
     this.getLeadData(this.leadPerPage,this.selectPage);
     this.preAndNext(this.selectPage);
-    
+
   }
 
   nextPage(){
@@ -84,4 +80,3 @@ export class LeadListComponent implements OnInit {
   }
 
 }
-

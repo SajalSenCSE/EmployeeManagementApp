@@ -19,8 +19,8 @@ import { SortPipe } from './pipes/sort.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { LeadListComponent } from './lead-list/lead-list.component';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { PaginationModule,PaginationConfig } from 'ngx-bootstrap/pagination';
+
 
 @NgModule({
   declarations: [
@@ -42,11 +42,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BrowserAnimationsModule,
     MatFormFieldModule,
     FormsModule,
-    PaginationModule,
-    NgxPaginationModule
-    
+    PaginationModule, 
   ],
-  providers: [EmployeeServiceService],
+  providers: [EmployeeServiceService,PaginationConfig ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

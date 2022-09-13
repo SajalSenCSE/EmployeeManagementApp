@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody *ngIf="leadList$ |async; let leads">
-    <tr *ngFor="let emp of leads.data | paginate: { itemsPerPage: leadPerPage, currentPage: page ,totalItems: totalLeadItem }">
+    <tr *ngFor="let emp of leads.data">
       <td>{{emp.leadRefNo}}</td>
       <td>{{emp.projectValue}}</td>
       <td><img width="20px" height="30px" [src]="emp.dwellingImagePath"></td>
@@ -24,8 +24,14 @@
 </table>
 <div class="row">
   <div class="col-md-4">
-    <pagination-controls (pageChange)="pageChange($event)" screenReaderCurrentLabel="You're on page">
-    </pagination-controls>
+    <pagination 
+      totalLeadItem:number=60;
+      [totalItems]="totalLeadItem"
+      [itemsPerPage]="totalLeadItem"
+      [itemsPerPage]="leadPerPage"
+      (pageChanged)="pageChanged($event)"
+    >
+    </pagination>
   </div>
   <div class="col-md-4">
     <select class="col-md-6" [value]="leadPerPage" (change)="employeePerPageChange($event)">

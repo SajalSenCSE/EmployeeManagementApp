@@ -1,5 +1,5 @@
 
 export interface GetDataOutPut<T> {
-    message:string,
-    data:T[];
+    message: string,
+    data: T[];
 }

@@ -1,5 +1,5 @@
 
-import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { Observable } from 'rxjs';
 import { GetDataOutPut } from '../models/GetDataOutPut';
@@ -17,15 +17,14 @@ export class LeadListComponent implements OnInit {
   totalLeadItem:number=60;
   page:number=1;
   
-  
   constructor(private leadService:LeadService) { }
   
   ngOnInit(): void {
     this.getLeadData(this.leadPerPage,this.page);
   }
 
-  getLeadData(leadPerPage:number,selectedPage:number){
-    this.leadList$= this.leadService.getAllLead(leadPerPage,this.page)
+  getLeadData(leadPerPage:number,page:number){
+    this.leadList$= this.leadService.getAllLead(leadPerPage,page)
   }
 
   employeePerPageChange(e: Event) {

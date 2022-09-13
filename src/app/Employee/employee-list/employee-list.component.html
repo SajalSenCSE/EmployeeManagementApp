@@ -1,9 +1,7 @@
-
-
 <div class="row ms-4 col-md-6">
   <label>Search by First Name</label>
-  <input name="fName" [(ngModel)]='fName' class="form-control" placeholder="Filter By First Name" (ngModelChange)="search()">
-  <!-- <button (click)="onFilterByFName()" class="btn btn-primary">Search</button> -->
+  <input name="fName" [(ngModel)]='fName' class="form-control" placeholder="Filter By First Name"
+    (ngModelChange)="search()">
 </div>
 
 <table class="table">
@@ -22,7 +20,7 @@
       <td>{{emp.LName}}</td>
       <td>{{emp.Position}}</td>
       <td>{{emp.DoB | age}}</td>
-      <th >{{emp.Salary | number :'1.2-2' }}</th>
+      <th>{{emp.Salary | number :'1.2-2' }}</th>
     </tr>
   </tbody>
 </table>
@@ -33,7 +31,6 @@
       <option value="5">5 page</option>
       <option value="10">10 page</option>
       <option value="15">15 page</option>
-
     </select>
   </div>
   <div class="col-md-2">
@@ -41,10 +38,8 @@
   </div>
   <div class="col-md-6">
     <button [disabled]="!preBtnDisable" class="btn btn-outline-primary" (click)="prePage()">Pre</button>
-    <button *ngFor="let page of pageNumbers" class="btn btn-outline-primary"
-    [class.active]="page==selectPage"
-     (click)="changePage(page)">{{page}}</button>
+    <button *ngFor="let page of pageNumbers" class="btn btn-outline-primary" [class.active]="page==selectPage"
+      (click)="changePage(page)">{{page}}</button>
     <button [disabled]="!nextBtnDisable" class="btn btn-outline-primary" (click)="nextPage()">Next</button>
   </div>
 </div>
-  

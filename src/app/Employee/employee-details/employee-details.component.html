@@ -1,4 +1,4 @@
-<div >
+<div>
   <h2>Using Component Data</h2>
 </div>
 
@@ -14,22 +14,20 @@
       <th scope="col">Salary</th>
       <th scope="col">Position</th>
       <th scope="col">joiningAge</th>
-      
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let emp of empList2">
-      <th >{{emp.Id}}</th>
+      <th>{{emp.Id}}</th>
       <td>{{emp.FName}}</td>
       <td>{{emp.LName}}</td>
-      <th >{{emp.Address}}</th>
+      <th>{{emp.Address}}</th>
       <td>{{emp.DoB}}</td>
       <td>{{emp.DoB | age}}</td>
-      <th >{{emp.Salary}}</th>
+      <th>{{emp.Salary}}</th>
       <td>{{emp.Position}}</td>
       <td>{{emp.joiningAge}}</td>
     </tr>
-    
   </tbody>
 </table>
 <div class="row">
@@ -40,21 +38,10 @@
       <option value="15">Select 15</option>
     </select>
   </div>
-  
   <div class="btn-group">
-    <button  class="btn btn-secondary" (click)="Pre()">Pre</button>
-    <button class="btn btn-outline-primary" *ngFor="let page of pageNumbers"
-
-    [class.active]="page==selextedPage" (click)="changePage(page)">{{page}}</button>
-
-
+    <button class="btn btn-secondary" (click)="Pre()">Pre</button>
+    <button class="btn btn-outline-primary" *ngFor="let page of pageNumbers" [class.active]="page==selextedPage"
+      (click)="changePage(page)">{{page}}</button>
     <button class="btn btn-secondary" (click)="Next()">Pre</button>
   </div>
 </div>
-
-<br>
-<br>
-<br>
-
-
-  

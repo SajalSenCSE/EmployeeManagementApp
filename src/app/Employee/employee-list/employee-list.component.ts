@@ -57,7 +57,6 @@ export class EmployeeListComponent implements OnInit {
     } else {
       return Array(Math.ceil((this.employeeList.length) / this.employeePerPage)).fill(0).map((x, i) => i + 1);
     }
-
   }
 
   employeePerPageChange(e: Event) {

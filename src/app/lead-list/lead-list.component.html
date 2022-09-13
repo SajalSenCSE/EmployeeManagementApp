@@ -24,13 +24,7 @@
 </table>
 <div class="row">
   <div class="col-md-4">
-    <pagination 
-      totalLeadItem:number=60;
-      [totalItems]="totalLeadItem"
-      [itemsPerPage]="totalLeadItem"
-      [itemsPerPage]="leadPerPage"
-      (pageChanged)="pageChanged($event)"
-    >
+    <pagination [totalItems]="totalLeadItem" [itemsPerPage]="leadPerPage" (pageChanged)="pageChanged($event)">
     </pagination>
   </div>
   <div class="col-md-4">

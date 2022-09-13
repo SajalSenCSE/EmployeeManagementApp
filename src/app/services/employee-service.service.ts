@@ -7,7 +7,7 @@ import { IEmployee } from '../models/IEmployee';
   providedIn: 'root',
 })
 export class EmployeeServiceService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAllEmployee(): Observable<IEmployee[]> {
     return this.http

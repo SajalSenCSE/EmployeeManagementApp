@@ -1,6 +1,6 @@
 
-
 import { Component, OnInit } from '@angular/core';
+import { GetLeadData } from '../models/get-lead-data';
 import { ILead } from '../models/ilead';
 import { LeadService } from '../services/lead.service';
 
@@ -11,7 +11,6 @@ import { LeadService } from '../services/lead.service';
 })
 export class LeadListComponent implements OnInit {
   leadList:ILead[]=[];
-  lead2:ILead[]=[];
   preBtnDisable:boolean=false;
   nextBtnDisable:boolean=true;
   leadPerPage=10;
@@ -26,7 +25,7 @@ export class LeadListComponent implements OnInit {
 
   getLeadData(leadPerPage:number,selectedPage:number){
     this.leadService.getAllLead(leadPerPage,selectedPage)
-    .subscribe((res2: { data: ILead[]; })=>{
+    .subscribe((res2:GetLeadData)=>{
       this.leadList= res2.data;
     });
   }
@@ -42,10 +41,8 @@ export class LeadListComponent implements OnInit {
 
   changePage(page:number){
     this.selectPage=page
-    // this.sliceLead()
     this.getLeadData(this.leadPerPage,this.selectPage);
     this.preAndNext(this.selectPage);
-
   }
 
   nextPage(){
@@ -58,12 +55,6 @@ export class LeadListComponent implements OnInit {
     this.leadPerPage=Number(newPageSize);
     this.changePage(1)
   }
-
-  // sliceLead(){
-  //   this.pageIndex=(this.selectPage-1)*this.leadPerPage;
-  //   let endIndex=this.pageIndex+this.leadPerPage;
-  //   this.lead2=this.leadList.slice(this.pageIndex,endIndex);
-  // }
 
   preAndNext(selectPage2:number){
     let tempNextPage=this.pageNumbers

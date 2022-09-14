@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Dropdown } from 'src/app/models/dropdown';
-import { EmployeeInput } from 'src/app/models/EmployeeInput';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Dropdown } from 'src/app/models/Dropdown';
+
+import { EmployeeInputTypeForm } from 'src/app/models/EmployeeInputTypeForm';
+import { UtilityData } from 'src/app/Utility/utility-data';
+
 
 @Component({
   selector: 'app-employee-add',
@@ -12,51 +15,17 @@ export class EmployeeAddComponent implements OnInit {
 
   addEmployeeForm: FormGroup;
   submited:boolean=false;
-  Departments: Dropdown[] = [
-    {
-      "Id": 1,
-      "Name": 'Seles'
-    },
-    {
-      "Id": 2,
-      "Name": 'Account'
-    },
-    {
-      "Id": 3,
-      "Name": 'Marketing'
-    },
-    {
-      "Id": 4,
-      "Name": 'Developer'
-    }
-  ]
+  Departments: Dropdown[] = UtilityData.GetDept();
 
-  Designations: Dropdown[] = [
-    {
-      "Id": 1,
-      "Name": 'Senior Developer'
-    },
-    {
-      "Id": 2,
-      "Name": 'Developer'
-    },
-    {
-      "Id": 3,
-      "Name": 'Junior Developer'
-    },
-    {
-      "Id": 4,
-      "Name": 'Team Leader'
-    }
-  ]
-
-  constructor() { }
-
+  Designations: Dropdown[] = UtilityData.Positation();
+  
+  constructor(private fb:FormBuilder) { }
+  
   ngOnInit(): void {
-    this.addEmployeeForm = new FormGroup({
-      FName: new FormControl(null, Validators.required),
+    this.addEmployeeForm =new FormGroup<EmployeeInputTypeForm>({
+      FName: new FormControl(null,[Validators.required]),
       LName: new FormControl(null, Validators.required),
-      Email: new FormControl('sajal@gmail.com', [Validators.required, Validators.email]),
+      Email: new FormControl(null, [Validators.required, Validators.email]),
       Phone: new FormControl(null, [Validators.required, Validators.maxLength(11)]),
       Department: new FormControl(1, [Validators.required]),
       Designation: new FormControl(1, Validators.required)
@@ -74,27 +43,7 @@ export class EmployeeAddComponent implements OnInit {
       console.log(this.addEmployeeForm.value.Designation)
       this.submited=false;
     } else {
-      
       console.log("Frorm is not valid")
     }
-  }
-
-  get FName(){
-    return this.addEmployeeForm.get('FName') as FormControl;
-  }
-  get LName(){
-    return this.addEmployeeForm.get('LName') as FormControl;
-  }
-  get Phone(){
-    return this.addEmployeeForm.get('Phone') as FormControl;
-  }
-  get Email(){
-    return this.addEmployeeForm.get('Email') as FormControl;
-  }
-  get Department(){
-    return this.addEmployeeForm.get('Department') as FormControl;
-  }
-  get Designation(){
-    return this.addEmployeeForm.get('Designation') as FormControl;
-  }
+  } 
 }

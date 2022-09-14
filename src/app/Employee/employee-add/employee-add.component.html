@@ -1,0 +1,58 @@
+<div class="container my-3">
+    <div class="row col-md-8">
+        <div><h2>Add Employee</h2></div>
+        <form [formGroup]="addEmployeeForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="fName" class="form-label">Employee Frist Name</label>
+                <input type="text" class="form-control"  formControlName="FName">
+                <span class="error-block" *ngIf="!FName.valid &&(FName.touched || submited)">
+                    Frist Name is Required
+                </span>
+            </div><br>
+            <div class="form-group">
+                <label for="lName" class="form-label">Employee Last Name</label><br>
+                <input type="text" class="form-control" placeholder="Enter Last Name" formControlName="LName">
+                <span class="error-block" *ngIf="!LName.valid && (LName.touched || submited)">Last Name is Required</span>
+            </div><br>
+            <div class="form-group">
+                <label for="email" class="form-label">Employee Email</label><br>
+                <input type="email" class="form-control" placeholder="Enter Email" formControlName="Email">
+                <span class="error-block" *ngIf="!Email.valid && (Email.touched || submited)">
+                    <span *ngIf="Email.hasError('required')">
+                        Please Provide Email
+                    </span>
+                    <span *ngIf="Email.hasError('email')">Please Provide Valid  Email</span>
+                </span>
+            </div><br>
+            <div class="form-group">
+                <label for="number" class="form-label">Employee Phone</label><br>
+                <input type="number" class="form-control" placeholder="Enter Phone" formControlName="Phone">
+                <span class="error-block" *ngIf="!Phone.valid && (Phone.touched || submited)">
+                    <span *ngIf="Phone.hasError('required')">
+                        Please Provide Phone
+                    </span>
+                    <span *ngIf="Phone.hasError('maxlength')">
+                        Max Lengtht less then 11
+                    </span>
+                </span>
+            </div><br>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1" class="form-label">Select Department</label><br>
+                <select class="form-control" formControlName="Department">
+                    <option *ngFor="let data of Departments" value={{data.Id}}>{{data.Name}}</option>
+                </select>
+                <span class="error-block" *ngIf="!Department.valid && (Department.touched || submited)">Select A Department</span>
+            </div><br>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1" class="form-label">Select Designation</label><br>
+                <select class="form-control" formControlName="Designation">
+                    <option *ngFor="let data of Designations" value={{data.Id}}>{{data.Name}}</option>
+                </select>
+                <span class="error-block" *ngIf="!Designation.valid && (Designation.touched || submited)">Select Designation</span>
+            </div><br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-primary ms-2">Reset</button>
+
+        </form>
+    </div>
+</div>

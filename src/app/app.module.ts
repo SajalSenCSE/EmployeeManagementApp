@@ -17,9 +17,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AgePipe } from './pipes/age.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeadListComponent } from './lead-list/lead-list.component';
 import { PaginationModule,PaginationConfig } from 'ngx-bootstrap/pagination';
+import { EmployeeAddComponent } from './Employee/employee-add/employee-add.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { PaginationModule,PaginationConfig } from 'ngx-bootstrap/pagination';
     SortPipe,
     FilterPipe,
     LeadListComponent,
+    EmployeeAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { PaginationModule,PaginationConfig } from 'ngx-bootstrap/pagination';
     HttpClientModule,
     FormsModule,
     PaginationModule, 
+    ReactiveFormsModule
   ],
   providers: [EmployeeServiceService,PaginationConfig ],
   bootstrap: [AppComponent],

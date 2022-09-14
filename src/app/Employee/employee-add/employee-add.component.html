@@ -50,9 +50,19 @@
                 </select>
                 <span class="error-block" *ngIf="!addEmployeeForm.controls['Designation'].valid && (addEmployeeForm.controls['Designation'].touched || submited)">Select Designation</span>
             </div><br>
-            
+            <div class="form-group" formArrayName="Education">
+                <div *ngFor="let control of addEmployeeForm.controls['Education'].value;let i=index" [formGroupName]="i">
+                    <!-- <select *ngFor="let s of degrees" formControlName="degree">
+                        <option value="{{s.Id}}">{{s.Name}}</option>
+                    </select> -->
+                    <input formControlName="degree">
+                    <input formControlName="Scores">
+                    <input formControlName="passingYear">
+                </div>
+            </div><br>
+
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-primary ms-2">Reset</button>
+            <button type="reset" class="btn btn-primary ms-2">Reset</button> 
         </form>
     </div>
 </div>

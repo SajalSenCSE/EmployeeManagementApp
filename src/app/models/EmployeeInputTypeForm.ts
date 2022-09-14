@@ -1,4 +1,4 @@
-import { FormControl } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 
 export interface EmployeeInputTypeForm {
     FName:  FormControl<string|null>
@@ -7,6 +7,8 @@ export interface EmployeeInputTypeForm {
     Phone: FormControl<string|null>,
     Department: FormControl<number|null>,
     Designation: FormControl<number|null>,
+    Education:any;
+    
 }
 
 

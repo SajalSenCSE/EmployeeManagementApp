@@ -8,7 +8,7 @@ export interface EmployeeInputTypeForm {
     Department: FormControl<number|null>,
     Designation: FormControl<number|null>,
     Education:any;
-    SelectEdu:any;
+    // SelectEdu:any;
     
 }
 

@@ -16,14 +16,16 @@ import { UtilityData } from 'src/app/Utility/utility-data';
 export class EmployeeAddComponent implements OnInit {
 
   addEmployeeForm: FormGroup;
-  submited: boolean = false;
+  // submited: boolean = false;
   Departments: Dropdown[] = UtilityData.GetDept();
+  addBtnDisable: boolean = true;
 
   Designations: Dropdown[] = UtilityData.Positation();
 
   degrees: Dropdown[] = [
     { Id: 1, Name: 'SSC' },
-    { Id: 1, Name: 'BSC' }
+    { Id: 2, Name: 'HSC' },
+    { Id: 3, Name: 'BSC' }
   ]
 
   constructor(private fb: FormBuilder) { }
@@ -38,24 +40,17 @@ export class EmployeeAddComponent implements OnInit {
       Designation: new FormControl(1, Validators.required),
       Education: new FormArray([
         this.fb.group({
-          degree: new FormControl<string|null>('SSC'),
-          Scores: new FormControl<number|null>(3.88),
-          passingYear: new FormControl<number|null>(2020)
-        })
-      ]),
-      SelectEdu: new FormArray([
-        this.fb.group({
-          mixed: new FormControl()
+          degree: new FormControl(''),
+          Scores: new FormControl<number | null>(null, Validators.required),
+          passingYear: new FormControl<number | null>(null, Validators.required)
         })
       ])
     })
   }
 
   onSubmit() {
-    this.submited = true;
     if (this.addEmployeeForm.valid) {
       console.log(this.addEmployeeForm.value)
-      this.submited = false;
     } else {
       console.log("Frorm is not valid")
     }
@@ -63,26 +58,22 @@ export class EmployeeAddComponent implements OnInit {
 
   addEdu() {
     let eduArray = this.addEmployeeForm.get('Education') as FormArray;
-    let newEdu = this.fb.group({
-      degree: '',
-      Scores: 1,
-      passingYear: 2020
-    })
-    eduArray.push(newEdu)
+    if (eduArray.valid) {
+      let newEdu = this.fb.group({
+        degree: null,
+        Scores: null,
+        passingYear: null
+      })
+      eduArray.push(newEdu)
+    }
+    else {
+      eduArray.clear
+    }
   }
-  
+
   Remove(i: number) {
     let eduArray = this.addEmployeeForm.get('Education') as FormArray;
     eduArray.removeAt(i);
   }
-  // addEdu(){
-  //   let eduArray=this.addEmployeeForm.get('SelectEdu') as FormArray;
-  //   let newEdu=this.fb.group({
-  //     mixed: this.addEmployeeForm.get('Education') as FormArray 
-  //   })
-  //   console.log(newEdu.value)
-  //   eduArray.push(newEdu)
-  // }
-
 
 }

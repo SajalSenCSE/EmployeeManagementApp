@@ -50,17 +50,25 @@
                 </select>
                 <span class="error-block" *ngIf="!addEmployeeForm.controls['Designation'].valid && (addEmployeeForm.controls['Designation'].touched || submited)">Select Designation</span>
             </div><br>
+            <!-- <div class="form-group" formArrayName="SelectEdu">
+                <div *ngFor="let control of addEmployeeForm.controls['SelectEdu'].value;let i=index" [formGroupName]="i">
+                    <input type="text" formControlName="mixed">
+                    <button (click)="Remove(i)">Remove</button>
+                </div>
+            </div><br> -->
             <div class="form-group" formArrayName="Education">
                 <div *ngFor="let control of addEmployeeForm.controls['Education'].value;let i=index" [formGroupName]="i">
                     <!-- <select *ngFor="let s of degrees" formControlName="degree">
                         <option value="{{s.Id}}">{{s.Name}}</option>
                     </select> -->
-                    <input formControlName="degree">
-                    <input formControlName="Scores">
-                    <input formControlName="passingYear">
+                    <input type="text" placeholder="Enter Degree" formControlName="degree">
+                    <input type="text" placeholder="Enter Scores" formControlName="Scores">
+                    <input type="text" placeholder="passingYear" formControlName="passingYear">
+                    <button (click)="addEdu()">Add</button>
+                    <button (click)="Remove(i)">Remove</button>
                 </div>
             </div><br>
-
+            
             <button type="submit" class="btn btn-primary">Submit</button>
             <button type="reset" class="btn btn-primary ms-2">Reset</button> 
         </form>

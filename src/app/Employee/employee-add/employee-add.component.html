@@ -9,7 +9,7 @@
                 <input type="text" class="form-control" formControlName="FName">
                 <span class="error-block"
                     *ngIf="!addEmployeeForm.controls['FName'].valid &&(addEmployeeForm.controls['FName'].touched )">
-                    Frist Name is Required
+                    First Name is Required
                 </span>
             </div><br>
             <div class="form-group">
@@ -22,8 +22,7 @@
             <div class="form-group">
                 <label for="email" class="form-label">Employee Email</label><br>
                 <input type="email" class="form-control" placeholder="Enter Email" formControlName="Email">
-                <span class="error-block"
-                    *ngIf="!addEmployeeForm.controls['Email'].valid && (addEmployeeForm.controls['Email'].touched )">
+                <span class="error-block" *ngIf="!addEmployeeForm.controls['Email'].valid && (addEmployeeForm.controls['Email'].touched )">
                     <span *ngIf="addEmployeeForm.controls['Email'].hasError('required')">
                         Please Provide Email
                     </span>
@@ -34,21 +33,22 @@
                 <label for="number" class="form-label">Employee Phone</label><br>
                 <input type="number" class="form-control" placeholder="+880.. Or 880.."
                     formControlName="Phone">
-                <span class="error-block"
-                    *ngIf="!addEmployeeForm.controls['Phone'].valid && (addEmployeeForm.controls['Phone'].touched)">
+                <span class="error-block" *ngIf="!addEmployeeForm.controls['Phone'].valid && (addEmployeeForm.controls['Phone'].touched)">
+
                     <span *ngIf="addEmployeeForm.controls['Phone'].hasError('required')">
                         Please Provide Phone
                     </span>
                     <span *ngIf="addEmployeeForm.controls['Phone'].hasError('pattern')">
                         Phuber have to start with +88 or 88 and length 11 digit
                     </span>
+
                 </span>
             </div><br>
 
             <div class="form-group">
                 <label for="exampleFormControlSelect1" class="form-label">Select Department</label><br>
                 <select class="form-control" formControlName="Department">
-                    <option *ngFor="let data of Departments" value={{data.Id}}>{{data.Name}}</option>
+                    <option *ngFor="let data of departments" value={{data.Id}}>{{data.Name}}</option>
                 </select>
                 <span class="error-block"
                     *ngIf="!addEmployeeForm.controls['Department'].valid && (addEmployeeForm.controls['Department'].touched )">Select
@@ -58,7 +58,7 @@
             <div class="form-group">
                 <label for="exampleFormControlSelect1" class="form-label">Select Designation</label><br>
                 <select class="form-control" formControlName="Designation">
-                    <option *ngFor="let data of Designations" value={{data.Id}}>{{data.Name}}</option>
+                    <option *ngFor="let data of designations" value={{data.Id}}>{{data.Name}}</option>
                 </select>
                 <span class="error-block"
                     *ngIf="!addEmployeeForm.controls['Designation'].valid && (addEmployeeForm.controls['Designation'].touched )">
@@ -77,28 +77,25 @@
                         <option *ngFor="let s of degrees" value="{{s.Name}}">{{s.Name}}</option>
                     </select>
 
-                    <input type="number" class="col-md-2" placeholder="Enter Scores" formControlName="Scores">
+                    <input type="number" class="col-md-2" placeholder="Enter Scores" formControlName="scores" >
 
                     <select formControlName="passingYear" class="col-md-2">
-                        <option *ngFor="let s of passingYears" value="s">{{s}}</option>
+                        <option *ngFor="let s of passingYears" value="{{s}}" >{{s}}</option>
                     </select>
 
-                    <button class="btn btn-danger" (click)="Remove(i)">Remove</button>
-                    <button (click)="addEdu()" *ngIf="c==i" class="btn btn-primary">Add</button><br>
+                    <button class="btn btn-danger"  (click)="Remove(i)">Remove</button>
+                    <button (click)="addEdu()" *ngIf="count==i" class="btn btn-primary">Add</button><br>
                     <span class="error-block col-md-2"
-                        *ngIf="!control.controls.degree.valid && (control.controls.Scores.touched || btnDisaabaleEdu)">Select
+                        *ngIf="!control.controls.degree.valid && (control.controls.scores.touched || btnDisaabaleForEducation)">Select
                         Dergree</span>
                     <span class="error-block col-md-2"
-                        *ngIf="!control.controls.Scores.valid && (control.controls.Scores.touched || btnDisaabaleEdu)">
+                        *ngIf="!control.controls.scores.valid && (control.controls.scores.touched || btnDisaabaleForEducation)">
                         Numer 1 to 5</span>
                     <span class="error-block col-md-2"
-                        *ngIf="!control.controls.passingYear.valid && (control.controls.Scores.touched || btnDisaabaleEdu )">
-                        Numer 1 to 5</span>
+                        *ngIf="!control.controls.passingYear.valid && (control.controls.scores.touched || btnDisaabaleForEducation )">
+                        Passing Year Not Valid
+                    </span>
                 </div>
-                <!-- <span class="error-block" *ngIf="!this.addEmployeeForm.controls.Education.valid
-                &&(this.addEmployeeForm.controls.Education.touched||btnDisaabaleEdu) "> Fill Education Or Remove It
-                </span> -->
-                <br>
             </div><br>
             <button type="submit" [disabled]="!addEmployeeForm.valid" class="btn btn-primary">Submit</button>
             <button type="reset" class="btn btn-primary ms-2">Reset</button>

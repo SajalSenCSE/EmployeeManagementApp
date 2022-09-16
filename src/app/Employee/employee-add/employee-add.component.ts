@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Dropdown } from 'src/app/models/Dropdown';
@@ -16,16 +15,17 @@ import { UtilityData } from 'src/app/Utility/utility-data';
 export class EmployeeAddComponent implements OnInit {
 
   addEmployeeForm: FormGroup<EmployeeInputTypeForm>;
-  Departments: Dropdown[] = UtilityData.GetDept();
-  addBtnDisable: boolean = true;
-  passingYears:string[]=UtilityData.GetYear();
-  Designations: Dropdown[] = UtilityData.Positation();
+  departments: Dropdown[] = UtilityData.GetDept();
+  passingYears: string[] = UtilityData.GetYear();
+  designations: Dropdown[] = UtilityData.Positation();
   degrees: Dropdown[] = UtilityData.GetDegres();
-Scores: any;
+  count: number = 0;
+  btnDisaabaleForEducation: boolean = false;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    const currentYear=new Date().getFullYear()
     this.addEmployeeForm = this.fb.group<EmployeeInputTypeForm>({
       FName: new FormControl(null, [Validators.required]),
       LName: new FormControl(null, Validators.required),
@@ -36,8 +36,8 @@ Scores: any;
       Education: new FormArray([
         this.fb.group({
           degree: new FormControl('SSC'),
-          Scores: new FormControl<number|null>(null, [Validators.required,Validators.min(1),Validators.max(5)]),
-          passingYear: new FormControl('2020', [Validators.required])
+          scores: new FormControl<number | null>(null, [Validators.required, Validators.min(1), Validators.max(5)]),
+          passingYear: new FormControl('2020', [Validators.required,Validators.max(currentYear)])
         })
       ])
     })
@@ -46,37 +46,31 @@ Scores: any;
   onSubmit() {
     if (this.addEmployeeForm.valid) {
       console.log(this.addEmployeeForm.value)
+      this.addEmployeeForm.reset()
     } else {
       console.log("Frorm is not valid")
     }
   }
 
-  c:number=0;
-  btnDisaabaleEdu:boolean=false;
   addEdu() {
-    this.btnDisaabaleEdu=true
-    if(this.addEmployeeForm.controls.Education.valid){
+    this.btnDisaabaleForEducation = true
+    const currentYear=new Date().getFullYear()
+    if (this.addEmployeeForm.controls.Education.valid) {
       let eduArray = this.addEmployeeForm.get('Education') as FormArray;
       let newEdu = this.fb.group<EducationType>({
-        degree: new FormControl('SSC',Validators.required),
-        Scores: new FormControl(null,[Validators.required,Validators.min(1),Validators.max(5)]),
-        passingYear: new FormControl('2020',Validators.required)
+        degree: new FormControl('SSC', Validators.required),
+        scores: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(5)]),
+        passingYear: new FormControl('2020', [Validators.required,Validators.max(currentYear)])
       })
       eduArray.push(newEdu);
-      this.c=this.c+1;
-      this.btnDisaabaleEdu=false
+      this.count = this.count + 1;
+      this.btnDisaabaleForEducation = false
     }
   }
 
   Remove(i: number) {
     let eduArray = this.addEmployeeForm.get('Education') as FormArray;
     eduArray.removeAt(i);
-    this.c=this.c-1;
-  }
-  passingYearCheck(fg:FormGroup):Validators{
-    let currentYear=new Date()
-    let x=fg.get('passingYear')?.value;
-    console.log(x);
-    return fg.get('passingYear')?.value >= currentYear ? false:{notMatch:true};
-  }
+    this.count = this.count - 1;
+  } 
 }

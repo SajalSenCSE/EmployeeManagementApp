@@ -1,4 +1,3 @@
-
 <div class="container my-3">
     <div class="row col-md-8">
         <div>
@@ -33,17 +32,19 @@
             </div><br>
             <div class="form-group">
                 <label for="number" class="form-label">Employee Phone</label><br>
-                <input type="number" class="form-control" placeholder="Enter Phone" formControlName="Phone">
+                <input type="number" class="form-control" placeholder="+880.. Or 880.."
+                    formControlName="Phone">
                 <span class="error-block"
                     *ngIf="!addEmployeeForm.controls['Phone'].valid && (addEmployeeForm.controls['Phone'].touched)">
                     <span *ngIf="addEmployeeForm.controls['Phone'].hasError('required')">
                         Please Provide Phone
                     </span>
-                    <span *ngIf="addEmployeeForm.controls['Phone'].hasError('maxlength')">
-                        Max Lengtht less then 11
+                    <span *ngIf="addEmployeeForm.controls['Phone'].hasError('pattern')">
+                        Phuber have to start with +88 or 88 and length 11 digit
                     </span>
                 </span>
             </div><br>
+
             <div class="form-group">
                 <label for="exampleFormControlSelect1" class="form-label">Select Department</label><br>
                 <select class="form-control" formControlName="Department">
@@ -53,35 +54,54 @@
                     *ngIf="!addEmployeeForm.controls['Department'].valid && (addEmployeeForm.controls['Department'].touched )">Select
                     A Department</span>
             </div><br>
+
             <div class="form-group">
                 <label for="exampleFormControlSelect1" class="form-label">Select Designation</label><br>
                 <select class="form-control" formControlName="Designation">
                     <option *ngFor="let data of Designations" value={{data.Id}}>{{data.Name}}</option>
                 </select>
                 <span class="error-block"
-                    *ngIf="!addEmployeeForm.controls['Designation'].valid && (addEmployeeForm.controls['Designation'].touched )">Select
-                    Designation</span>
+                    *ngIf="!addEmployeeForm.controls['Designation'].valid && (addEmployeeForm.controls['Designation'].touched )">
+                    Select Designation
+                </span>
             </div><br>
+
             <div class="form-group">
-              <div *ngFor="let control of addEmployeeForm.controls.Education.controls;let temp=index let i=index"  [formGroup]="control">
-                
-                <select formControlName="degree">
-                  <option *ngFor="let s of degrees" value="{{s.Name}}">{{s.Name}}</option>
-                </select>
-                <label>Scores : </label>
-                <input type="number" placeholder="Enter Scores" formControlName="Scores">
-                <label>PassingYear : </label>
-                <input type="number" placeholder="passingYear" formControlName="passingYear">
-                <button class="btn btn-danger" *ngIf="i!=0" (click)="Remove(i)">Remove</button>
-                <button (click)="addEdu()" *ngIf="c==i" class="btn btn-primary">Add Education</button>
-              </div>
-              <span class="error-block" *ngIf="!this.addEmployeeForm.controls.Education.valid
+                <div *ngFor="let control of addEmployeeForm.controls.Education.controls;let temp=index let i=index"
+                    [formGroup]="control">
+                    <label *ngIf="i==0" class="col-md-2">Degrees</label>
+                    <label class="col-md-2" *ngIf="i==0">Scores : </label>
+                    <label class="col-md-2" *ngIf="i==0">PassingYear : </label><br>
+
+                    <select formControlName="degree" class="col-md-2">
+                        <option *ngFor="let s of degrees" value="{{s.Name}}">{{s.Name}}</option>
+                    </select>
+
+                    <input type="number" class="col-md-2" placeholder="Enter Scores" formControlName="Scores">
+
+                    <select formControlName="passingYear" class="col-md-2">
+                        <option *ngFor="let s of passingYears" value="s">{{s}}</option>
+                    </select>
+
+                    <button class="btn btn-danger" (click)="Remove(i)">Remove</button>
+                    <button (click)="addEdu()" *ngIf="c==i" class="btn btn-primary">Add</button><br>
+                    <span class="error-block col-md-2"
+                        *ngIf="!control.controls.degree.valid && (control.controls.Scores.touched || btnDisaabaleEdu)">Select
+                        Dergree</span>
+                    <span class="error-block col-md-2"
+                        *ngIf="!control.controls.Scores.valid && (control.controls.Scores.touched || btnDisaabaleEdu)">
+                        Numer 1 to 5</span>
+                    <span class="error-block col-md-2"
+                        *ngIf="!control.controls.passingYear.valid && (control.controls.Scores.touched || btnDisaabaleEdu )">
+                        Numer 1 to 5</span>
+                </div>
+                <!-- <span class="error-block" *ngIf="!this.addEmployeeForm.controls.Education.valid
                 &&(this.addEmployeeForm.controls.Education.touched||btnDisaabaleEdu) "> Fill Education Or Remove It
-              </span>
-              <br>
+                </span> -->
+                <br>
             </div><br>
-          <button type="submit" [disabled]="!addEmployeeForm.valid" class="btn btn-primary">Submit</button>
-          <button type="reset" class="btn btn-primary ms-2">Reset</button>
+            <button type="submit" [disabled]="!addEmployeeForm.valid" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-primary ms-2">Reset</button>
         </form>
     </div>
 </div>

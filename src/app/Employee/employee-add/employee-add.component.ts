@@ -14,19 +14,14 @@ import { UtilityData } from 'src/app/Utility/utility-data';
   styleUrls: ['./employee-add.component.css']
 })
 export class EmployeeAddComponent implements OnInit {
-
-  addEmployeeForm: FormGroup;
-  // submited: boolean = false;
+  addEmployeeForm: FormGroup<EmployeeInputTypeForm>;
   Departments: Dropdown[] = UtilityData.GetDept();
   addBtnDisable: boolean = true;
 
   Designations: Dropdown[] = UtilityData.Positation();
 
-  degrees: Dropdown[] = [
-    { Id: 1, Name: 'SSC' },
-    { Id: 2, Name: 'HSC' },
-    { Id: 3, Name: 'BSC' }
-  ]
+  degrees: Dropdown[] = UtilityData.GetDegres();
+Scores: any;
 
   constructor(private fb: FormBuilder) { }
 
@@ -40,7 +35,7 @@ export class EmployeeAddComponent implements OnInit {
       Designation: new FormControl(1, Validators.required),
       Education: new FormArray([
         this.fb.group({
-          degree: new FormControl(''),
+          degree: new FormControl('SSC'),
           Scores: new FormControl<number | null>(null, Validators.required),
           passingYear: new FormControl<number | null>(null, Validators.required)
         })
@@ -56,24 +51,27 @@ export class EmployeeAddComponent implements OnInit {
     }
   }
 
+  c:number=0;
+  btnDisaabaleEdu:boolean=false;
   addEdu() {
-    let eduArray = this.addEmployeeForm.get('Education') as FormArray;
-    if (eduArray.valid) {
-      let newEdu = this.fb.group({
-        degree: null,
-        Scores: null,
-        passingYear: null
+    this.btnDisaabaleEdu=true
+    if(this.addEmployeeForm.controls.Education.valid){
+      let eduArray = this.addEmployeeForm.get('Education') as FormArray;
+      let newEdu = this.fb.group<EducationType>({
+        degree: new FormControl('SSC',Validators.required),
+        Scores: new FormControl(null,Validators.required),
+        passingYear: new FormControl(null,Validators.required)
+
       })
-      eduArray.push(newEdu)
-    }
-    else {
-      eduArray.clear
+      eduArray.push(newEdu);
+      this.c=this.c+1;
+      this.btnDisaabaleEdu=false
     }
   }
 
   Remove(i: number) {
     let eduArray = this.addEmployeeForm.get('Education') as FormArray;
     eduArray.removeAt(i);
+    this.c=this.c-1;
   }
-
 }

@@ -1,3 +1,4 @@
+
 <div class="container my-3">
     <div class="row col-md-8">
         <div>
@@ -62,22 +63,25 @@
                     Designation</span>
             </div><br>
             <div class="form-group">
-                <div formArrayName="Education">
-                    <div *ngFor="let control of addEmployeeForm.controls['Education'].value;let i=index" [formGroupName]="i">
-                        <select formControlName="degree">
-                            <option *ngFor="let s of degrees" value="{{s.Name}}">{{s.Name}}</option>
-                        </select>
-                        <input type="text" placeholder="Enter Scores" formControlName="Scores">
-                        <input type="text" placeholder="passingYear" formControlName="passingYear">
-                        <button (click)="Remove(i)">Remove</button>
-                    </div>
-                    <br>
-                    <button (click)="addEdu()" class="btn btn-primary">Add Education</button>
-                </div>
+              <div *ngFor="let control of addEmployeeForm.controls.Education.controls;let temp=index let i=index"  [formGroup]="control">
+                
+                <select formControlName="degree">
+                  <option *ngFor="let s of degrees" value="{{s.Name}}">{{s.Name}}</option>
+                </select>
+                <label>Scores : </label>
+                <input type="number" placeholder="Enter Scores" formControlName="Scores">
+                <label>PassingYear : </label>
+                <input type="number" placeholder="passingYear" formControlName="passingYear">
+                <button class="btn btn-danger" *ngIf="i!=0" (click)="Remove(i)">Remove</button>
+                <button (click)="addEdu()" *ngIf="c==i" class="btn btn-primary">Add Education</button>
+              </div>
+              <span class="error-block" *ngIf="!this.addEmployeeForm.controls.Education.valid
+                &&(this.addEmployeeForm.controls.Education.touched||btnDisaabaleEdu) "> Fill Education Or Remove It
+              </span>
+              <br>
             </div><br>
-
-            <button type="submit" [disabled]="!addEmployeeForm.valid" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-primary ms-2">Reset</button>
+          <button type="submit" [disabled]="!addEmployeeForm.valid" class="btn btn-primary">Submit</button>
+          <button type="reset" class="btn btn-primary ms-2">Reset</button>
         </form>
     </div>
 </div>

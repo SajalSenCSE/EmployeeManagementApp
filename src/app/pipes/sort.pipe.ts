@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { AddEmployeeDemo } from '../models/add-employee-demo';
 import { IEmployee } from '../models/IEmployee';
 
 @Pipe({
@@ -6,7 +7,7 @@ import { IEmployee } from '../models/IEmployee';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(value: Array<IEmployee>, args: any[]): any {
+  transform(value: Array<AddEmployeeDemo>, args: any[]): any {
     const sortField = args[0];
     const sortDirection = args[1];
     let multiplier = 1;

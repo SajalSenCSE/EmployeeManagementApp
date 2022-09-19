@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeadListComponent } from './lead-list/lead-list.component';
 import { PaginationModule,PaginationConfig } from 'ngx-bootstrap/pagination';
 import { EmployeeAddComponent } from './Employee/employee-add/employee-add.component';
+import { EmployeeUpdateComponent } from './Employee/employee-update/employee-update.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { EmployeeAddComponent } from './Employee/employee-add/employee-add.compo
     FilterPipe,
     LeadListComponent,
     EmployeeAddComponent,
+    EmployeeUpdateComponent,
   ],
   imports: [
     BrowserModule,

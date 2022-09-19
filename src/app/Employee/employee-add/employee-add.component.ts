@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AddEmployeeDemo } from 'src/app/models/add-employee-demo';
 import { Dropdown } from 'src/app/models/Dropdown';
 import { EducationType } from 'src/app/models/education-type';
+import { EmployeeAdd } from 'src/app/models/employee-add';
 
 import { EmployeeInputTypeForm } from 'src/app/models/EmployeeInputTypeForm';
+import { EmployeeServiceService } from 'src/app/services/employee-service.service';
 import { UtilityData } from 'src/app/Utility/utility-data';
 
 
@@ -21,18 +24,19 @@ export class EmployeeAddComponent implements OnInit {
   degrees: Dropdown[] = UtilityData.GetDegres();
   count: number = 0;
   btnDisaabaleForEducation: boolean = false;
+  newEmployee:EmployeeAdd=new AddEmployeeDemo();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private empService:EmployeeServiceService) { }
 
   ngOnInit(): void {
     const currentYear=new Date().getFullYear()
     this.addEmployeeForm = this.fb.group<EmployeeInputTypeForm>({
-      FName: new FormControl(null, [Validators.required]),
-      LName: new FormControl(null, Validators.required),
-      Email: new FormControl(null, [Validators.required, Validators.email]),
-      Phone: new FormControl(null, [Validators.required, Validators.pattern("(?:\\+88|88)?(01[3-9]\\d{8})")]),
-      Department: new FormControl(1, [Validators.required]),
-      Designation: new FormControl(1, Validators.required),
+      FName: new FormControl('', [Validators.required]),
+      LName: new FormControl('', Validators.required),
+      Email: new FormControl('', [Validators.required, Validators.email]),
+      Phone: new FormControl('', [Validators.required, Validators.pattern("(?:\\+88|88)?(01[3-9]\\d{8})")]),
+      Department: new FormControl('', [Validators.required]),
+      Designation: new FormControl('', Validators.required),
       Education: new FormArray([
         this.fb.group({
           degree: new FormControl('SSC'),
@@ -46,7 +50,9 @@ export class EmployeeAddComponent implements OnInit {
   onSubmit() {
     if (this.addEmployeeForm.valid) {
       console.log(this.addEmployeeForm.value)
-      this.addEmployeeForm.reset()
+      this.mapNewEmployee();
+      this.empService.addEmployee(this.newEmployee);
+      this.addEmployeeForm.reset();
     } else {
       console.log("Frorm is not valid")
     }
@@ -73,4 +79,15 @@ export class EmployeeAddComponent implements OnInit {
     eduArray.removeAt(i);
     this.count = this.count - 1;
   } 
+
+  mapNewEmployee(){
+    this.newEmployee.Id=Number(this.empService.newEmpId())
+    this.newEmployee.fName = this.addEmployeeForm.controls.FName.value as string
+    this.newEmployee.lName=this.addEmployeeForm.controls.LName.value as string
+    this.newEmployee.email=this.addEmployeeForm.controls.Email.value as string
+    this.newEmployee.phone=this.addEmployeeForm.controls.Phone.value as string
+    this.newEmployee.department=this.addEmployeeForm.controls.Department.value as string
+    this.newEmployee.designation=this.addEmployeeForm.controls.Designation.value as string
+    this.newEmployee.Education=this.addEmployeeForm.controls.Education.value
+ }
 }

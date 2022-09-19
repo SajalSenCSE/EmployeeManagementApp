@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { AddEmployeeDemo } from '../models/add-employee-demo';
 import { IEmployee } from '../models/IEmployee';
 
 @Pipe({
@@ -6,15 +7,15 @@ import { IEmployee } from '../models/IEmployee';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: IEmployee[], filterString: string, propName: string): any {
+  transform(value: AddEmployeeDemo[], filterString: string, propName: string): any {
     let temp = filterString.toLowerCase();
-    const resultArray: IEmployee[] = [];
+    const resultArray: AddEmployeeDemo[] = [];
     if (value) {
       if (value.length === 0 || filterString === '' || propName === '') {
         return value;
       }
       for (const item of value) {
-        if (item.FName.toLowerCase().startsWith(temp)) {
+        if (item.fName.toLowerCase().startsWith(temp)) {
           resultArray.push(item);
         }
       }

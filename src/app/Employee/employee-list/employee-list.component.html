@@ -7,20 +7,24 @@
 <table class="table">
   <thead>
     <tr>
-      <th (click)="getByName('FName')" scope="col"><a class="btn">First Name</a></th>
-      <th (click)="getByName('LName')" scope="col"><a class="btn">Last Name</a></th>
-      <th (click)="getByName('Position')" scope="col"><a class="btn">Designation</a></th>
-      <th (click)="getByName('DoB')" scope="col"><a class="btn">Age</a></th>
-      <th (click)="getByName('Salary')" scope="col"><a class="btn">Salary</a></th>
+      <th (click)="getByName('fName')" scope="col"><a class="btn">First Name</a></th>
+      <th (click)="getByName('lName')" scope="col"><a class="btn">Last Name</a></th>
+      <th (click)="getByName('email')" scope="col"><a class="btn">Email</a></th>
+      <th (click)="getByName('phone')" scope="col"><a class="btn">Phone</a></th>
+      <th (click)="getByName('department')" scope="col"><a class="btn">Department</a></th>
+      <th (click)="getByName('designation')" scope="col"><a class="btn">Designation</a></th>
+      <th  scope="col"><a class="btn">Action</a></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let emp of employeeList2 | sort:[sortingParams,sortDirection]">
-      <td>{{emp.FName}}</td>
-      <td>{{emp.LName}}</td>
-      <td>{{emp.Position}}</td>
-      <td>{{emp.DoB | age}}</td>
-      <th>{{emp.Salary | number :'1.2-2' }}</th>
+    <tr *ngFor="let emp of employeeList2 ">
+      <td>{{emp.fName}}</td>
+      <td>{{emp.lName}}</td>
+      <td>{{emp.email}}</td>
+      <td>{{emp.phone}}</td>
+      <td>{{emp.department}}</td>
+      <td>{{emp.designation}}</td>
+      <td> <a routerLink="/update/{{emp.Id}}">Edit</a></td>
     </tr>
   </tbody>
 </table>

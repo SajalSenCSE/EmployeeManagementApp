@@ -6,11 +6,11 @@ export interface EmployeeInputTypeForm {
     LName: FormControl<string|null>,
     Email: FormControl<string|null>,
     Phone: FormControl<string|null>,
-    Department: FormControl<number|null>,
-    Designation: FormControl<number|null>,
-    Education:FormArray<FormGroup<EducationType>>;
-    // SelectEdu:any;
-    
+    Department: FormControl<string|null>,
+    Designation: FormControl<string|null>,
+    Education:FormArray<FormGroup<EducationType>>;  
 }
+
+
 
 

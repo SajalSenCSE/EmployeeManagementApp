@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { filter, map } from 'rxjs';
-import { IEmployee } from 'src/app/models/IEmployee';
+import { AddEmployeeDemo } from 'src/app/models/add-employee-demo';
+import { EmployeeAdd } from 'src/app/models/employee-add';
 import { EmployeeServiceService } from 'src/app/services/employee-service.service';
-import { LeadService } from 'src/app/services/lead.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -16,8 +16,8 @@ export class EmployeeListComponent implements OnInit {
   preBtnDisable: boolean = false;
   nextBtnDisable: boolean = true;
   sortingParams: string = 'Id';
-  employeeList: IEmployee[] = [];
-  employeeList2: IEmployee[] = [];
+  employeeList: EmployeeAdd[] = [];
+  employeeList2: EmployeeAdd[] = [];
   employeePerPage: number = 5;
   selectPage: number = 1;
   searchingString: string = '';
@@ -26,17 +26,19 @@ export class EmployeeListComponent implements OnInit {
   constructor(private empService: EmployeeServiceService) { }
 
   ngOnInit(): void {
-    this.empService.getAllEmployee()
-      .subscribe((data) => {
-        this.employeeList = data;
-        this.employeeList2 = this.employeeList.slice(this.pageIndex, this.employeePerPage);
-      })
+    // this.empService.getAllEmployee()
+    //   .subscribe((data) => {
+    //     this.employeeList = data;
+    //     this.employeeList2 = this.employeeList.slice(this.pageIndex, this.employeePerPage);
+    //   })
+    this.employeeList=this.empService.getAllEmployee2();
+    this.employeeList2=this.employeeList.slice(this.pageIndex, this.employeePerPage);
   }
 
   search() {
     if (this.fName != "") {
       this.employeeList = this.employeeList.filter(res => {
-        return (res.FName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase()) || (res.LName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase())));
+        return (res.fName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase()) || (res.fName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase())));
       })
       this.searchPagination()
     } else {

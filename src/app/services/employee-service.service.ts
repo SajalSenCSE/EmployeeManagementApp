@@ -38,7 +38,6 @@ export class EmployeeServiceService {
     return currentEmp;
   }
 
-
   addEmployee(employee:AddEmployeeDemo){
     let newEmployee=[employee];
     if(localStorage.getItem('newEmp')){
@@ -46,6 +45,7 @@ export class EmployeeServiceService {
     }
     localStorage.setItem('newEmp',JSON.stringify(newEmployee))
   }
+  
   newEmpId(){
     let Id;
     if(localStorage.getItem('Id')){

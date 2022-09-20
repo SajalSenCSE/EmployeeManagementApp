@@ -26,6 +26,8 @@ export class EmployeeAddComponent implements OnInit {
   count: number = 0;
   btnDisaabaleForEducation: boolean = false;
   newEmployee: EmployeeAdd = new AddEmployeeDemo();
+  editMode:boolean=false;
+  id:number;
 
   constructor(private fb: FormBuilder,
     private empService: EmployeeServiceService,
@@ -34,6 +36,7 @@ export class EmployeeAddComponent implements OnInit {
   ngOnInit(): void {
     let id = this.activatedRoute.snapshot.params['id'];
     if (id != null) {
+      this.editMode=true;
       this.updatedEmployeeBinding(id)
     } else {
       this.createAddEmployeeForm()
@@ -60,10 +63,19 @@ export class EmployeeAddComponent implements OnInit {
 
   onSubmit() {
     if (this.employeeForm.valid) {
-      console.log(this.employeeForm.value)
-      this.mapNewEmployee();
-      this.empService.addEmployee(this.newEmployee);
-      this.employeeForm.reset();
+      if(this.editMode==true){
+        let empArr=this.empService.getAllEmployee2();
+        let idexOf=empArr.findIndex(x=>x.Id==this.id);
+        this.mapEditEmployee()
+        empArr[idexOf]=this.newEmployee; 
+        localStorage.setItem('newEmp',JSON.stringify(empArr))
+      }else{
+        console.log(this.employeeForm.value)
+        console.log('test on submit')
+        this.mapNewEmployee();
+        this.empService.addEmployee(this.newEmployee);
+        this.employeeForm.reset();
+      }
     } else {
       console.log("Frorm is not valid")
     }
@@ -102,7 +114,19 @@ export class EmployeeAddComponent implements OnInit {
     this.newEmployee.education = this.employeeForm.controls.education.value
   }
 
+  mapEditEmployee() {
+    this.newEmployee.Id = this.id;
+    this.newEmployee.fName = this.employeeForm.controls.fName.value as string
+    this.newEmployee.lName = this.employeeForm.controls.lName.value as string
+    this.newEmployee.email = this.employeeForm.controls.email.value as string
+    this.newEmployee.phone = this.employeeForm.controls.phone.value as string
+    this.newEmployee.department = this.employeeForm.controls.department.value as string
+    this.newEmployee.designation = this.employeeForm.controls.designation.value as string
+    this.newEmployee.education = this.employeeForm.controls.education.value
+  }
+
   updatedEmployeeBinding(id: number) {
+    this.id=id;
     let updatedEmployee = this.empService.getCurrentEmployee(id);
     let educations = updatedEmployee.education
     this.employeeForm = this.fb.group<EmployeeInputTypeForm>({

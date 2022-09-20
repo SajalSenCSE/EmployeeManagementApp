@@ -2,13 +2,13 @@ import { FormArray, FormControl, FormGroup } from "@angular/forms";
 import { EducationType } from "./education-type";
 
 export interface EmployeeInputTypeForm {
-    FName: FormControl<string|null>
-    LName: FormControl<string|null>,
-    Email: FormControl<string|null>,
-    Phone: FormControl<string|null>,
-    Department: FormControl<string|null>,
-    Designation: FormControl<string|null>,
-    Education:FormArray<FormGroup<EducationType>>;  
+    fName: FormControl<string|null>
+    lName: FormControl<string|null>,
+    email: FormControl<string|null>,
+    phone: FormControl<string|null>,
+    department: FormControl<string|null>,
+    designation: FormControl<string|null>,
+    education:FormArray<FormGroup<EducationType>>;  
 }
 
 

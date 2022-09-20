@@ -8,5 +8,5 @@ export class AddEmployeeDemo implements EmployeeAdd {
     phone: string;
     department: string;
     designation: string;
-    Education: any;
+    education: any;
 }

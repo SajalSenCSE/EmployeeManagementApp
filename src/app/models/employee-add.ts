@@ -6,5 +6,5 @@ export interface EmployeeAdd {
     phone:string;
     department:string;
     designation:string;
-    Education:any;
+    education:any;
 }

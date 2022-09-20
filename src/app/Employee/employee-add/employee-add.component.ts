@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AddEmployeeDemo } from 'src/app/models/add-employee-demo';
 import { Dropdown } from 'src/app/models/Dropdown';
 import { EducationType } from 'src/app/models/education-type';
@@ -31,7 +31,8 @@ export class EmployeeAddComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private empService: EmployeeServiceService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private router:Router) { }
 
   ngOnInit(): void {
     let id = this.activatedRoute.snapshot.params['id'];
@@ -68,13 +69,15 @@ export class EmployeeAddComponent implements OnInit {
         let idexOf=empArr.findIndex(x=>x.Id==this.id);
         this.mapEditEmployee()
         empArr[idexOf]=this.newEmployee; 
-        localStorage.setItem('newEmp',JSON.stringify(empArr))
+        this.empService.addEmployee(empArr)
+        this.router.navigate(['emplist']);
       }else{
         console.log(this.employeeForm.value)
         console.log('test on submit')
         this.mapNewEmployee();
         this.empService.addEmployee(this.newEmployee);
         this.employeeForm.reset();
+        this.router.navigate(['emplist']);
       }
     } else {
       console.log("Frorm is not valid")

@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let emp of employeeList2 ">
+    <tr *ngFor="let emp of employeeList2 |filter:fName:'FName'| sort:[sortingParams,sortDirection]">
       <td>{{emp.fName}}</td>
       <td>{{emp.lName}}</td>
       <td>{{emp.email}}</td>

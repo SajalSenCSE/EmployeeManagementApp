@@ -69,7 +69,7 @@ export class EmployeeAddComponent implements OnInit {
         let idexOf=empArr.findIndex(x=>x.Id==this.id);
         this.mapEditEmployee()
         empArr[idexOf]=this.newEmployee; 
-        this.empService.addEmployee(empArr)
+       localStorage.setItem('newEmp',JSON.stringify(empArr))
         this.router.navigate(['emplist']);
       }else{
         console.log(this.employeeForm.value)
@@ -114,7 +114,7 @@ export class EmployeeAddComponent implements OnInit {
     this.newEmployee.phone = this.employeeForm.controls.phone.value as string
     this.newEmployee.department = this.employeeForm.controls.department.value as string
     this.newEmployee.designation = this.employeeForm.controls.designation.value as string
-    this.newEmployee.education = this.employeeForm.controls.education.value
+    this.newEmployee.education = this.employeeForm.controls.education.value  
   }
 
   mapEditEmployee() {

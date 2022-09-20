@@ -38,7 +38,7 @@ export class EmployeeServiceService {
     return currentEmp;
   }
 
-  addEmployee(employee:AddEmployeeDemo|AddEmployeeDemo[]){
+  addEmployee(employee:AddEmployeeDemo){
     let newEmployee=[employee];
     if(localStorage.getItem('newEmp')){
       newEmployee=[employee, ...JSON.parse(localStorage.getItem('newEmp') as string)];

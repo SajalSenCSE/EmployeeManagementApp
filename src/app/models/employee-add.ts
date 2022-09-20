@@ -1,3 +1,6 @@
+import { EducationType } from "./education-type";
+import { EmployeeEducation } from "./employee-education";
+
 export interface EmployeeAdd {
     Id:number;
     fName:string;
@@ -6,5 +9,5 @@ export interface EmployeeAdd {
     phone:string;
     department:string;
     designation:string;
-    education:any;
+    education:EmployeeEducation[];
 }

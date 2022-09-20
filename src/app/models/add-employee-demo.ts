@@ -1,4 +1,6 @@
+import { EducationType } from "./education-type";
 import { EmployeeAdd } from "./employee-add";
+import { EmployeeEducation } from "./employee-education";
 
 export class AddEmployeeDemo implements EmployeeAdd {
     Id: number;
@@ -8,5 +10,5 @@ export class AddEmployeeDemo implements EmployeeAdd {
     phone: string;
     department: string;
     designation: string;
-    education:any
+    education:EmployeeEducation[];
 }

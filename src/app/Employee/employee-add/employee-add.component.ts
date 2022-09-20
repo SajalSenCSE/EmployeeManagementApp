@@ -5,6 +5,7 @@ import { AddEmployeeDemo } from 'src/app/models/add-employee-demo';
 import { Dropdown } from 'src/app/models/Dropdown';
 import { EducationType } from 'src/app/models/education-type';
 import { EmployeeAdd } from 'src/app/models/employee-add';
+import { EmployeeEducation } from 'src/app/models/employee-education';
 
 import { EmployeeInputTypeForm } from 'src/app/models/EmployeeInputTypeForm';
 import { EmployeeServiceService } from 'src/app/services/employee-service.service';
@@ -55,7 +56,7 @@ export class EmployeeAddComponent implements OnInit {
       education: new FormArray([
         this.fb.group({
           degree: new FormControl('SSC'),
-          scores: new FormControl<number | null>(null, [Validators.required, Validators.min(1), Validators.max(5)]),
+          scores: new FormControl<number |null>(null, [Validators.required, Validators.min(1), Validators.max(5)]),
           passingYear: new FormControl('2020', [Validators.required, Validators.max(2023)])
         })
       ])
@@ -114,7 +115,7 @@ export class EmployeeAddComponent implements OnInit {
     this.newEmployee.phone = this.employeeForm.controls.phone.value as string
     this.newEmployee.department = this.employeeForm.controls.department.value as string
     this.newEmployee.designation = this.employeeForm.controls.designation.value as string
-    this.newEmployee.education = this.employeeForm.controls.education.value  
+    this.newEmployee.education = this.employeeForm.controls.education.value as EmployeeEducation[] 
   }
 
   mapEditEmployee() {
@@ -125,7 +126,7 @@ export class EmployeeAddComponent implements OnInit {
     this.newEmployee.phone = this.employeeForm.controls.phone.value as string
     this.newEmployee.department = this.employeeForm.controls.department.value as string
     this.newEmployee.designation = this.employeeForm.controls.designation.value as string
-    this.newEmployee.education = this.employeeForm.controls.education.value
+    this.newEmployee.education = this.employeeForm.controls.education.value as EmployeeEducation[]
   }
 
   updatedEmployeeBinding(id: number) {
@@ -144,7 +145,7 @@ export class EmployeeAddComponent implements OnInit {
     this.bindingFormArray(educations);
   }
 
-  bindingFormArray(arrObj: EducationType[]) {
+  bindingFormArray(arrObj: EmployeeEducation[]) {
     let eduArray = this.employeeForm.get('education') as FormArray;
     for (let i = 0; i < arrObj.length; i++) {
       let newEdu = this.fb.group<EducationType>({

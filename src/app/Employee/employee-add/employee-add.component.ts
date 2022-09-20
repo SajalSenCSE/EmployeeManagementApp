@@ -47,12 +47,13 @@ export class EmployeeAddComponent implements OnInit {
 
   createAddEmployeeForm(obj?: EmployeeAdd) {
     this.employeeForm = this.fb.group<EmployeeInputTypeForm>({
+      id:new FormControl(null),
       fName: new FormControl('', [Validators.required]),
       lName: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required, Validators.pattern("(?:\\+88|88)?(01[3-9]\\d{8})")]),
-      department: new FormControl('', [Validators.required]),
-      designation: new FormControl('', Validators.required),
+      department: new FormControl('Account', [Validators.required]),
+      designation: new FormControl('Developer', Validators.required),
       education: new FormArray([
         this.fb.group({
           degree: new FormControl('SSC'),
@@ -119,7 +120,7 @@ export class EmployeeAddComponent implements OnInit {
   }
 
   mapEditEmployee() {
-    this.newEmployee.Id = this.id;
+    this.newEmployee.Id = this.employeeForm.controls.id.value as number
     this.newEmployee.fName = this.employeeForm.controls.fName.value as string
     this.newEmployee.lName = this.employeeForm.controls.lName.value as string
     this.newEmployee.email = this.employeeForm.controls.email.value as string
@@ -134,6 +135,7 @@ export class EmployeeAddComponent implements OnInit {
     let updatedEmployee = this.empService.getCurrentEmployee(id);
     let educations = updatedEmployee.education
     this.employeeForm = this.fb.group<EmployeeInputTypeForm>({
+      id:new FormControl(updatedEmployee.Id ),
       fName: new FormControl(updatedEmployee.fName as string, [Validators.required]),
       lName: new FormControl(updatedEmployee.lName as string, Validators.required),
       email: new FormControl(updatedEmployee.email as string, [Validators.required, Validators.email]),

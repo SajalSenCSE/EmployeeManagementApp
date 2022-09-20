@@ -2,8 +2,9 @@
     <div class="row col-md-8">
         <div>
             <h2>{{editMode?'Update Employee':'Add Employee'}}</h2>
-        </div>
+        </div>  
         <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+            <input type="hidden" class="form-control" formControlName="id">
             <div class="form-group">
                 <label for="fName" class="form-label">Employee Frist Name</label>
                 <input type="text" class="form-control" formControlName="fName">

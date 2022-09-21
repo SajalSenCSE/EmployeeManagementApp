@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AddEmployeeDemo } from 'src/app/models/add-employee-demo';
+import { Employee } from 'src/app/models/add-employee-demo';
 import { Dropdown } from 'src/app/models/Dropdown';
 import { EducationType } from 'src/app/models/education-type';
 import { EmployeeAdd } from 'src/app/models/employee-add';
@@ -30,9 +30,7 @@ export class EmployeeAddComponent implements OnInit {
   degrees: Dropdown[] = UtilityData.GetDegres();
   count: number = 0;
   btnDisaabaleForEducation: boolean = false;
-  newEmployee: EmployeeAdd = new AddEmployeeDemo();
-  editMode: boolean = false;
-  idTemp: number;
+  newEmployee: Employee = new Employee();
 
   constructor(
     private fb: FormBuilder,
@@ -52,7 +50,7 @@ export class EmployeeAddComponent implements OnInit {
     }
   }
 
-  createAddEmployeeForm(obj?: EmployeeAdd) {
+  createAddEmployeeForm(obj?: Employee) {
     this.employeeForm = this.fb.group<EmployeeInputTypeForm>({
       id: new FormControl(null),
       fName: new FormControl('', [Validators.required]),
@@ -88,15 +86,15 @@ export class EmployeeAddComponent implements OnInit {
       else this.insertEmployee();
       this.router.navigate(['emplist']);
       this.employeeForm.reset();
-    } else console.log('Frorm is not valid');
+    }
   }
 
   updateEmployee(id: number) {
-    let empArr = this.empService.getAllEmployee2();
+    let empArr = this.empService.getAllEmployee();
     let idexOf = empArr.findIndex(
       (x) => x.id == this.employeeForm.controls.id.value
     );
-    this.newEmployee = this.employeeForm.value as EmployeeAdd;
+    this.newEmployee = this.employeeForm.value as Employee;
     empArr[idexOf] = this.newEmployee;
     localStorage.setItem('newEmp', JSON.stringify(empArr));
   }
@@ -131,8 +129,10 @@ export class EmployeeAddComponent implements OnInit {
   }
 
   insertEmployee() {
-    this.employeeForm.controls.id.setValue(Number(this.empService.newEmpId()));
-    this.newEmployee = this.employeeForm.value as EmployeeAdd;
+    this.employeeForm.controls.id.setValue(
+      Number(this.empService.getAllEmployee().length + 1)
+    );
+    this.newEmployee = this.employeeForm.value as Employee;
     this.empService.addEmployee(this.newEmployee);
   }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { IEmployee } from '../models/IEmployee';
-import { AddEmployeeDemo } from '../models/add-employee-demo';
+import { Employee } from '../models/add-employee-demo';
 import { EmployeeAdd } from '../models/employee-add';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class EmployeeServiceService {
 
   constructor(private http: HttpClient) {}
 
-  getAllEmployee2() {
+  getAllEmployee() {
     let empArray: EmployeeAdd[] = [];
     if (localStorage.getItem('newEmp')) {
       empArray = JSON.parse(localStorage.getItem('newEmp') as string);
@@ -23,15 +23,15 @@ export class EmployeeServiceService {
     }
   }
   getCurrentEmployee(id: number) {
-    let currentEmp: EmployeeAdd;
-    let empArray: Array<EmployeeAdd> = [];
+    let currentEmp: Employee;
+    let empArray: Array<Employee> = [];
     empArray = JSON.parse(localStorage.getItem('newEmp') as string);
     currentEmp = empArray.find((x) => x.id == id) as EmployeeAdd;
     this.currrentIndex = empArray.findIndex((x) => x.id == id);
     return currentEmp;
   }
 
-  addEmployee(employee: AddEmployeeDemo) {
+  addEmployee(employee: Employee) {
     let newEmployee = [employee];
     if (localStorage.getItem('newEmp')) {
       newEmployee = [
@@ -40,19 +40,5 @@ export class EmployeeServiceService {
       ];
     }
     localStorage.setItem('newEmp', JSON.stringify(newEmployee));
-  }
-
-  newEmpId() {
-    let Id;
-    if (localStorage.getItem('Id')) {
-      localStorage.setItem(
-        'Id',
-        String(Number(localStorage.getItem('Id')) + 1)
-      );
-      return localStorage.getItem('Id');
-    } else {
-      localStorage.setItem('Id', '1');
-      return 1;
-    }
   }
 }

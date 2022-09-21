@@ -1,13 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AddEmployeeDemo } from '../models/add-employee-demo';
+import { Employee } from '../models/add-employee-demo';
 import { IEmployee } from '../models/IEmployee';
 
 @Pipe({
-  name: 'sort'
+  name: 'sort',
 })
 export class SortPipe implements PipeTransform {
-
-  transform(value: Array<AddEmployeeDemo>, args: any[]): any {
+  transform(value: Array<Employee>, args: any[]): any {
     const sortField = args[0];
     const sortDirection = args[1];
     let multiplier = 1;
@@ -22,9 +21,7 @@ export class SortPipe implements PipeTransform {
       } else {
         return 0;
       }
-    }
-    );
+    });
     return value;
   }
-
 }

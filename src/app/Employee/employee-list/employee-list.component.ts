@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { filter, map } from 'rxjs';
-import { AddEmployeeDemo } from 'src/app/models/add-employee-demo';
+import { Employee } from 'src/app/models/add-employee-demo';
 import { EmployeeAdd } from 'src/app/models/employee-add';
 import { EmployeeServiceService } from 'src/app/services/employee-service.service';
 
@@ -15,8 +15,8 @@ export class EmployeeListComponent implements OnInit {
   preBtnDisable: boolean = false;
   nextBtnDisable: boolean = true;
   sortingParams: string = 'Id';
-  employeeList: EmployeeAdd[] = [];
-  employeeList2: EmployeeAdd[] = [];
+  employeeList: Employee[] = [];
+  employeeList2: Employee[] = [];
   employeePerPage: number = 5;
   selectPage: number = 1;
   searchingString: string = '';
@@ -25,7 +25,7 @@ export class EmployeeListComponent implements OnInit {
   constructor(private empService: EmployeeServiceService) {}
 
   ngOnInit(): void {
-    this.employeeList = this.empService.getAllEmployee2();
+    this.employeeList = this.empService.getAllEmployee();
     this.employeeList2 = this.employeeList.slice(
       this.pageIndex,
       this.employeePerPage

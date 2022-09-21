@@ -1,49 +1,95 @@
 <div class="row ms-4 col-md-6">
   <label>Search by First Name</label>
-  <input name="fName" [(ngModel)]='fName' class="form-control" placeholder="Filter By First Name"
-    (ngModelChange)="search()">
+  <input
+    name="fName"
+    [(ngModel)]="fName"
+    class="form-control"
+    placeholder="Filter By First Name"
+    (ngModelChange)="search()"
+  />
 </div>
 
 <table class="table">
   <thead>
     <tr>
-      <th (click)="getByName('fName')" scope="col"><a class="btn">First Name</a></th>
-      <th (click)="getByName('lName')" scope="col"><a class="btn">Last Name</a></th>
+      <th (click)="getByName('fName')" scope="col">
+        <a class="btn">First Name</a>
+      </th>
+      <th (click)="getByName('lName')" scope="col">
+        <a class="btn">Last Name</a>
+      </th>
       <th (click)="getByName('email')" scope="col"><a class="btn">Email</a></th>
       <th (click)="getByName('phone')" scope="col"><a class="btn">Phone</a></th>
-      <th (click)="getByName('department')" scope="col"><a class="btn">Department</a></th>
-      <th (click)="getByName('designation')" scope="col"><a class="btn">Designation</a></th>
-      <th  scope="col"><a class="btn">Action</a></th>
+      <th (click)="getByName('department')" scope="col">
+        <a class="btn">Department</a>
+      </th>
+      <th (click)="getByName('designation')" scope="col">
+        <a class="btn">Designation</a>
+      </th>
+      <th scope="col"><a class="btn">Action</a></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let emp of employeeList2 |filter:fName:'FName'| sort:[sortingParams,sortDirection]">
-      <td>{{emp.fName}}</td>
-      <td>{{emp.lName}}</td>
-      <td>{{emp.email}}</td>
-      <td>{{emp.phone}}</td>
-      <td>{{emp.department}}</td>
-      <td>{{emp.designation}}</td>
-      <td> <a routerLink="/add/{{emp.Id}}">Edit</a></td>
+    <tr
+      *ngFor="
+        let emp of employeeList2
+          | filter: fName:'FName'
+          | sort: [sortingParams, sortDirection]
+      "
+    >
+      <td>{{ emp.fName }}</td>
+      <td>{{ emp.lName }}</td>
+      <td>{{ emp.email }}</td>
+      <td>{{ emp.phone }}</td>
+      <td>{{ emp.department }}</td>
+      <td>{{ emp.designation }}</td>
+      <td>
+        <a routerLink="/add/{{ emp.id }}">Edit</a>
+      </td>
     </tr>
   </tbody>
 </table>
 
 <div class="row">
   <div class="col-md-4">
-    <select class="col-md-6" [value]="employeePerPage" (change)="employeePerPageChange($event)">
+    <select
+      class="col-md-6"
+      [value]="employeePerPage"
+      (change)="employeePerPageChange($event)"
+    >
       <option value="5">5 page</option>
       <option value="10">10 page</option>
       <option value="15">15 page</option>
     </select>
   </div>
   <div class="col-md-2">
-    <strong> {{pageIndex}}--{{employeePerPage*selectPage}} of {{employeeList.length}}</strong>
+    <strong>
+      {{ pageIndex }}--{{ employeePerPage * selectPage }} of
+      {{ employeeList.length }}</strong
+    >
   </div>
   <div class="col-md-6">
-    <button [disabled]="!preBtnDisable" class="btn btn-outline-primary" (click)="prePage()">Pre</button>
-    <button *ngFor="let page of pageNumbers" class="btn btn-outline-primary" [class.active]="page==selectPage"
-      (click)="changePage(page)">{{page}}</button>
-    <button [disabled]="!nextBtnDisable" class="btn btn-outline-primary" (click)="nextPage()">Next</button>
+    <button
+      [disabled]="!preBtnDisable"
+      class="btn btn-outline-primary"
+      (click)="prePage()"
+    >
+      Pre
+    </button>
+    <button
+      *ngFor="let page of pageNumbers"
+      class="btn btn-outline-primary"
+      [class.active]="page == selectPage"
+      (click)="changePage(page)"
+    >
+      {{ page }}
+    </button>
+    <button
+      [disabled]="!nextBtnDisable"
+      class="btn btn-outline-primary"
+      (click)="nextPage()"
+    >
+      Next
+    </button>
   </div>
 </div>

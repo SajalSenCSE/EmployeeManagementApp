@@ -11,7 +11,7 @@ import { EmployeeAdd } from '../models/employee-add';
 export class EmployeeServiceService {
   currrentIndex = 0;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllEmployee2() {
     let empArray: EmployeeAdd[] = [];
@@ -26,26 +26,32 @@ export class EmployeeServiceService {
     let currentEmp: EmployeeAdd;
     let empArray: Array<EmployeeAdd> = [];
     empArray = JSON.parse(localStorage.getItem('newEmp') as string);
-    currentEmp = empArray.find(x => x.Id == id) as EmployeeAdd;
-    this.currrentIndex = empArray.findIndex(x => x.Id == id);
+    currentEmp = empArray.find((x) => x.id == id) as EmployeeAdd;
+    this.currrentIndex = empArray.findIndex((x) => x.id == id);
     return currentEmp;
   }
 
   addEmployee(employee: AddEmployeeDemo) {
     let newEmployee = [employee];
     if (localStorage.getItem('newEmp')) {
-      newEmployee = [employee, ...JSON.parse(localStorage.getItem('newEmp') as string)];
+      newEmployee = [
+        employee,
+        ...JSON.parse(localStorage.getItem('newEmp') as string),
+      ];
     }
-    localStorage.setItem('newEmp', JSON.stringify(newEmployee))
+    localStorage.setItem('newEmp', JSON.stringify(newEmployee));
   }
 
   newEmpId() {
     let Id;
     if (localStorage.getItem('Id')) {
-      localStorage.setItem('Id', String(Number(localStorage.getItem('Id')) + 1))
+      localStorage.setItem(
+        'Id',
+        String(Number(localStorage.getItem('Id')) + 1)
+      );
       return localStorage.getItem('Id');
     } else {
-      localStorage.setItem('Id', '1')
+      localStorage.setItem('Id', '1');
       return 1;
     }
   }

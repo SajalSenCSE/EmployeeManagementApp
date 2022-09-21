@@ -44,9 +44,9 @@ export class EmployeeAddComponent implements OnInit {
     let id = this.activatedRoute.snapshot.params['id'];
     if (id != null) {
       let employee = this.empService.getCurrentEmployee(id);
-      // this.employeeForm.patchValue(employee);
-      // this.bindingFormArray(employee.education);
-      this.updatedEmployeeBinding(id);
+      this.employeeForm.patchValue(employee);
+      this.employeeForm.controls.education.clear();
+      this.bindingFormArray(employee.education);
     }
   }
 
@@ -134,38 +134,6 @@ export class EmployeeAddComponent implements OnInit {
     );
     this.newEmployee = this.employeeForm.value as Employee;
     this.empService.addEmployee(this.newEmployee);
-  }
-
-  updatedEmployeeBinding(id: number) {
-    let updatedEmployee = this.empService.getCurrentEmployee(id);
-    let educations = updatedEmployee.education;
-    this.employeeForm = this.fb.group<EmployeeInputTypeForm>({
-      id: new FormControl(updatedEmployee.id),
-      fName: new FormControl(updatedEmployee.fName as string, [
-        Validators.required,
-      ]),
-      lName: new FormControl(
-        updatedEmployee.lName as string,
-        Validators.required
-      ),
-      email: new FormControl(updatedEmployee.email as string, [
-        Validators.required,
-        Validators.email,
-      ]),
-      phone: new FormControl(updatedEmployee.phone as string, [
-        Validators.required,
-        Validators.pattern('(?:\\+88|88)?(01[3-9]\\d{8})'),
-      ]),
-      department: new FormControl(updatedEmployee.department as string, [
-        Validators.required,
-      ]),
-      designation: new FormControl(
-        updatedEmployee.designation as string,
-        Validators.required
-      ),
-      education: new FormArray<FormGroup<EducationType>>([]),
-    });
-    this.bindingFormArray(educations);
   }
 
   bindingFormArray(arrObj: EmployeeEducation[]) {

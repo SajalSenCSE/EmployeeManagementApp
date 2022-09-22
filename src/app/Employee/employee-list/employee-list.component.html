@@ -31,11 +31,7 @@
   </thead>
   <tbody>
     <tr
-      *ngFor="
-        let emp of employeeList2
-          | filter: fName:'FName'
-          | sort: [sortingParams, sortDirection]
-      "
+      *ngFor="let emp of employeeList2 | sort: [sortingParams, sortDirection]"
     >
       <td>{{ emp.fName }}</td>
       <td>{{ emp.lName }}</td>

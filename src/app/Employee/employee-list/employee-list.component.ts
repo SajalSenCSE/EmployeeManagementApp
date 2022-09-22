@@ -16,7 +16,7 @@ export class EmployeeListComponent implements OnInit {
   nextBtnDisable: boolean = true;
   sortingParams: string = 'Id';
   employeeList: Employee[] = [];
-  employeeList2: Employee[] = [];
+  employeeList2: EmployeeAdd[] = [];
   employeePerPage: number = 5;
   selectPage: number = 1;
   searchingString: string = '';
@@ -37,7 +37,7 @@ export class EmployeeListComponent implements OnInit {
       this.employeeList = this.employeeList.filter((res) => {
         return (
           res.fName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase()) ||
-          res.fName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase())
+          res.lName.toLocaleLowerCase().match(this.fName.toLocaleLowerCase())
         );
       });
       this.searchPagination();

@@ -18,21 +18,25 @@
   </thead>
   <tbody>
     <tr *ngFor="let emp of empList2">
-      <th>{{emp.Id}}</th>
-      <td>{{emp.FName}}</td>
-      <td>{{emp.LName}}</td>
-      <th>{{emp.Address}}</th>
-      <td>{{emp.DoB}}</td>
-      <td>{{emp.DoB | age}}</td>
-      <th>{{emp.Salary}}</th>
-      <td>{{emp.Position}}</td>
-      <td>{{emp.joiningAge}}</td>
+      <th>{{ emp.Id }}</th>
+      <td>{{ emp.FName }}</td>
+      <td>{{ emp.LName }}</td>
+      <th>{{ emp.Address }}</th>
+      <td>{{ emp.DoB }}</td>
+      <td>{{ emp.DoB | age }}</td>
+      <th>{{ emp.Salary }}</th>
+      <td>{{ emp.Position }}</td>
+      <td>{{ emp.joiningAge }}</td>
     </tr>
   </tbody>
 </table>
 <div class="row">
-  <div class="col-md-2 ">
-    <select [value]="empPerpage" class="from-control" (change)="changePazeSixe($event)">
+  <div class="col-md-2">
+    <select
+      [value]="empPerpage"
+      class="from-control"
+      (change)="changePazeSixe($event)"
+    >
       <option value="5">Select 5</option>
       <option value="10">Select 10</option>
       <option value="15">Select 15</option>
@@ -40,8 +44,14 @@
   </div>
   <div class="btn-group">
     <button class="btn btn-secondary" (click)="Pre()">Pre</button>
-    <button class="btn btn-outline-primary" *ngFor="let page of pageNumbers" [class.active]="page==selextedPage"
-      (click)="changePage(page)">{{page}}</button>
+    <button
+      class="btn btn-outline-primary"
+      *ngFor="let page of pageNumbers"
+      [class.active]="page == selextedPage"
+      (click)="changePage(page)"
+    >
+      {{ page }}
+    </button>
     <button class="btn btn-secondary" (click)="Next()">Pre</button>
   </div>
 </div>

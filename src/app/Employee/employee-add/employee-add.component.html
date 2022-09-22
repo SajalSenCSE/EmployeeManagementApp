@@ -1,3 +1,7 @@
+<!-- <pre>
+
+  {{ employeeForm.value | json }}
+</pre> -->
 <div class="container my-3">
   <div class="row col-md-8">
     <div>
@@ -133,7 +137,7 @@
       </div>
       <br />
 
-      <div class="form-group" formArrayName="education">
+      <div class="form-group">
         <div
           *ngFor="
             let control of employeeForm.controls.education.controls;
@@ -145,7 +149,16 @@
           <label class="col-md-2" *ngIf="i == 0">Scores : </label>
           <label class="col-md-2" *ngIf="i == 0">PassingYear : </label><br />
 
-          <select formControlName="degree" class="col-md-2">
+          <select
+            formControlName="degree"
+            class="col-md-2"
+            (change)="
+              degreeChange(
+                control.value,
+                employeeForm.controls.education.controls
+              )
+            "
+          >
             <option *ngFor="let s of degrees" value="{{ s.Name }}">
               {{ s.Name }}
             </option>

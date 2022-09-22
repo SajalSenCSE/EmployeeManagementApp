@@ -4,7 +4,9 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidatorFn,
   Validators,
+  AbstractControl,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/models/add-employee-demo';
@@ -31,6 +33,7 @@ export class EmployeeAddComponent implements OnInit {
   count: number = 0;
   btnDisaabaleForEducation: boolean = false;
   newEmployee: Employee = new Employee();
+  temp: number = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -42,15 +45,15 @@ export class EmployeeAddComponent implements OnInit {
   ngOnInit(): void {
     this.createAddEmployeeForm();
     let id = this.activatedRoute.snapshot.params['id'];
-    if (id != null) {
+    if (id) {
       let employee = this.empService.getCurrentEmployee(id);
       this.employeeForm.patchValue(employee);
       this.employeeForm.controls.education.clear();
-      this.bindingFormArray(employee.education);
+      this.addEdu(employee.education);
     }
   }
 
-  createAddEmployeeForm(obj?: Employee) {
+  createAddEmployeeForm() {
     this.employeeForm = this.fb.group<EmployeeInputTypeForm>({
       id: new FormControl(null),
       fName: new FormControl('', [Validators.required]),
@@ -81,11 +84,10 @@ export class EmployeeAddComponent implements OnInit {
 
   onSubmit() {
     if (this.employeeForm.valid) {
-      if (this.employeeForm.controls.id.value != null)
+      if (this.employeeForm.controls.id.value)
         this.updateEmployee(this.employeeForm.controls.id.value);
       else this.insertEmployee();
       this.router.navigate(['emplist']);
-      this.employeeForm.reset();
     }
   }
 
@@ -99,26 +101,32 @@ export class EmployeeAddComponent implements OnInit {
     localStorage.setItem('newEmp', JSON.stringify(empArr));
   }
 
-  addEdu() {
+  addEdu(arrObj?: EmployeeEducation[]) {
     this.btnDisaabaleForEducation = true;
     const currentYear = new Date().getFullYear();
     if (this.employeeForm.controls.education.valid) {
       let eduArray = this.employeeForm.get('education') as FormArray;
-      let newEdu = this.fb.group<EducationType>({
-        degree: new FormControl('SSC', Validators.required),
-        scores: new FormControl(null, [
-          Validators.required,
-          Validators.min(1),
-          Validators.max(5),
-        ]),
-        passingYear: new FormControl('2020', [
-          Validators.required,
-          Validators.max(currentYear),
-        ]),
+      if (!arrObj) {
+        arrObj = [{ degree: 'SSC', scores: null, passingYear: '2020' }];
+        this.temp = 1;
+      }
+      arrObj?.forEach((value?) => {
+        let newEdu = this.fb.group<EducationType>({
+          degree: new FormControl(value.degree, [Validators.required]),
+          scores: new FormControl(value.scores, [
+            Validators.required,
+            Validators.min(1),
+            Validators.max(5),
+          ]),
+          passingYear: new FormControl(value.passingYear, [
+            Validators.required,
+            Validators.max(2030),
+          ]),
+        });
+        eduArray.push(newEdu);
+        this.count = this.temp == 0 ? this.temp + 1 : this.count + 1;
+        this.btnDisaabaleForEducation = false;
       });
-      eduArray.push(newEdu);
-      this.count = this.count + 1;
-      this.btnDisaabaleForEducation = false;
     }
   }
 
@@ -135,23 +143,15 @@ export class EmployeeAddComponent implements OnInit {
     this.newEmployee = this.employeeForm.value as Employee;
     this.empService.addEmployee(this.newEmployee);
   }
-
-  bindingFormArray(arrObj: EmployeeEducation[]) {
-    let eduArray = this.employeeForm.get('education') as FormArray;
-    for (let i = 0; i < arrObj.length; i++) {
-      let newEdu = this.fb.group<EducationType>({
-        degree: new FormControl(arrObj[i].degree, Validators.required),
-        scores: new FormControl(arrObj[i].scores, [
-          Validators.required,
-          Validators.min(1),
-          Validators.max(5),
-        ]),
-        passingYear: new FormControl(arrObj[i].passingYear, [
-          Validators.required,
-          Validators.max(2030),
-        ]),
-      });
-      eduArray.push(newEdu);
-    }
+  degreeChange(value: any, values: any) {
+    // console.log(value.degree);
+    let check: string = value.degree;
+    console.log(check);
+    console.log(this.employeeForm.controls.education.value);
+    let x = this.employeeForm.controls.education.value.find(
+      (x) => x.degree == check
+    );
+    let conX = x?.degree;
+    console.log(conX);
   }
 }

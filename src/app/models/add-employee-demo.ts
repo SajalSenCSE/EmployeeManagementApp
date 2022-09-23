@@ -1,4 +1,4 @@
-import { EducationType } from './education-type';
+import { EducationTypeForm } from './education-type';
 import { EmployeeAdd } from './employee-add';
 import { EmployeeEducation } from './employee-education';
 

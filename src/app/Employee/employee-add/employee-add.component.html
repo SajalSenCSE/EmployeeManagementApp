@@ -153,10 +153,7 @@
             formControlName="degree"
             class="col-md-2"
             (change)="
-              degreeChange(
-                control.value,
-                employeeForm.controls.education.controls
-              )
+              onChange(control.value, employeeForm.controls.education.controls)
             "
           >
             <option *ngFor="let s of degrees" value="{{ s.Name }}">

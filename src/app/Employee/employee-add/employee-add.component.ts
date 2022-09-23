@@ -11,10 +11,8 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/models/add-employee-demo';
 import { Dropdown } from 'src/app/models/Dropdown';
-import { EducationType } from 'src/app/models/education-type';
-import { EmployeeAdd } from 'src/app/models/employee-add';
+import { EducationTypeForm } from 'src/app/models/education-type';
 import { EmployeeEducation } from 'src/app/models/employee-education';
-
 import { EmployeeInputTypeForm } from 'src/app/models/EmployeeInputTypeForm';
 import { EmployeeServiceService } from 'src/app/services/employee-service.service';
 import { UtilityData } from 'src/app/Utility/utility-data';
@@ -34,6 +32,7 @@ export class EmployeeAddComponent implements OnInit {
   btnDisaabaleForEducation: boolean = false;
   newEmployee: Employee = new Employee();
   temp: number = 0;
+  duplicaketDegrees: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -67,7 +66,7 @@ export class EmployeeAddComponent implements OnInit {
       designation: new FormControl('Developer', Validators.required),
       education: new FormArray([
         this.fb.group({
-          degree: new FormControl('SSC'),
+          degree: new FormControl('', Validators.required),
           scores: new FormControl<number | null>(null, [
             Validators.required,
             Validators.min(1),
@@ -104,15 +103,20 @@ export class EmployeeAddComponent implements OnInit {
   addEdu(arrObj?: EmployeeEducation[]) {
     this.btnDisaabaleForEducation = true;
     const currentYear = new Date().getFullYear();
+
     if (this.employeeForm.controls.education.valid) {
       let eduArray = this.employeeForm.get('education') as FormArray;
       if (!arrObj) {
-        arrObj = [{ degree: 'SSC', scores: null, passingYear: '2020' }];
+        arrObj = [{ degree: '', scores: null, passingYear: '2020' }];
         this.temp = 1;
       }
+
       arrObj?.forEach((value?) => {
-        let newEdu = this.fb.group<EducationType>({
-          degree: new FormControl(value.degree, [Validators.required]),
+        let newEdu = this.fb.group<EducationTypeForm>({
+          degree: new FormControl(value.degree, [
+            Validators.required,
+            // this.validator.bind(this),
+          ]),
           scores: new FormControl(value.scores, [
             Validators.required,
             Validators.min(1),
@@ -120,9 +124,10 @@ export class EmployeeAddComponent implements OnInit {
           ]),
           passingYear: new FormControl(value.passingYear, [
             Validators.required,
-            Validators.max(2030),
+            Validators.max(currentYear),
           ]),
         });
+
         eduArray.push(newEdu);
         this.count = this.temp == 0 ? this.temp + 1 : this.count + 1;
         this.btnDisaabaleForEducation = false;
@@ -143,15 +148,23 @@ export class EmployeeAddComponent implements OnInit {
     this.newEmployee = this.employeeForm.value as Employee;
     this.empService.addEmployee(this.newEmployee);
   }
-  degreeChange(value: any, values: any) {
-    // console.log(value.degree);
+  onChange(value: any, values: any) {
     let check: string = value.degree;
-    console.log(check);
-    console.log(this.employeeForm.controls.education.value);
+    let newArr = this.employeeForm.controls.education.value;
+    console.log(newArr);
     let x = this.employeeForm.controls.education.value.find(
       (x) => x.degree == check
     );
-    let conX = x?.degree;
-    console.log(conX);
+    console.log(x?.degree);
   }
+
+  // validator(degreeValue: FormControl) {
+  //   this.employeeForm.controls.education.value.forEach((element) => {
+  //     this.duplicaketDegrees.push(element.degree as string);
+  //   });
+  //   this.duplicaketDegrees.push(degreeValue.value);
+  //   if (this.duplicaketDegrees.indexOf(degreeValue.value) != -1) {
+  //     return { degreDuplicaket: true };
+  //   } else return null;
+  // }
 }

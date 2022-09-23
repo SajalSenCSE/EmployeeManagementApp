@@ -148,14 +148,19 @@ export class EmployeeAddComponent implements OnInit {
     this.newEmployee = this.employeeForm.value as Employee;
     this.empService.addEmployee(this.newEmployee);
   }
-  onChange(value: any, values: any) {
-    let check: string = value.degree;
-    let newArr = this.employeeForm.controls.education.value;
-    console.log(newArr);
-    let x = this.employeeForm.controls.education.value.find(
-      (x) => x.degree == check
+  onChange(controlValue: any, frormValues: any) {
+    let check: string = controlValue.degree;
+    let x = this.employeeForm.controls.education.value.filter(
+      (res) => res.degree == check
     );
-    console.log(x?.degree);
+    if (x.length > 1) {
+      alert('can not update');
+    }
+  }
+
+  validator(value: boolean) {
+    if (value) return { degreDuplicaket: true };
+    else return false;
   }
 
   // validator(degreeValue: FormControl) {

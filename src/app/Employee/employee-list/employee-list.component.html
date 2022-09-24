@@ -40,7 +40,8 @@
       <td>{{ emp.department }}</td>
       <td>{{ emp.designation }}</td>
       <td>
-        <a routerLink="/add/{{ emp.id }}">Edit</a>
+        <a routerLink="/edit/{{ emp.id }}" class="btn btn-sm btn-danger">Edit</a> |
+        <button (click)="onDelete(emp.id)" class="btn btn-sm btn-primary">Delete</button>
       </td>
     </tr>
   </tbody>

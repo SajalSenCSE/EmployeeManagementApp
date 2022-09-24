@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { Employee } from 'src/app/models/add-employee-demo';
 import { EmployeeAdd } from 'src/app/models/employee-add';
@@ -22,7 +23,8 @@ export class EmployeeListComponent implements OnInit {
   searchingString: string = '';
   pageIndex: number = (this.selectPage - 1) * this.employeePerPage;
 
-  constructor(private empService: EmployeeServiceService) {}
+  constructor(private empService: EmployeeServiceService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.employeeList = this.empService.getAllEmployee();
@@ -125,5 +127,9 @@ export class EmployeeListComponent implements OnInit {
     } else {
       this.sortDirection = 'asce';
     }
+  }
+  onDelete(id:number){
+    this.empService.RemoveEmployee(id);
+    this.ngOnInit();
   }
 }

@@ -153,7 +153,7 @@
             formControlName="degree"
             class="col-md-2"
             (change)="
-              onChange(control.value, employeeForm.controls.education.controls)
+              onChange($event, i)
             "
           >
             <option *ngFor="let s of degrees" value="{{ s.Name }}">
@@ -186,6 +186,9 @@
             "
             >Select Dergree</span
           >
+          <span class="error-block col-md-2" *ngIf="control.controls.degree.errors?.['notValid']">
+            Degrees cannot be Duplicaket.
+          </span>
           <span
             class="error-block col-md-2"
             *ngIf="

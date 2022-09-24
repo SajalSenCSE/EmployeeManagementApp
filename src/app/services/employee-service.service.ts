@@ -13,7 +13,7 @@ export class EmployeeServiceService {
   constructor(private http: HttpClient) {}
 
   getAllEmployee() {
-    let empArray: EmployeeAdd[] = [];
+    let empArray: Employee[] = [];
     if (localStorage.getItem('newEmp')) {
       empArray = JSON.parse(localStorage.getItem('newEmp') as string);
       return empArray;
@@ -25,7 +25,7 @@ export class EmployeeServiceService {
     let currentEmp: Employee;
     let empArray: Array<Employee> = [];
     empArray = JSON.parse(localStorage.getItem('newEmp') as string);
-    currentEmp = empArray.find((x) => x.id == id) as EmployeeAdd;
+    currentEmp = empArray.find((x) => x.id == id) as Employee;
     this.currrentIndex = empArray.findIndex((x) => x.id == id);
     return currentEmp;
   }
@@ -40,4 +40,10 @@ export class EmployeeServiceService {
     }
     localStorage.setItem('newEmp', JSON.stringify(newEmployee));
   }
+  RemoveEmployee(id:number){
+    let empArr = this.getAllEmployee();
+    const filtered = empArr.filter(item => item.id !== id);
+    localStorage.setItem('newEmp', JSON.stringify(filtered));
+  }
+
 }

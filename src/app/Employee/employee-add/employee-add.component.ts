@@ -92,11 +92,11 @@ export class EmployeeAddComponent implements OnInit {
 
   updateEmployee(id: number) {
     let empArr = this.empService.getAllEmployee();
-    let idexOf = empArr.findIndex(
+    let indexOf = empArr.findIndex(
       (x) => x.id == this.employeeForm.controls.id.value
     );
     this.newEmployee = this.employeeForm.value as Employee;
-    empArr[idexOf] = this.newEmployee;
+    empArr[indexOf] = this.newEmployee;
     localStorage.setItem('newEmp', JSON.stringify(empArr));
   }
 
@@ -148,28 +148,23 @@ export class EmployeeAddComponent implements OnInit {
     this.newEmployee = this.employeeForm.value as Employee;
     this.empService.addEmployee(this.newEmployee);
   }
-  onChange(controlValue: any, frormValues: any) {
-    let check: string = controlValue.degree;
+
+  onChange(controlValue: Event, i:number) {
+    let check = (controlValue.target as HTMLInputElement).value;
     let x = this.employeeForm.controls.education.value.filter(
       (res) => res.degree == check
     );
     if (x.length > 1) {
-      alert('can not update');
+    this.employeeForm.controls.education.at(i).controls.degree.setValidators([this.customValidator])
+    }else{
+      this.employeeForm.controls.education.at(i).controls.degree.patchValue(check);
+      this.employeeForm.controls.education.at(i).controls.degree.clearValidators();
     }
+    this.employeeForm.controls.education.at(i).controls.degree.updateValueAndValidity();
   }
 
-  validator(value: boolean) {
-    if (value) return { degreDuplicaket: true };
-    else return false;
+  customValidator():Validators {
+    return {notValid: true}
   }
-
-  // validator(degreeValue: FormControl) {
-  //   this.employeeForm.controls.education.value.forEach((element) => {
-  //     this.duplicaketDegrees.push(element.degree as string);
-  //   });
-  //   this.duplicaketDegrees.push(degreeValue.value);
-  //   if (this.duplicaketDegrees.indexOf(degreeValue.value) != -1) {
-  //     return { degreDuplicaket: true };
-  //   } else return null;
-  // }
 }
+

@@ -1,13 +1,22 @@
-<div class="row ms-4 col-md-6">
-  <label>Search by First Name</label>
-  <input
-    name="fName"
-    [(ngModel)]="fName"
-    class="form-control"
-    placeholder="Filter By First Name"
-    (ngModelChange)="search()"
-  />
+<div class="row d-flex">
+  <div class="ms-4 col-md-6">
+    <label>Search by First Name</label>
+
+    <input
+      name="fName"
+      [(ngModel)]="fName"
+      class="form-control"
+      placeholder="Filter By First Name"
+      (ngModelChange)="search()"
+    />
+  </div>
+  <div class="col-md-3 my-2">
+    <a class="btn btn-primary " routerLink="add">Employee Add</a>
+  </div>
+
 </div>
+
+
 
 <table class="table">
   <thead>
@@ -40,7 +49,7 @@
       <td>{{ emp.department }}</td>
       <td>{{ emp.designation }}</td>
       <td>
-        <a routerLink="/edit/{{ emp.id }}" class="btn btn-sm btn-danger">Edit</a> |
+        <a routerLink="edit/{{ emp.id }}" class="btn btn-sm btn-danger">Edit</a> |
         <button (click)="onDelete(emp.id)" class="btn btn-sm btn-primary">Delete</button>
       </td>
     </tr>

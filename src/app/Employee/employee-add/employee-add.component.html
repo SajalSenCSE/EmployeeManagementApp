@@ -1,7 +1,4 @@
-<!-- <pre>
 
-  {{ employeeForm.value | json }}
-</pre> -->
 <div class="container my-3">
   <div class="row col-md-8">
     <div>
@@ -168,7 +165,9 @@
             formControlName="scores"
           />
 
-          <select formControlName="passingYear" class="col-md-2">
+          <select formControlName="passingYear" class="col-md-2" (change)="
+          onChange($event, i)
+        ">
             <option *ngFor="let pYear of passingYears" value="{{ pYear }}">
               {{ pYear }}
             </option>

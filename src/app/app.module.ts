@@ -16,7 +16,6 @@ import { PaginationModule, PaginationConfig } from 'ngx-bootstrap/pagination';
     AppComponent,
     NavbarComponent,
     LeadListComponent,
-
   ],
   imports: [
     BrowserModule,

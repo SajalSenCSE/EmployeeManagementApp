@@ -106,26 +106,29 @@ export class EmployeeAddComponent implements OnInit {
     if (this.employeeForm.controls.education.valid) {
       let eduArray = this.employeeForm.get('education') as FormArray;
       if (!arrObj) {
-        arrObj = [{ degree: '', scores: null, passingYear: '2020' }];
+        arrObj = [{ degree: '', scores: null, passingYear: '' }];
         this.temp = 1;
       }
       arrObj?.forEach((value?) => {
         let newEdu = this.fb.group<EducationTypeForm>({
-          degree: new FormControl(value.degree?value.degree:'', [
+          degree: new FormControl(value.degree ? value.degree : '', [
             Validators.required,
           ]),
-          scores: new FormControl(value.scores?value.scores:null, [
+          scores: new FormControl(value.scores ? value.scores : null, [
             Validators.required,
             Validators.min(1),
             Validators.max(5),
           ]),
-          passingYear: new FormControl(value.passingYear?value.passingYear:'2020', [
-            Validators.required,
-            Validators.max(currentYear),
-          ]),
+          passingYear: new FormControl(
+            value.passingYear ? value.passingYear : '',
+            [Validators.required, Validators.max(currentYear)]
+          ),
         });
-        eduArray.push(newEdu)
-        this.count = this.temp == 0 ? this.temp + (arrObj?.length as number-1):this.count + 1  ;
+        eduArray.push(newEdu);
+        this.count =
+          this.temp == 0
+            ? this.temp + ((arrObj?.length as number) - 1)
+            : this.count + 1;
         this.btnDisaabaleForEducation = false;
       });
     }
@@ -145,22 +148,29 @@ export class EmployeeAddComponent implements OnInit {
     this.empService.addEmployee(this.newEmployee);
   }
 
-  onChange(controlValue: Event, i:number) {
+  onChange(controlValue: Event, i: number) {
     let check = (controlValue.target as HTMLInputElement).value;
     let x = this.employeeForm.controls.education.value.filter(
       (res) => res.degree == check
     );
     if (x.length > 1)
-      this.employeeForm.controls.education.at(i).controls.degree.setValidators([this.customValidator])
-    else{
-      this.employeeForm.controls.education.at(i).controls.degree.patchValue(check);
-      this.employeeForm.controls.education.at(i).controls.degree.clearValidators();
+      this.employeeForm.controls.education
+        .at(i)
+        .controls.degree.setValidators([this.customValidator]);
+    else {
+      this.employeeForm.controls.education
+        .at(i)
+        .controls.degree.patchValue(check);
+      this.employeeForm.controls.education
+        .at(i)
+        .controls.degree.clearValidators();
     }
-    this.employeeForm.controls.education.at(i).controls.degree.updateValueAndValidity();
+    this.employeeForm.controls.education
+      .at(i)
+      .controls.degree.updateValueAndValidity();
   }
 
-  customValidator():Validators {
-    return {notValid: true}
+  customValidator(): Validators {
+    return { notValid: true };
   }
 }
-

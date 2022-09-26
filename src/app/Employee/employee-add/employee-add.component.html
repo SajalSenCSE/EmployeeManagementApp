@@ -1,4 +1,3 @@
-
 <div class="container my-3">
   <div class="row col-md-8">
     <div>
@@ -149,9 +148,7 @@
           <select
             formControlName="degree"
             class="col-md-2"
-            (change)="
-              onChange($event, i)
-            "
+            (change)="onChange($event, i)"
           >
             <option *ngFor="let s of degrees" value="{{ s.Name }}">
               {{ s.Name }}
@@ -165,9 +162,7 @@
             formControlName="scores"
           />
 
-          <select formControlName="passingYear" class="col-md-2" (change)="
-          onChange($event, i)
-        ">
+          <select formControlName="passingYear" class="col-md-2">
             <option *ngFor="let pYear of passingYears" value="{{ pYear }}">
               {{ pYear }}
             </option>
@@ -185,7 +180,10 @@
             "
             >Select Dergree</span
           >
-          <span class="error-block col-md-2" *ngIf="control.controls.degree.errors?.['notValid']">
+          <span
+            class="error-block col-md-2"
+            *ngIf="control.controls.degree.errors?.['notValid']"
+          >
             Degrees cannot be Duplicaket.
           </span>
           <span

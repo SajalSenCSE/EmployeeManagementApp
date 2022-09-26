@@ -7,19 +7,24 @@ import { AgePipe } from '../pipes/age.pipe';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { SortPipe } from '../pipes/sort.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PaginatorComponent } from '../paginator/paginator.component';
 
 const empRoutes: Routes = [
-  {path:'',children:[
-  { path: '', component: EmployeeListComponent },
-  { path: 'add', component: EmployeeAddComponent },
-  { path: 'edit/:id', component: EmployeeAddComponent },
-  ]}
+  {
+    path: '',
+    children: [
+      { path: '', component: EmployeeListComponent },
+      { path: 'add', component: EmployeeAddComponent },
+      { path: 'edit/:id', component: EmployeeAddComponent },
+    ],
+  },
 ];
 
 @NgModule({
   declarations: [
     EmployeeListComponent,
     EmployeeAddComponent,
+    PaginatorComponent,
     AgePipe,
     SortPipe,
     FilterPipe,
@@ -28,14 +33,12 @@ const empRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(empRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  exports:[
-
-  ]
+  exports: [PaginatorComponent],
 })
 export class EmployeeModule {
-  constructor(){
-    console.log("Emp Module")
+  constructor() {
+    console.log('Emp Module');
   }
- }
+}

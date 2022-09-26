@@ -23,8 +23,10 @@ export class EmployeeListComponent implements OnInit {
   searchingString: string = '';
   pageIndex: number = (this.selectPage - 1) * this.employeePerPage;
 
-  constructor(private empService: EmployeeServiceService,
-    private router: Router) {}
+  constructor(
+    private empService: EmployeeServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.employeeList = this.empService.getAllEmployee();
@@ -32,6 +34,15 @@ export class EmployeeListComponent implements OnInit {
       this.pageIndex,
       this.employeePerPage
     );
+  }
+
+  indexPageChange(activePageNumber: any) {
+    this.pageIndex = activePageNumber;
+    console.log(this.pageIndex);
+  }
+  employeePageChange(empPerP: number) {
+    this.employeePerPage = empPerP;
+    console.log(this.employeePerPage);
   }
 
   search() {
@@ -51,70 +62,20 @@ export class EmployeeListComponent implements OnInit {
   searchPagination() {
     this.pageIndex = 0;
     this.selectPage = 1;
-    this.preAndNex(this.selectPage);
+    // this.preAndNex(this.selectPage);
     this.employeeList2 = this.employeeList.slice(
       this.pageIndex,
       this.employeePerPage
     );
   }
-
-  get pageNumbers(): number[] {
-    if (this.fName == '') {
-      return Array(Math.ceil(this.employeeList.length / this.employeePerPage))
-        .fill(0)
-        .map((x, i) => i + 1);
-    } else {
-      return Array(Math.ceil(this.employeeList.length / this.employeePerPage))
-        .fill(0)
-        .map((x, i) => i + 1);
-    }
-  }
-
-  employeePerPageChange(e: Event) {
-    const newPageSize = (e.target as HTMLInputElement).value;
-    this.employeePerPage = Number(newPageSize);
-    this.changePage(1); //defaultPage will be 1
-  }
-
-  changePage(page: number) {
-    this.selectPage = page;
-    this.sliceEmployee();
-    this.preAndNex(page);
-  }
-
+  selectLeatestPage() {}
   sliceEmployee() {
     this.pageIndex = (this.selectPage - 1) * this.employeePerPage;
     let endIndex = this.pageIndex + this.employeePerPage;
     this.employeeList2 = this.employeeList.slice(this.pageIndex, endIndex);
   }
 
-  prePage() {
-    this.selectPage = this.selectPage - 1;
-    this.changePage(this.selectPage);
-    this.preAndNex(this.selectPage);
-  }
-
-  nextPage() {
-    this.selectPage = this.selectPage + 1;
-    this.changePage(this.selectPage);
-    this.preAndNex(this.selectPage);
-  }
-
-  preAndNex(selectPage: number) {
-    let tempForPre = selectPage;
-    let tempForNex = this.pageNumbers.length;
-    if (tempForPre > 1) {
-      this.preBtnDisable = true;
-    } else {
-      this.preBtnDisable = false;
-    }
-    if (selectPage >= tempForNex) {
-      this.nextBtnDisable = false;
-    } else {
-      console.log(this.selectPage);
-      this.nextBtnDisable = true;
-    }
-  }
+  activePage: number = 0;
 
   getByName(value: string) {
     this.sortingParams = value;
@@ -128,7 +89,7 @@ export class EmployeeListComponent implements OnInit {
       this.sortDirection = 'asce';
     }
   }
-  onDelete(id:number){
+  onDelete(id: number) {
     this.empService.RemoveEmployee(id);
     this.ngOnInit();
   }

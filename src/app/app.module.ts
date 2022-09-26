@@ -9,13 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeadListComponent } from './lead-list/lead-list.component';
 import { PaginationModule, PaginationConfig } from 'ngx-bootstrap/pagination';
-
+import { HomeComponent } from './home/home.component';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LeadListComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,7 @@ import { PaginationModule, PaginationConfig } from 'ngx-bootstrap/pagination';
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(){
-    console.log("AppModule")
+  constructor() {
+    console.log('AppModule');
   }
 }

@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-4">
+    <select
+      class="col-md-6"
+      [value]="employeePerPage"
+      (change)="employeePerPageChange($event)"
+    >
+      <option value="5">5 page</option>
+      <option value="10">10 page</option>
+      <option value="15">15 page</option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <button
+      [disabled]="!preBtnDisable"
+      class="btn btn-outline-primary"
+      (click)="prePage()"
+    >
+      Pre
+    </button>
+    <button
+      *ngFor="let page of pageNumbers"
+      class="btn btn-outline-primary"
+      [class.active]="page == selectPage"
+      (click)="changePage(page)"
+    >
+      {{ page }}
+    </button>
+    <button
+      [disabled]="!nextBtnDisable"
+      class="btn btn-outline-primary"
+      (click)="nextPage()"
+    >
+      Next
+    </button>
+  </div>
+</div>

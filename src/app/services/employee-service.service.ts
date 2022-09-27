@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
 import { Employee } from '../models/add-employee-demo';
-import { EmployeeAdd } from '../models/employee-add';
 
 @Injectable({
   providedIn: 'root',
@@ -40,10 +38,9 @@ export class EmployeeServiceService {
     }
     localStorage.setItem('newEmp', JSON.stringify(newEmployee));
   }
-  RemoveEmployee(id:number){
+  RemoveEmployee(id: number) {
     let empArr = this.getAllEmployee();
-    const filtered = empArr.filter(item => item.id !== id);
+    const filtered = empArr.filter((item) => item.id !== id);
     localStorage.setItem('newEmp', JSON.stringify(filtered));
   }
-
 }

@@ -81,9 +81,10 @@ export class EmployeeAddComponent implements OnInit {
 
   onSubmit() {
     if (this.employeeForm.valid) {
-      if (this.employeeForm.controls.id.value)
-        this.updateEmployee(this.employeeForm.controls.id.value);
-      else this.insertEmployee();
+      this.employeeForm.controls.id.value
+        ? this.updateEmployee(this.employeeForm.controls.id.value)
+        : this.insertEmployee();
+
       this.router.navigate(['employee']);
     }
   }

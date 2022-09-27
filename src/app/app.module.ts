@@ -11,6 +11,7 @@ import { LeadListComponent } from './lead-list/lead-list.component';
 import { PaginationModule, PaginationConfig } from 'ngx-bootstrap/pagination';
 import { HomeComponent } from './home/home.component';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { UserLoginComponent } from './User/user-login/user-login.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PaginatorComponent } from './paginator/paginator.component';
     NavbarComponent,
     LeadListComponent,
     HomeComponent,
+    UserLoginComponent,
   ],
   imports: [
     BrowserModule,

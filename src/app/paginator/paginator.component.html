@@ -14,7 +14,7 @@
     <button
       [disabled]="!preBtnDisable"
       class="btn btn-outline-primary"
-      (click)="prePage()"
+      (click)="combinePreAndNextBtn(-1)"
     >
       Pre
     </button>
@@ -29,7 +29,7 @@
     <button
       [disabled]="!nextBtnDisable"
       class="btn btn-outline-primary"
-      (click)="nextPage()"
+      (click)="combinePreAndNextBtn(1)"
     >
       Next
     </button>

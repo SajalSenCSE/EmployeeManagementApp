@@ -1,17 +1,24 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.css'],
 })
-export class PaginatorComponent implements OnInit {
-  constructor() {}
+export class PaginatorComponent implements OnInit,OnChanges {
+
   @Input() totalRecords: number = 0;
   @Input() employeePerPage: number = 5;
 
-  @Output() indexPageNo: EventEmitter<number> = new EventEmitter();
+  @Output() selectPagePageEmit: EventEmitter<number> = new EventEmitter();
   @Output() employeePerPageEmit: EventEmitter<number> = new EventEmitter();
+
+  constructor() {}
+  ngOnChanges(changes: SimpleChanges): void {
+    // this.indexPageNoEmit.emit(5)
+    // this.employeePerPageEmit.emit(5)
+  }
+
 
   preBtnDisable: boolean = false;
   nextBtnDisable: boolean = true;
@@ -22,24 +29,19 @@ export class PaginatorComponent implements OnInit {
 
   employeePerPageChange(e: Event) {
     const newPageSize = (e.target as HTMLInputElement).value;
-    this.indexPageNo.emit(Number(newPageSize));
     this.employeePerPage = Number(newPageSize);
-    console.log(this.employeePerPage);
-    this.changePage(1); //defaultPage will be 1
+    this.employeePerPageEmit.emit(Number(newPageSize));
+    this.changePage(1);
   }
 
   changePage(page: number) {
     this.selectPage = page;
+    this.preAndNex(page);
+    this.selectPagePageEmit.emit(this.selectPage);
   }
 
-  prePage() {
-    this.selectPage = this.selectPage - 1;
-    this.changePage(this.selectPage);
-    this.preAndNex(this.selectPage);
-  }
-
-  nextPage() {
-    this.selectPage = this.selectPage + 1;
+  combinePreAndNextBtn(count:number){
+    this.selectPage = this.selectPage + count;
     this.changePage(this.selectPage);
     this.preAndNex(this.selectPage);
   }
@@ -58,10 +60,9 @@ export class PaginatorComponent implements OnInit {
     } else {
       this.preBtnDisable = false;
     }
-    if (selectPage >= tempForNex) {
+    if (selectPage >= this.pageNumbers.length) {
       this.nextBtnDisable = false;
     } else {
-      console.log(this.selectPage);
       this.nextBtnDisable = true;
     }
   }

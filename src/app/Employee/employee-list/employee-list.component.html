@@ -61,7 +61,7 @@
     <app-paginator
       [totalRecords]="employeeList.length"
       [employeePerPage]="5"
-      (onPageChange)="indexPageChange($event)"
+      (selectPagePageEmit)="selectPagePageChange($event)"
       (employeePerPageEmit)="employeePageChange($event)"
     ></app-paginator>
   </div>

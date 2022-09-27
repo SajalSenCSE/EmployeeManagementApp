@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { filter, map } from 'rxjs';
 import { Employee } from 'src/app/models/add-employee-demo';
-import { EmployeeAdd } from 'src/app/models/employee-add';
+
 import { EmployeeServiceService } from 'src/app/services/employee-service.service';
 
 @Component({
@@ -17,7 +16,7 @@ export class EmployeeListComponent implements OnInit {
   nextBtnDisable: boolean = true;
   sortingParams: string = 'Id';
   employeeList: Employee[] = [];
-  employeeList2: EmployeeAdd[] = [];
+  employeeList2: Employee[] = [];
   employeePerPage: number = 5;
   selectPage: number = 1;
   searchingString: string = '';
@@ -36,13 +35,14 @@ export class EmployeeListComponent implements OnInit {
     );
   }
 
-  indexPageChange(activePageNumber: any) {
-    this.pageIndex = activePageNumber;
-    console.log(this.pageIndex);
+  selectPagePageChange(selectPagePage: number) {
+    this.selectPage = selectPagePage;
+    this.sliceEmployee();
   }
   employeePageChange(empPerP: number) {
     this.employeePerPage = empPerP;
-    console.log(this.employeePerPage);
+    this.pageIndex = (this.selectPage - 1) * this.employeePerPage;
+    this.ngOnInit();
   }
 
   search() {
@@ -62,20 +62,17 @@ export class EmployeeListComponent implements OnInit {
   searchPagination() {
     this.pageIndex = 0;
     this.selectPage = 1;
-    // this.preAndNex(this.selectPage);
     this.employeeList2 = this.employeeList.slice(
       this.pageIndex,
       this.employeePerPage
     );
   }
-  selectLeatestPage() {}
+
   sliceEmployee() {
     this.pageIndex = (this.selectPage - 1) * this.employeePerPage;
     let endIndex = this.pageIndex + this.employeePerPage;
     this.employeeList2 = this.employeeList.slice(this.pageIndex, endIndex);
   }
-
-  activePage: number = 0;
 
   getByName(value: string) {
     this.sortingParams = value;

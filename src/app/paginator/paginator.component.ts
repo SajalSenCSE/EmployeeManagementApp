@@ -20,7 +20,7 @@ export class PaginatorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  employeePerPageChange(e: Event) {
+  dataPerPageChange(e: Event) {
     const newPageSize = (e.target as HTMLInputElement).value;
     this.dataPerPage = Number(newPageSize);
     this.dataPerPageEmit.emit(Number(newPageSize));

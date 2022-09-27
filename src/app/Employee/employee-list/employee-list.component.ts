@@ -12,8 +12,6 @@ import { EmployeeServiceService } from 'src/app/services/employee-service.servic
 export class EmployeeListComponent implements OnInit {
   fName: string = '';
   sortDirection: string = 'asce';
-  preBtnDisable: boolean = false;
-  nextBtnDisable: boolean = true;
   sortingParams: string = 'Id';
   employeeList: Employee[] = [];
   employeeList2: Employee[] = [];
@@ -35,12 +33,12 @@ export class EmployeeListComponent implements OnInit {
     );
   }
 
-  selectPagePageChange(selectPagePage: number) {
+  selectPageChange(selectPagePage: number) {
     this.selectPage = selectPagePage;
     this.sliceEmployee();
   }
-  employeePageChange(empPerP: number) {
-    this.employeePerPage = empPerP;
+  employeePageChange(empPerPage: number) {
+    this.employeePerPage = empPerPage;
     this.pageIndex = (this.selectPage - 1) * this.employeePerPage;
     this.ngOnInit();
   }

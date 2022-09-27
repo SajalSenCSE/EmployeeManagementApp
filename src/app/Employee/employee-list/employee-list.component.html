@@ -60,9 +60,9 @@
   <div class="col-md-4">
     <app-paginator
       [totalRecords]="employeeList.length"
-      [employeePerPage]="5"
-      (selectPagePageEmit)="selectPagePageChange($event)"
-      (employeePerPageEmit)="employeePageChange($event)"
+      [dataPerPage]="5"
+      (selectPageEmit)="selectPageChange($event)"
+      (dataPerPageEmit)="employeePageChange($event)"
     ></app-paginator>
   </div>
 </div>

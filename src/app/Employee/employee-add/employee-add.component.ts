@@ -4,9 +4,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  ValidatorFn,
   Validators,
-  AbstractControl,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/models/add-employee-demo';
@@ -48,7 +46,7 @@ export class EmployeeAddComponent implements OnInit {
       let employee = this.empService.getCurrentEmployee(id);
       this.employeeForm.patchValue(employee);
       this.employeeForm.controls.education.clear();
-      this.addEdu(employee.education);
+      this.bindingFormArray(employee.education);
     }
   }
 
@@ -100,37 +98,28 @@ export class EmployeeAddComponent implements OnInit {
     localStorage.setItem('newEmp', JSON.stringify(empArr));
   }
 
-  addEdu(arrObj?: EmployeeEducation[]) {
+  addEdu(arrObj?: EmployeeEducation) {
     this.btnDisaabaleForEducation = true;
     const currentYear = new Date().getFullYear();
     if (this.employeeForm.controls.education.valid) {
       let eduArray = this.employeeForm.get('education') as FormArray;
-      if (!arrObj) {
-        arrObj = [{ degree: '', scores: null, passingYear: '' }];
-        this.temp = 1;
-      }
-      arrObj?.forEach((value?) => {
-        let newEdu = this.fb.group<EducationTypeForm>({
-          degree: new FormControl(value.degree ? value.degree : '', [
-            Validators.required,
-          ]),
-          scores: new FormControl(value.scores ? value.scores : null, [
-            Validators.required,
-            Validators.min(1),
-            Validators.max(5),
-          ]),
-          passingYear: new FormControl(
-            value.passingYear ? value.passingYear : '',
-            [Validators.required, Validators.max(currentYear)]
-          ),
-        });
-        eduArray.push(newEdu);
-        this.count =
-          this.temp == 0
-            ? this.temp + ((arrObj?.length as number) - 1)
-            : this.count + 1;
-        this.btnDisaabaleForEducation = false;
+      let newEdu = this.fb.group<EducationTypeForm>({
+        degree: new FormControl(arrObj?.degree ? arrObj.degree : '', [
+          Validators.required,
+        ]),
+        scores: new FormControl(arrObj?.scores ? arrObj.scores : null, [
+          Validators.required,
+          Validators.min(1),
+          Validators.max(5),
+        ]),
+        passingYear: new FormControl(
+          arrObj?.passingYear ? arrObj.passingYear : '',
+          [Validators.required, Validators.max(currentYear)]
+        ),
       });
+      eduArray.push(newEdu);
+      this.count = this.count + 1;
+      this.btnDisaabaleForEducation = false;
     }
   }
 
@@ -172,5 +161,17 @@ export class EmployeeAddComponent implements OnInit {
 
   customValidator(): Validators {
     return { notValid: true };
+  }
+
+  bindingFormArray(arrObj?: EmployeeEducation[]) {
+    let eduArray = this.employeeForm.get('education') as FormArray;
+    arrObj?.forEach((value?) => {
+      this.addEdu(value);
+    });
+    this.count =
+      this.temp == 0
+        ? this.temp + ((arrObj?.length as number) - 1)
+        : this.count + 1;
+    this.btnDisaabaleForEducation = false;
   }
 }

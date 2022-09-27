@@ -1,69 +1,56 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.css'],
 })
-export class PaginatorComponent implements OnInit,OnChanges {
-
+export class PaginatorComponent implements OnInit {
   @Input() totalRecords: number = 0;
-  @Input() employeePerPage: number = 5;
-
-  @Output() selectPagePageEmit: EventEmitter<number> = new EventEmitter();
-  @Output() employeePerPageEmit: EventEmitter<number> = new EventEmitter();
-
-  constructor() {}
-  ngOnChanges(changes: SimpleChanges): void {
-    // this.indexPageNoEmit.emit(5)
-    // this.employeePerPageEmit.emit(5)
-  }
-
+  @Input() dataPerPage: number = 5;
+  @Output() selectPageEmit: EventEmitter<number> = new EventEmitter();
+  @Output() dataPerPageEmit: EventEmitter<number> = new EventEmitter();
 
   preBtnDisable: boolean = false;
   nextBtnDisable: boolean = true;
   selectPage: number = 1;
-  pageIndex: number = (this.selectPage - 1) * this.employeePerPage;
+  pageIndex: number = (this.selectPage - 1) * this.dataPerPage;
+
+  constructor() {}
 
   ngOnInit(): void {}
 
   employeePerPageChange(e: Event) {
     const newPageSize = (e.target as HTMLInputElement).value;
-    this.employeePerPage = Number(newPageSize);
-    this.employeePerPageEmit.emit(Number(newPageSize));
+    this.dataPerPage = Number(newPageSize);
+    this.dataPerPageEmit.emit(Number(newPageSize));
     this.changePage(1);
   }
 
   changePage(page: number) {
     this.selectPage = page;
-    this.preAndNex(page);
-    this.selectPagePageEmit.emit(this.selectPage);
+    this.preAndNexDisable(page);
+    this.selectPageEmit.emit(this.selectPage);
   }
 
-  combinePreAndNextBtn(count:number){
+  combinePreAndNextBtn(count: number) {
     this.selectPage = this.selectPage + count;
     this.changePage(this.selectPage);
-    this.preAndNex(this.selectPage);
+    this.preAndNexDisable(this.selectPage);
   }
 
   get pageNumbers(): number[] {
-    return Array(Math.ceil(this.totalRecords / this.employeePerPage))
+    return Array(Math.ceil(this.totalRecords / this.dataPerPage))
       .fill(0)
       .map((x, i) => i + 1);
   }
 
-  preAndNex(selectPage: number) {
+  preAndNexDisable(selectPage: number) {
     let tempForPre = selectPage;
     let tempForNex = this.pageNumbers.length;
-    if (tempForPre > 1) {
-      this.preBtnDisable = true;
-    } else {
-      this.preBtnDisable = false;
-    }
-    if (selectPage >= this.pageNumbers.length) {
-      this.nextBtnDisable = false;
-    } else {
-      this.nextBtnDisable = true;
-    }
+    tempForPre > 1 ? (this.preBtnDisable = true) : (this.preBtnDisable = false);
+    selectPage >= this.pageNumbers.length
+      ? (this.nextBtnDisable = false)
+      : (this.nextBtnDisable = true);
   }
 }

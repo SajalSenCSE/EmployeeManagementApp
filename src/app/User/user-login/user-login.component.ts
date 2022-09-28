@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -5,9 +6,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
+import { UserLoginOutput } from 'src/app/models/user-login-output';
 import { UserLoginForm } from 'src/app/models/UserLoginForm';
 import { AuthService } from 'src/app/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user-login',
@@ -16,8 +20,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserLoginComponent implements OnInit {
   loginForm: FormGroup<UserLoginForm>;
-  newUser=new User();
-  constructor(private fb: FormBuilder,private authService:AuthService) {}
+  user = new User();
+  loginOutput: UserLoginOutput;
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private coockies: CookieService
+  ) {}
 
   ngOnInit(): void {
     this.logInFormCreate();
@@ -25,17 +35,25 @@ export class UserLoginComponent implements OnInit {
 
   logInFormCreate() {
     this.loginForm = this.fb.group<UserLoginForm>({
-      userName: new FormControl('', Validators.required),
+      userName: new FormControl('', [Validators.required, Validators.email]),
       passWord: new FormControl('', Validators.required),
     });
   }
-  onUserLogin(){
-    if(this.loginForm.valid){
-      this.newUser=this.loginForm.value as User;
-      this.authService.logIn(this.newUser).subscribe(res=>
-        {
-          console.log(res);
-        })
+
+  onUserLogin() {
+    if (this.loginForm.valid) {
+      this.user = this.loginForm.value as User;
+      this.user.templateId = 2;
+      this.authService.userLogIn(this.user).subscribe(
+        (res) => {
+          this.loginOutput = res as UserLoginOutput;
+          this.coockies.set('Token', this.loginOutput.token, { expires: 1 });
+          alert('Login Sucess');
+          this.loginForm.reset();
+          this.router.navigate(['employee']);
+        },
+        (error: HttpErrorResponse) => alert(error.error.message)
+      );
     }
   }
 }

@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { UserLoginForm } from '../models/UserLoginForm';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +13,21 @@ import { UserLoginForm } from '../models/UserLoginForm';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  homeBtnDisable: boolean = false;
+  empBtnDisable: boolean = false;
+  leadBtnDisable: boolean = false;
 
-  ngOnInit(): void {}
+  constructor(private fb: FormBuilder, private cookie: CookieService) {}
+
+  ngOnInit(): void {
+    this.buttonEnable();
+  }
+
+  buttonEnable() {
+    if (this.cookie.get('Token')) {
+      this.homeBtnDisable = true;
+      this.empBtnDisable = true;
+      this.leadBtnDisable = true;
+    }
+  }
 }

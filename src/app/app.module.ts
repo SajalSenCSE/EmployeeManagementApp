@@ -11,6 +11,7 @@ import { LeadListComponent } from './lead-list/lead-list.component';
 import { PaginationModule, PaginationConfig } from 'ngx-bootstrap/pagination';
 import { HomeComponent } from './home/home.component';
 import { UserLoginComponent } from './User/user-login/user-login.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { UserLoginComponent } from './User/user-login/user-login.component';
     PaginationModule,
     ReactiveFormsModule,
   ],
-  providers: [EmployeeServiceService, PaginationConfig],
+  providers: [EmployeeServiceService, PaginationConfig, CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {

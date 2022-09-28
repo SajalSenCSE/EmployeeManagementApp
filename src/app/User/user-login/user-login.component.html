@@ -13,7 +13,17 @@
               class="form-control"
               formControlName="userName"
             />
-            <span class="error-block" *ngIf="!loginForm.controls['userName'].valid && loginForm.controls['userName'].touched">Please enter username</span>
+            <span
+              *ngIf="!loginForm.valid && loginForm.controls.userName.touched"
+              class="error-block"
+            >
+              <span *ngIf="loginForm.controls.userName.hasError('required')">
+                Please Provide Email
+              </span>
+              <span *ngIf="loginForm.controls.userName.hasError('email')">
+                Invalid Email
+              </span>
+            </span>
           </div>
           <div class="form-group col-12">
             <label for="passwrod" class="form-label">Password</label>
@@ -22,12 +32,24 @@
               class="form-control"
               formControlName="passWord"
             />
-            <span class="error-block" *ngIf="!loginForm.controls['passWord'].valid
-              && loginForm.controls['passWord'].touched">Please enter Password</span>
+            <span
+              class="error-block"
+              *ngIf="
+                !loginForm.controls['passWord'].valid &&
+                loginForm.controls['passWord'].touched
+              "
+              >Please enter Password</span
+            >
           </div>
           <div class="form-group col-12">
             <br />
-            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary me-1">Login</button>
+            <button
+              [disabled]="loginForm.invalid"
+              type="submit"
+              class="btn btn-primary me-1"
+            >
+              Login
+            </button>
             <button type="reset" class="btn btn-secondary ml-2">Cancel</button>
           </div>
         </form>

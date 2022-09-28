@@ -6,8 +6,9 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+
 import { Observable } from 'rxjs';
+import { CookieService } from '../services/cookie.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class AuthGard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.cookies.get('Token')) return true;
+    if (this.cookies.getCookie('token')) return true;
     else {
       this.router.navigate(['']);
       return false;

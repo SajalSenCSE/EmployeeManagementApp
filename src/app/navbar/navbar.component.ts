@@ -5,7 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
+import { CookieService } from '../services/cookie.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,21 +14,26 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  homeBtnDisable: boolean = false;
-  empBtnDisable: boolean = false;
-  leadBtnDisable: boolean = false;
+  navManuDisable: boolean = false;
+  loginLogOutButton: boolean = false;
 
-  constructor(private fb: FormBuilder, private cookie: CookieService) {}
+  constructor(
+    private fb: FormBuilder,
+    private cookie: CookieService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.loginLogOutButton = !this.loginLogOutButton;
     this.buttonEnable();
   }
 
   buttonEnable() {
-    if (this.cookie.get('Token')) {
-      this.homeBtnDisable = true;
-      this.empBtnDisable = true;
-      this.leadBtnDisable = true;
-    }
+    if (this.cookie.getCookie('token')) this.navManuDisable = true;
+  }
+  onLogOut() {
+    this.loginLogOutButton = !this.loginLogOutButton;
+    this.cookie.deleteCookie('token');
+    this.router.navigate(['login']);
   }
 }

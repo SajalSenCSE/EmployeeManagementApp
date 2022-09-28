@@ -11,7 +11,7 @@ import { User } from 'src/app/models/User';
 import { UserLoginOutput } from 'src/app/models/user-login-output';
 import { UserLoginForm } from 'src/app/models/UserLoginForm';
 import { AuthService } from 'src/app/services/auth.service';
-import { CookieService } from 'ngx-cookie-service';
+import { CookieService } from 'src/app/services/cookie.service';
 
 @Component({
   selector: 'app-user-login',
@@ -47,9 +47,11 @@ export class UserLoginComponent implements OnInit {
       this.authService.userLogIn(this.user).subscribe(
         (res) => {
           this.loginOutput = res as UserLoginOutput;
-          this.coockies.set('Token', this.loginOutput.token, { expires: 1 });
-          alert('Login Sucess');
-          this.loginForm.reset();
+          this.coockies.setCookie({
+            name: 'token',
+            value: this.loginOutput.token,
+            session: true,
+          });
           this.router.navigate(['employee']);
         },
         (error: HttpErrorResponse) => alert(error.error.message)

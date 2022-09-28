@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
+
 import { map, Observable } from 'rxjs';
 import { GetDataOutPut } from '../models/GetDataOutPut';
 
 import { LeadOutPut } from '../models/LeadOutPut';
+import { CookieService } from './cookie.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,7 @@ export class LeadService {
       ItemsPerPage +
       '&PageNo=' +
       PageNo;
-    let token = this.cookies.get('Token');
+    let token = this.cookies.getCookie('token');
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,

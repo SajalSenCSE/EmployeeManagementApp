@@ -12,7 +12,7 @@ import { Dropdown } from 'src/app/models/Dropdown';
 import { EducationTypeForm } from 'src/app/models/education-type';
 import { EmployeeEducation } from 'src/app/models/employee-education';
 import { EmployeeInputTypeForm } from 'src/app/models/EmployeeInputTypeForm';
-import { EmployeeServiceService } from 'src/app/services/employee-service.service';
+import { EmployeeServiceService } from 'src/app/services/employee-service';
 import { UtilityData } from 'src/app/Utility/utility-data';
 
 @Component({

@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Employee } from '../models/add-employee-demo';
-import { IEmployee } from '../models/IEmployee';
 
 @Pipe({
   name: 'filter',

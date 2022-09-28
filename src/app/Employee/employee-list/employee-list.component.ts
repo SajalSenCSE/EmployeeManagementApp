@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Employee } from 'src/app/models/add-employee-demo';
 
-import { EmployeeServiceService } from 'src/app/services/employee-service.service';
+import { EmployeeServiceService } from 'src/app/services/employee-service';
 
 @Component({
   selector: 'app-employee-list',

@@ -1,4 +1,3 @@
-import { EducationTypeForm } from './education-type';
 import { EmployeeEducation } from './employee-education';
 
 export interface EmployeeAdd {

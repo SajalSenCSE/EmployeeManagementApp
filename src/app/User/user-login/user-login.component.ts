@@ -8,7 +8,6 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
-import { UserLoginOutput } from 'src/app/models/user-login-output';
 import { UserLoginForm } from 'src/app/models/UserLoginForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -21,8 +20,7 @@ import { CookieService } from 'src/app/services/cookie.service';
 })
 export class UserLoginComponent implements OnInit {
   loginForm: FormGroup<UserLoginForm>;
-  user = new User();
-  loginOutput: UserLoginOutput;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -44,21 +42,21 @@ export class UserLoginComponent implements OnInit {
 
   onUserLogin() {
     if (this.loginForm.valid) {
-      this.user = this.loginForm.value as User;
-      this.user.templateId = 2;
-      this.authService.userLogIn(this.user).subscribe(
-        (res) => {
-          this.loginOutput = res as UserLoginOutput;
-          this.coockies.setCookie({
-            name: 'token',
-            value: this.loginOutput.token,
-            session: false,
-          });
-          this.alertyfy.success('Congratulations');
-          this.router.navigate(['employee']);
-        },
-        (error: HttpErrorResponse) => this.alertyfy.error(error.error.message)
-      );
+      this.authService
+        .userLogIn({ ...(this.loginForm.value as User), templateId: 2 })
+        .subscribe({
+          next: (res) => {
+            this.coockies.setCookie({
+              name: 'token',
+              value: res.token,
+              session: false,
+            });
+            this.alertyfy.success('Congratulations');
+            this.router.navigate(['employee']);
+          },
+          error: (error: HttpErrorResponse) =>
+            this.alertyfy.error(error.error.message),
+        });
     }
   }
 }

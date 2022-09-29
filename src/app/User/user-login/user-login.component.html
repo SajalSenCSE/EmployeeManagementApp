@@ -17,10 +17,10 @@
               *ngIf="!loginForm.valid && loginForm.controls.userName.touched"
               class="error-block"
             >
-              <span *ngIf="loginForm.controls.userName.hasError('required')">
+              <span *ngIf="loginForm.controls['userName'].errors?.['required']">
                 Please Provide Email
               </span>
-              <span *ngIf="loginForm.controls.userName.hasError('email')">
+              <span *ngIf="loginForm.controls['userName'].errors?.['email']">
                 Invalid Email
               </span>
             </span>

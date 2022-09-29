@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,8 +14,7 @@ import { CookieService } from '../services/cookie.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  navManuDisable: boolean = false;
-  loginLogOutButton: boolean = false;
+  loginBtnDisable: boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -24,16 +23,10 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loginLogOutButton = !this.loginLogOutButton;
-    this.buttonEnable();
+    (this.cookie.getCookie('token'))? this.loginBtnDisable=false:this.loginBtnDisable=true;
   }
 
   buttonEnable() {
-    if (this.cookie.getCookie('token')) this.navManuDisable = true;
-  }
-  onLogOut() {
-    this.loginLogOutButton = !this.loginLogOutButton;
-    this.cookie.deleteCookie('token');
-    this.router.navigate(['login']);
+     (this.cookie.getCookie('token'))? this.loginBtnDisable=false:this.loginBtnDisable=true;
   }
 }

@@ -52,7 +52,7 @@ export class UserLoginComponent implements OnInit {
           this.coockies.setCookie({
             name: 'token',
             value: this.loginOutput.token,
-            session: true,
+            session: false,
           });
           this.alertyfy.success('Congratulations');
           this.router.navigate(['employee']);

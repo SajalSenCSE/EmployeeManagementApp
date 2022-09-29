@@ -1,11 +1,16 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 import { CookieService } from '../services/cookie.service';
 
 @Component({
@@ -13,12 +18,11 @@ import { CookieService } from '../services/cookie.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements DoCheck {
   loginBtnDisable: boolean = true;
 
   constructor(private fb: FormBuilder, private cookie: CookieService) {}
-
-  ngOnInit(): void {
+  ngDoCheck(): void {
     this.cookie.getCookie('token')
       ? (this.loginBtnDisable = false)
       : (this.loginBtnDisable = true);

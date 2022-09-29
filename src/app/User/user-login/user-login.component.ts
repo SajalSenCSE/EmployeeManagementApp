@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { UserLoginOutput } from 'src/app/models/user-login-output';
 import { UserLoginForm } from 'src/app/models/UserLoginForm';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CookieService } from 'src/app/services/cookie.service';
 
@@ -26,7 +27,8 @@ export class UserLoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private coockies: CookieService
+    private coockies: CookieService,
+    private alertyfy: AlertifyService
   ) {}
 
   ngOnInit(): void {
@@ -52,9 +54,10 @@ export class UserLoginComponent implements OnInit {
             value: this.loginOutput.token,
             session: true,
           });
+          this.alertyfy.success('Congratulations');
           this.router.navigate(['employee']);
         },
-        (error: HttpErrorResponse) => alert(error.error.message)
+        (error: HttpErrorResponse) => this.alertyfy.error(error.error.message)
       );
     }
   }

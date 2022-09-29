@@ -16,17 +16,11 @@ import { CookieService } from '../services/cookie.service';
 export class NavbarComponent implements OnInit {
   loginBtnDisable: boolean = true;
 
-  constructor(
-    private fb: FormBuilder,
-    private cookie: CookieService,
-    private router: Router
-  ) {}
+  constructor(private fb: FormBuilder, private cookie: CookieService) {}
 
   ngOnInit(): void {
-    (this.cookie.getCookie('token'))? this.loginBtnDisable=false:this.loginBtnDisable=true;
-  }
-
-  buttonEnable() {
-     (this.cookie.getCookie('token'))? this.loginBtnDisable=false:this.loginBtnDisable=true;
+    this.cookie.getCookie('token')
+      ? (this.loginBtnDisable = false)
+      : (this.loginBtnDisable = true);
   }
 }

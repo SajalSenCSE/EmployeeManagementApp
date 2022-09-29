@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CookieService {
   constructor() {}
+
   public getCookie(name: string) {
-    let ca: Array<string> = document.cookie.split(';');
-    let caLen: number = ca.length;
+    let cArray: Array<string> = document.cookie.split(';');
+    let cArrayLen: number = cArray.length;
     let cookieName = `${name}=`;
     let c: string;
 
-    for (let i: number = 0; i < caLen; i += 1) {
-      c = ca[i].replace(/^\s+/g, '');
+    for (let i: number = 0; i < cArrayLen; i += 1) {
+      c = cArray[i].replace(/^\s+/g, '');
       if (c.indexOf(cookieName) == 0) {
         return c.substring(cookieName.length, c.length);
       }

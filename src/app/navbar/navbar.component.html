@@ -31,10 +31,15 @@
         </li>
       </ul>
       <ul class="navbar-nav ms-a">
-        <li class="nav-item" *ngIf="loginBtnDisable">
-          <button class="nav-link btn btn-primary" routerLinkActive="active" routerLink="login" [disabled]="loginBtnDisable"
-            >Login</button
+        <li class="nav-item">
+          <button
+            class="nav-link btn btn-primary"
+            routerLinkActive="active"
+            routerLink="login"
+            [disabled]="!loginBtnDisable"
           >
+            Login
+          </button>
         </li>
       </ul>
     </div>

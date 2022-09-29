@@ -5,13 +5,13 @@ import { map, Observable } from 'rxjs';
 import { GetDataOutPut } from '../models/GetDataOutPut';
 
 import { LeadOutPut } from '../models/LeadOutPut';
-import { CookieService } from './cookie.service';
+import { getCookie } from './function';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LeadService {
-  constructor(private http: HttpClient, private cookies: CookieService) {}
+  constructor(private http: HttpClient) {}
 
   getAllLead(
     ItemsPerPage: number,
@@ -23,7 +23,7 @@ export class LeadService {
       ItemsPerPage +
       '&PageNo=' +
       PageNo;
-    let token = this.cookies.getCookie('token');
+    let token = getCookie('token');
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,

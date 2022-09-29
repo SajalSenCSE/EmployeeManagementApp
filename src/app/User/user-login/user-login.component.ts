@@ -11,7 +11,7 @@ import { User } from 'src/app/models/User';
 import { UserLoginForm } from 'src/app/models/UserLoginForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { CookieService } from 'src/app/services/cookie.service';
+import{getCookie, setCookie} from 'src/app/services/function'
 
 @Component({
   selector: 'app-user-login',
@@ -25,7 +25,6 @@ export class UserLoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private coockies: CookieService,
     private alertyfy: AlertifyService
   ) {}
 
@@ -46,7 +45,7 @@ export class UserLoginComponent implements OnInit {
         .userLogIn({ ...(this.loginForm.value as User), templateId: 2 })
         .subscribe({
           next: (res) => {
-            this.coockies.setCookie({
+            setCookie({
               name: 'token',
               value: res.token,
               session: false,

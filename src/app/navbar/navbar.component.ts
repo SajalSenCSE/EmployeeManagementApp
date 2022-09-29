@@ -11,7 +11,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { CookieService } from '../services/cookie.service';
+import { getCookie } from '../services/function';
 
 @Component({
   selector: 'app-navbar',
@@ -21,9 +21,9 @@ import { CookieService } from '../services/cookie.service';
 export class NavbarComponent implements DoCheck {
   loginBtnDisable: boolean = true;
 
-  constructor(private fb: FormBuilder, private cookie: CookieService) {}
+  constructor(private fb: FormBuilder) {}
   ngDoCheck(): void {
-    this.cookie.getCookie('token')
+    getCookie('token')
       ? (this.loginBtnDisable = false)
       : (this.loginBtnDisable = true);
   }

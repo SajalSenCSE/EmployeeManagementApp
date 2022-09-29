@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { CookieService } from '../services/cookie.service';
+import { getCookie } from '../services/function';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class AuthGard implements CanActivate {
   /**
    *
    */
-  constructor(private cookies: CookieService, private router: Router) {}
+  constructor( private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -26,7 +26,10 @@ export class AuthGard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.cookies.getCookie('token')) return true;
+    if (getCookie('token'))
+    {
+      return true
+    }
     else {
       this.router.navigate(['']);
       return false;

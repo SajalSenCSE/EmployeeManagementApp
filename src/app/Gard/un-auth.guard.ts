@@ -8,13 +8,13 @@ import {
 } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { CookieService } from '../services/cookie.service';
+import { getCookie } from '../services/function';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UnAuthGuard implements CanActivate {
-  constructor(private cookies: CookieService, private router: Router) {}
+  constructor(private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -24,7 +24,7 @@ export class UnAuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.cookies.getCookie('token')) {
+    if (getCookie('token')) {
       this.router.navigate(['employee']);
       return false;
     } else return true;

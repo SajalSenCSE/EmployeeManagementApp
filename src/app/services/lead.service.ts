@@ -5,7 +5,7 @@ import { map, Observable } from 'rxjs';
 import { GetDataOutPut } from '../models/GetDataOutPut';
 
 import { LeadOutPut } from '../models/LeadOutPut';
-import { getCookie } from './function';
+import { getCookie } from './cookieFunction';
 
 @Injectable({
   providedIn: 'root',

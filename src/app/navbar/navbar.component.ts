@@ -1,17 +1,6 @@
-import {
-  Component,
-  DoCheck,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { getCookie } from '../services/function';
+import { Component, DoCheck } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { getCookie } from '../services/cookieFunction';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +8,7 @@ import { getCookie } from '../services/function';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements DoCheck {
-  loginBtnDisable: boolean = true;
+  loginBtnDisable = true;
 
   constructor(private fb: FormBuilder) {}
   ngDoCheck(): void {

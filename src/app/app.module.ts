@@ -32,7 +32,5 @@ import { UserLoginComponent } from './User/user-login/user-login.component';
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor() {
-    console.log('AppModule');
-  }
+  constructor() {}
 }

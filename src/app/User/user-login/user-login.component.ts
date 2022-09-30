@@ -11,7 +11,7 @@ import { User } from 'src/app/models/User';
 import { UserLoginForm } from 'src/app/models/UserLoginForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
-import{getCookie, setCookie} from 'src/app/services/function'
+import { getCookie, setCookie } from 'src/app/services/cookieFunction';
 
 @Component({
   selector: 'app-user-login',
@@ -29,6 +29,9 @@ export class UserLoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    !getCookie('token')
+      ? this.router.navigate(['login'])
+      : this.router.navigate(['employee']);
     this.logInFormCreate();
   }
 

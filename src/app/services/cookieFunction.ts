@@ -1,5 +1,6 @@
+import { Cookie } from '../models/cookie';
 
-export function getCookie(name:string){
+export function getCookie(name: string) {
   let cArray: Array<string> = document.cookie.split(';');
   let cArrayLen: number = cArray.length;
   let cookieName = `${name}=`;
@@ -12,28 +13,20 @@ export function getCookie(name:string){
     }
   }
   return '';
-
 }
-
 
 export function deleteCookie(cookieName: string) {
   setCookie({
-    name: cookieName, value: '', expireDays: -1,
+    name: cookieName,
+    value: '',
+    expireDays: -1,
     session: false,
     secure: false,
-    path: []
+    path: [],
   });
 }
 
-
-export function setCookie(params: {
-  secure?: boolean;
-  name: string,
-  value: string,
-  session: boolean,
-  expireDays?:number,
-  path?:string [],
-}){
+export function setCookie(params: Cookie) {
   let d: Date = new Date();
   d.setTime(
     d.getTime() +
@@ -54,4 +47,3 @@ export function setCookie(params: {
       ? 'secure'
       : '');
 }
-

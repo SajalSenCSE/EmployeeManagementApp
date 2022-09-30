@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 
-import { ignoreElements, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { getCookie } from '../services/cookieFunction';
 
 @Injectable({

@@ -31,7 +31,7 @@ export class UserLoginComponent implements OnInit {
   ngOnInit(): void {
     !getCookie('token')
       ? this.router.navigate(['login'])
-      : this.router.navigate(['employee']);
+      : this.router.navigate(['home']);
     this.logInFormCreate();
   }
 
@@ -54,7 +54,7 @@ export class UserLoginComponent implements OnInit {
               session: false,
             });
             this.alertyfy.success('Congratulations');
-            this.router.navigate(['employee']);
+            this.router.navigate(['home']);
           },
           error: (error: HttpErrorResponse) =>
             this.alertyfy.error(error.error.message),

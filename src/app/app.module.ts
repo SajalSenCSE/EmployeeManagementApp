@@ -11,6 +11,10 @@ import { LeadListComponent } from './lead-list/lead-list.component';
 import { PaginationModule, PaginationConfig } from 'ngx-bootstrap/pagination';
 import { HomeComponent } from './home/home.component';
 import { UserLoginComponent } from './User/user-login/user-login.component';
+import { StoreModule } from '@ngrx/store';
+import { tokenReducer } from './Stores/Reducers/token.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,8 @@ import { UserLoginComponent } from './User/user-login/user-login.component';
     FormsModule,
     PaginationModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({token:tokenReducer}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [EmployeeServiceService, PaginationConfig],
   bootstrap: [AppComponent],

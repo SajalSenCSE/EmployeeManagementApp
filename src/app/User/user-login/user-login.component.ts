@@ -7,11 +7,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { User } from 'src/app/models/User';
 import { UserLoginForm } from 'src/app/models/UserLoginForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { getCookie, setCookie } from 'src/app/services/cookieFunction';
+import { addToken } from 'src/app/Stores/Actions/token.action';
+import { TokenState } from 'src/app/Stores/Reducers/token.reducer';
 
 @Component({
   selector: 'app-user-login',
@@ -25,7 +28,8 @@ export class UserLoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private alertyfy: AlertifyService
+    private alertyfy: AlertifyService,
+    private store:Store<TokenState>
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +57,7 @@ export class UserLoginComponent implements OnInit {
               value: res.token,
               session: false,
             });
+            this.store.dispatch(addToken({token:res.token}))
             this.alertyfy.success('Congratulations');
             this.router.navigate(['home']);
           },

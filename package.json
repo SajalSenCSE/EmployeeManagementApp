@@ -19,6 +19,8 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@ngrx/store": "^14.3.2",
+    "@ngrx/store-devtools": "^14.3.2",
     "alertifyjs": "^1.13.1",
     "angular-material-data-table": "^0.10.10",
     "bootstrap": "^5.2.0",
